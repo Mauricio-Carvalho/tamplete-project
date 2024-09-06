@@ -9,7 +9,8 @@
 
   .logo-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
   }
 
@@ -21,10 +22,6 @@
 
   nb-user {
     cursor: pointer;
-  }
-
-  ::ng-deep nb-search button {
-    padding: 0!important;
   }
 
   .header-container {
@@ -42,13 +39,30 @@
       }
     }
 
-    .logo {
+    .logo-client {
       padding: 0 1.25rem;
       font-size: 1.75rem;
-      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
-      @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
       white-space: nowrap;
       text-decoration: none;
+      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+      @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
+
+    }
+
+    .logo-enterprise {
+      padding: 0 1.25rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+      white-space: nowrap;
+      text-decoration: none;
+      //margin-top: 0.5rem;
+      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+      @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
+
+      // Estilo para ocultar a div
+      &.hidden {
+        display: none;
+      }
     }
   }
 
@@ -67,4 +81,25 @@
       display: none;
     }
   }
+
+
+  //-----Efeito-----//
+  .typewriter a {
+    display: inline;
+    font-size: 0.8rem;
+    border-right: 4px solid #61dafb; /* Cursor color */
+    white-space: nowrap;
+    overflow: hidden;
+    animation: blink 0.75s step-end 0s 55; /* Duração do blink é 0.75s, e a animação ocorre apenas uma vez */
+    animation-duration: 1s; /* Define a duração total da animação para 1 minuto */
+    animation-fill-mode: forwards; /* Garante que o estilo final da animação seja aplicado após a conclusão */
+  }
+
+  @keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: #61dafb; }
+  }
+
+  //-----fim efeito-----//
+
 }

@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "title": "Menú",
+    "list": {
+      "tables": {
+        "title": "Tablas & Datos",
+        "user": "Usuario",
+        "supply": "Abastecimiento",
+        "machine": "Máquinas"
+      },
+      "auth": {
+        "title": "Autenticación",
+        "login": "Iniciar Sesión",
+        "register": "Registrar",
+        "request-password": "Solicitar Contraseña",
+        "reset-password": "Restablecer Contraseña"
+      }
+    }
+  },
+  "header": {
+    "profile": "Perfil",
+    "log_out": "Cerrar Sesión"
+  },
+  "profile": {
+    "image": {
+      "title_image": "Imagen"
+    },
+    "information": {
+      "title_information": "Tu Información",
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "date_birth": "Fecha de Nacimiento",
+      "sex": {
+        "title": "Sexo",
+        "masculine": "Masculino",
+        "feminine": "Femenino",
+        "other": "Otro"
+      },
+      "type_document": "Tipo de Documento",
+      "document": "Documento",
+      "id_position": "ID de la Posición",
+      "position": "Posición"
+    },
+    "configuration": {
+      "title_configuration": "Configuración",
+      "theme": {
+        "title": "Tema",
+        "default": "Claro",
+        "dark": "Oscuro",
+        "corporate": "Corporativo"
+      },
+      "language": {
+        "title": "Idioma",
+        "english": "Inglés",
+        "spanish": "Español",
+        "portuguese": "Portugués"
+      }
+    },
+    "contact": {
+      "title_contact": "Contacto",
+      "email": "Correo Electrónico",
+      "telephone": "Teléfono",
+      "country": "País",
+      "state": "Estado",
+      "city": "Ciudad",
+      "address": "Dirección",
+      "number": "Número"
+    },
+    "permission": {
+      "permission_title": "Permiso",
+      "administrator": "Administrador",
+      "manager": "Gerente",
+      "employee": "Empleado"
+    }
+  },
+  "user": {
+    "title": "Tabla de Usuario",
+    "table": {
+      "id": "ID",
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "username": "Nombre de Usuario",
+      "email": "Correo Electrónico",
+      "age": "Edad"
+    },
+    "confirm_delete": "¿Estás seguro de que deseas eliminar?"
+  }
+}

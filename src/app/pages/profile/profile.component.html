@@ -1,0 +1,203 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>{{ 'profile.information.title_information' | translate }}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" class="label">{{ 'profile.information.first_name' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round" id="inputFirstName"
+                     placeholder="{{ 'profile.information.first_name' | translate }}">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputLastName" class="label">{{ 'profile.information.last_name' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round" id="inputLastName"
+                     placeholder="{{ 'profile.information.last_name' | translate }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="label">{{ 'profile.information.date_birth' | translate }}</label>
+              <input nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.information.date_birth' | translate }}" [nbDatepicker]="formpicker">
+              <nb-datepicker #formpicker></nb-datepicker>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="label">{{ 'profile.information.sex.title' | translate }}</label>
+              <nb-select fullWidth shape="semi-round" placeholder="{{ 'profile.information.sex.title' | translate }}">
+                <nb-option value="1">{{ 'profile.information.sex.masculine' | translate }}</nb-option>
+                <nb-option value="2">{{ 'profile.information.sex.feminine' | translate }}</nb-option>
+                <nb-option value="3">{{ 'profile.information.sex.other' | translate }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">{{ 'profile.information.type_document' | translate }}</label>
+              <nb-select fullWidth shape="semi-round"
+                         placeholder="{{ 'profile.information.type_document' | translate }}">
+                <nb-option value="1">CPF</nb-option>
+                <nb-option value="2">CNPJ</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label class="label">{{ 'profile.information.document' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.information.document' | translate }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">{{ 'profile.information.id_position' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.information.id_position' | translate }}">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label class="label">{{ 'profile.information.position' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.information.position' | translate }}">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>{{ 'profile.contact.title_contact' | translate }}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.email' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.email' | translate }}">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.telephone' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.telephone' | translate }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.country' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.country' | translate }}">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.state' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.state' | translate }}">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.city' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.city' | translate }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.address' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.address' | translate }}">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">{{ 'profile.contact.number' | translate }}</label>
+              <input type="text" nbInput fullWidth shape="semi-round"
+                     placeholder="{{ 'profile.contact.number' | translate }}">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>{{ 'profile.image.title_image' | translate }}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-6">
+            <nb-user size="large" name="Leonardo Camilo" title="Development" onlyPicture shape="rectangle"></nb-user>
+          </div>
+          <div class="col-sm-6 text-right">
+            <button nbButton shape="semi-round">Upload</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>{{ 'profile.configuration.title_configuration' | translate }}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="label">{{ 'profile.configuration.theme.title' | translate }}</label>
+              <nb-select fullWidth shape="semi-round" [selected]="currentTheme" placeholder="{{ 'profile.configuration.theme.title' | translate }}"
+                         (selectedChange)="changeTheme($event)" status="primary">
+                <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ 'profile.configuration.theme.' + theme.value | translate }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="label">{{ 'profile.configuration.language.title' | translate }}</label>
+              <nb-select fullWidth shape="semi-round" [selected]="currentLanguage"  placeholder="{{ 'profile.configuration.language.title' | translate }}"
+                         (selectedChange)="changeLanguage($event)" status="primary">
+                <nb-option *ngFor="let language of languages" [value]="language.value">{{ 'profile.configuration.language.' + language.name | translate }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+
+    <nb-card>
+      <nb-card-header>{{ 'profile.permission.permission_title' | translate }}</nb-card-header>
+      <nb-card-body class="checkbox-radio">
+        <div class="demo-items">
+          <nb-radio-group [(value)]="radioGroupValue">
+            <nb-radio [value]="1">
+              {{ 'profile.permission.administrator' | translate }}
+            </nb-radio>
+            <nb-radio [value]="2">
+              {{ 'profile.permission.manager' | translate }}
+            </nb-radio>
+            <nb-radio [value]="3">
+              {{ 'profile.permission.employee' | translate }}
+            </nb-radio>
+          </nb-radio-group>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

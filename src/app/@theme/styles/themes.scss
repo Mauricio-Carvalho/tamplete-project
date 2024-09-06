@@ -1,7 +1,10 @@
 // @nebular theming framework
-@import '@nebular/theme/styles/theming';
+@forward '@nebular/theme/styles/theming';
 // @nebular out of the box themes
-@import '@nebular/theme/styles/themes';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/dark';
+@use '@nebular/theme/styles/themes/default';
+@use '@nebular/theme/styles/themes/corporate';
 
 $nb-themes: nb-register-theme((
   layout-padding-top: 2.25rem,
@@ -40,49 +43,98 @@ $nb-themes: nb-register-theme((
 
   select-min-width: 6rem,
 
-  slide-out-background: #252547,
-  slide-out-shadow-color: 2px 0 3px #29157a,
-  slide-out-shadow-color-rtl: -2px 0 3px #29157a,
-), cosmic, cosmic);
-
-$nb-themes: nb-register-theme((
-  layout-padding-top: 2.25rem,
-
-  menu-item-icon-margin: 0 0.5rem 0 0,
-
-  card-height-tiny: 13.5rem,
-  card-height-small: 21.1875rem,
-  card-height-medium: 28.875rem,
-  card-height-large: 36.5625rem,
-  card-height-giant: 44.25rem,
-  card-margin-bottom: 1.875rem,
-  card-header-with-select-padding-top: 0.5rem,
-  card-header-with-select-padding-bottom: 0.5rem,
-
-  select-min-width: 6rem,
-
-  slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
-  slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
-  slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
-), corporate, corporate);
-
-$nb-themes: nb-register-theme((
-  layout-padding-top: 2.25rem,
-
-  menu-item-icon-margin: 0 0.5rem 0 0,
-
-  card-height-tiny: 13.5rem,
-  card-height-small: 21.1875rem,
-  card-height-medium: 28.875rem,
-  card-height-large: 36.5625rem,
-  card-height-giant: 44.25rem,
-  card-margin-bottom: 1.875rem,
-  card-header-with-select-padding-top: 0.5rem,
-  card-header-with-select-padding-bottom: 0.5rem,
-
-  select-min-width: 6rem,
-
   slide-out-background: linear-gradient(270deg, #222b45 0%, #151a30 100%),
   slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
   slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 ), dark, dark);
+
+$nb-themes: nb-register-theme((
+  layout-padding-top: 2.25rem,
+
+  menu-item-icon-margin: 0 0.5rem 0 0,
+
+  card-height-tiny: 13.5rem,
+  card-height-small: 21.1875rem,
+  card-height-medium: 28.875rem,
+  card-height-large: 36.5625rem,
+  card-height-giant: 44.25rem,
+  card-margin-bottom: 1.875rem,
+  card-header-with-select-padding-top: 0.5rem,
+  card-header-with-select-padding-bottom: 0.5rem,
+
+  select-min-width: 6rem,
+
+  //slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
+  slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+  slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+
+  //Primary Color
+  //color-primary-100: #5a37b8,
+  //color-primary-200: #5a37b8,
+  //color-primary-300: #5a37b8,
+  color-primary-400: #125c41, //Cor Icones Radio(Selecionado ao Passar por cima), Select(Selecionado ao Passar por cima)
+  color-primary-500: #34f8a2, //Cor Icones Radio(Não Selecionado ao Passar por cima),
+                              // Cortono do Select, loader, icones(selecionado), menu(selecionado)
+  color-primary-600: #125c41, //Cor Select (Selecionado),
+  //color-primary-700: #5a37b8,
+  //color-primary-800: #5a37b8,
+  //color-primary-900: #5a37b8,
+
+  // Cores básicas
+  color-basic-100: #77af9a, // Cor da letra : Select(selecionado)
+  color-basic-200: #5a37b8, // Cor para elementos secundários : Botöes ao passar por cima
+  color-basic-300: #77af9a, // Cor de fundo : Botöes
+  color-basic-400: #5a37b8, // Cor ao selecionar : Botöes
+  //color-basic-500: #5a37b8, // Cor de fundo para elementos destacados
+  color-basic-600: #125c41, // Cor para elementos de foco ou selecionados : label e placeholder
+  //color-basic-700: #34f8a2, // Cor primária para botões e links
+  //color-basic-800: #125c41, // Cor para cabeçalhos ou seções destacadas : Letras dos Titulos, radio, select
+  //color-basic-900: #295c66, // Cor para texto e ícones primários
+  //color-basic-1000: #d00606, // Cor para fundo de seções secundárias
+  //color-basic-1100: #121a2b, // Cor de fundo para contraste
+
+  // Cores de fundo
+  background-basic-color-1: #77af9a, // Cor de fundo principal : header e sidebar
+  background-basic-color-2: #77af9a, // Cor de fundo para áreas secundárias : forms
+  background-basic-color-3: #125c41, // Cor de fundo para elementos de destaque : espaço entre os forms
+  //background-basic-color-4: #125c41, // Cor de fundo para áreas claras e contrastantes
+
+  // Cores de borda
+  //border-basic-color-1: #d00606, // Cor da borda principal
+  //border-basic-color-2: #d00606, // Cor da borda para elementos secundários
+  border-basic-color-3: #34f8a2, // Cor da borda para elementos de destaque : linhas entre menu e cabeçalhos
+  border-basic-color-4: #34f8a2, // Cor da borda para áreas secundárias : linhas do input
+  //border-basic-color-5: #2706d0, // Cor da borda para seções escuras e contrastantes
+
+  // Cores de texto
+  text-basic-color: #125c41, // Cor do texto principal : Menu, titulos do form, radio, select
+  //text-disabled-color: #2706d0, // Cor do texto desativado
+  //text-primary-color: #2706d0, // Cor do texto primário para links e elementos interativos
+  //text-secondary-color: #2706d0, // Cor do texto secundário e informações adicionais
+
+  // Cores de botão
+  //button-background-basic-color: #d00606, // Cor de fundo dos botões principais
+  //button-background-hover-color: #d00606, // Cor de fundo dos botões ao passar o mouse
+  //button-background-active-color: #d00606, // Cor de fundo dos botões quando pressionados
+  //button-text-color: #d00606, // Cor do texto dos botões
+
+  // Cores de estado
+  //status-success-color: #4CAF50, // Cor para estados de sucesso (verde)
+  //status-info-color: #2196F3, // Cor para estados de informação (azul)
+  //status-warning-color: #FFC107, // Cor para estados de aviso (amarelo)
+  //status-danger-color: #F44336, // Cor para estados de erro (vermelho)
+
+  // Cores de input
+  //input-background-color: #2706d0, // Cor de fundo dos campos de entrada
+  //input-border-color: #2706d0, // Cor da borda dos campos de entrada
+  //input-placeholder-color: #2706d0, // Cor do texto de placeholder
+
+  // Cores de badge
+  //badge-primary-background-color: color-basic-700, // Cor de fundo para badges primários
+  //badge-primary-text-color: color-basic-100, // Cor do texto para badges primários
+  //badge-success-background-color: #4CAF50, // Cor de fundo para badges de sucesso
+  //badge-success-text-color: color-basic-100, // Cor do texto para badges de sucesso
+  //badge-danger-background-color: #F44336, // Cor de fundo para badges de erro
+  //badge-danger-text-color: color-basic-100, // Cor do texto para badges de erro
+
+), corporate, corporate);
