@@ -5,8 +5,9 @@
       "tables": {
         "title": "Tabelas & Dados",
         "user": "Usuário",
-        "supply": "Abastecimento",
-        "machine": "Máquinas"
+        "fuel": "Abastecimento",
+        "machine": "Máquinas",
+        "operator": "Operador"
       },
       "auth": {
         "title": "Autenticação",
@@ -84,5 +85,38 @@
       "age": "Idade"
     },
     "confirm_delete": "Tem certeza de que deseja excluir?"
+  },
+  "fuel": {
+    "title": "Tabela Abastecimento",
+    "table": {
+      "idFuel": "ID Combustível",
+      "idMac": "ID Maquinário",
+      "idOp": "ID Operação",
+      "comb": "Tipo de Combustível",
+      "qtdComb": "Qtd de Combustível",
+      "tmp": "Temperatura",
+      "date": "Data",
+      "hour": "Hora",
+      "idTruck": "ID Caminhão"
+    },
+    "confirm_delete": "Tem certeza de que deseja excluir este registro?"
+  },
+  "machine": {
+    "title": "Tabela Máquinas",
+    "table": {
+      "idMac": "ID Máquina",
+      "name": "Nome Máquina",
+      "status": "Status"
+    },
+    "confirm_delete": "Tem certeza de que deseja excluir esta máquina?"
+  },
+  "operator": {
+    "title": "Tabela Operadores",
+    "table": {
+      "idOp": "ID Operador",
+      "name": "Nome Operador",
+      "status": "Status"
+    },
+    "confirm_delete": "Tem certeza de que deseja excluir este operador?"
   }
 }

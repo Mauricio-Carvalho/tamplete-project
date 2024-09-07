@@ -5,8 +5,9 @@
       "tables": {
         "title": "Tables & Data",
         "user": "User",
-        "supply": "Supply",
-        "machine": "Machines"
+        "fuel": "Fuel",
+        "machine": "Machines",
+        "operator": "Operator"
       },
       "auth": {
         "title": "Authentication",
@@ -84,5 +85,38 @@
       "age": "Age"
     },
     "confirm_delete": "Are you sure you want to delete?"
+  },
+  "fuel": {
+    "title": "Fuel Table",
+    "table": {
+      "idFuel": "Fuel ID",
+      "idMac": "Machine ID",
+      "idOp": "Operation ID",
+      "comb": "Fuel Type",
+      "qtdComb": "Fuel Quantity",
+      "tmp": "Temperature",
+      "date": "Date",
+      "hour": "Hour",
+      "idTruck": "Truck ID"
+    },
+    "confirm_delete": "Are you sure you want to delete this record?"
+  },
+  "machine": {
+    "title": "Machines Table",
+    "table": {
+      "idMac": "Machine ID",
+      "name": "Machine Name",
+      "status": "Status"
+    },
+    "confirm_delete": "Are you sure you want to delete this machine?"
+  },
+  "operator": {
+    "title": "Operators Table",
+    "table": {
+      "idOp": "Operator ID",
+      "name": "Operator Name",
+      "status": "Status"
+    },
+    "confirm_delete": "Are you sure you want to delete this operator?"
   }
 }
