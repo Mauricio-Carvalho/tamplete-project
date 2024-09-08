@@ -1,0 +1,8 @@
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>{{ message }}</nb-card-body>
+  <nb-card-footer class="text-center">
+      <button nbButton style="width: 40%; margin: 0 5px" status="success" (click)="confirm()">{{ confirmButtonText }}</button>
+      <button nbButton style="width: 40%; margin: 0 5px" status="danger" (click)="cancel()">{{ cancelButtonText }}</button>
+  </nb-card-footer>
+</nb-card>

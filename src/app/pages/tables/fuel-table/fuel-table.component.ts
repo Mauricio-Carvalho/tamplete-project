@@ -1,10 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Subscription } from 'rxjs';
 
 import { FuelTableData } from '../../../@core/data/fuel-table';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'ngx-user-table',
@@ -42,7 +43,8 @@ export class FuelTableComponent implements OnDestroy {
 
   constructor(private translate: TranslateService,
               private service: FuelTableData,
-              private toastrService: NbToastrService) {
+              private toastrService: NbToastrService,
+              private dialogService: NbDialogService) {
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -65,59 +67,95 @@ export class FuelTableComponent implements OnDestroy {
 
   // Confirma a criação de um novo registro
   onCreateConfirm(event): void {
-    const newFuelData = event.newData;
-    this.service.createData(newFuelData).subscribe(
-      response => {
-        console.info('Create: ', newFuelData);
-        this.toastrService.success('Registro criado com sucesso!', 'Sucesso');
-        event.confirm.resolve(response);
-        this.loadData();
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: 'Confirmação de Criação',
+        message: 'Tem certeza que deseja criar este registro?',
+        confirmButtonText: 'Criar',
+        cancelButtonText: 'Cancelar',
       },
-      error => {
-        console.error('Erro ao criar registro: ', error);
-        this.toastrService.danger('Erro ao criar registro!', 'Erro');
+    }).onClose.subscribe(result => {
+      if (result) {
+        const newFuelData = event.newData;
+        this.service.createData(newFuelData).subscribe(
+          response => {
+            console.info('Create: ', newFuelData);
+            this.toastrService.success('Registro criado com sucesso!', 'Sucesso');
+            event.confirm.resolve(response);
+            this.loadData();
+          },
+          error => {
+            console.error('Erro ao criar registro: ', error);
+            this.toastrService.danger('Erro ao criar registro!', 'Erro');
+            event.confirm.reject();
+          })
+        ;
+      } else {
         event.confirm.reject();
-      })
-    ;
+      }
+    });
   }
-
 
   // Confirma a edição de um registro
   onEditConfirm(event): void {
-    const updatedFuelData = event.newData;
-    this.service.updateData(event.data.idFuel, updatedFuelData).subscribe(
-      response => {
-        console.info('Update ID: ', event.data.idFuel, ' - Data: ', updatedFuelData);
-        this.toastrService.success('Registro editado com sucesso!', 'Sucesso');
-        event.confirm.resolve(response);
-        this.loadData();
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: 'Confirmação de Edição',
+        message: 'Tem certeza que deseja editar este registro?',
+        confirmButtonText: 'Editar',
+        cancelButtonText: 'Cancelar',
       },
-      error => {
-        console.error('Erro ao editar registro: ', error);
-        this.toastrService.danger('Erro ao editar registro!', 'Erro');
+    }).onClose.subscribe(result => {
+      if (result) {
+        const updatedFuelData = event.newData;
+        this.service.updateData(event.data.idFuel, updatedFuelData).subscribe(
+          response => {
+            console.info('Update ID: ', event.data.idFuel, ' - Data: ', updatedFuelData);
+            this.toastrService.success('Registro editado com sucesso!', 'Sucesso');
+            event.confirm.resolve(response);
+            this.loadData();
+          },
+          error => {
+            console.error('Erro ao editar registro: ', error);
+            this.toastrService.danger('Erro ao editar registro!', 'Erro');
+            event.confirm.reject();
+          })
+        ;
+      } else {
         event.confirm.reject();
-      })
-    ;
+      }
+    });
   }
-
 
   // Confirma a exclusão de um registro
   onDeleteConfirm(event): void {
-    this.service.deleteData(event.data.idFuel).subscribe(
-      () => {
-        console.info('Delete ID: ', event.data.idFuel);
-        this.toastrService.success('Registro deletado com sucesso!', 'Sucesso');
-        event.confirm.resolve();
-        this.loadData();
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: 'Confirmação de Exclusão',
+        message: 'Tem certeza que deseja excluir este registro?',
+        confirmButtonText: 'Excluir',
+        cancelButtonText: 'Cancelar',
       },
-      error => {
-        console.error('Erro ao deletar registro: ', error);
-        this.toastrService.danger('Erro ao deletar registro!', 'Erro');
+    }).onClose.subscribe(result => {
+      if (result) {
+        this.service.deleteData(event.data.idFuel).subscribe(
+          () => {
+            console.info('Delete ID: ', event.data.idFuel);
+            this.toastrService.success('Registro deletado com sucesso!', 'Sucesso');
+            event.confirm.resolve();
+            this.loadData();
+          },
+          error => {
+            console.error('Erro ao deletar registro: ', error);
+            this.toastrService.danger('Erro ao deletar registro!', 'Erro');
+            event.confirm.reject();
+          })
+        ;
+      } else {
         event.confirm.reject();
-      })
-    ;
+      }
+    });
   }
-
 
   loadTableSettings() {
     this.settings.columns = {
