@@ -8,7 +8,7 @@ import { FuelTableData } from '../../../@core/data/fuel-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'ngx-user-table',
+  selector: 'ngx-fuel-table',
   templateUrl: './fuel-table.component.html',
   styleUrls: ['./fuel-table.component.scss'],
 })
@@ -16,7 +16,7 @@ export class FuelTableComponent implements OnDestroy {
 
   settings = {
     actions: {
-      columnTitle: 'Ações',
+      columnTitle: this.translate.instant('action'),
       position: 'right',
     },
     add: {
@@ -54,25 +54,25 @@ export class FuelTableComponent implements OnDestroy {
     this.loadData();
   }
 
-  // Carrega os dados da tabela
+  // Load table data
   loadData() {
     this.service.getData().subscribe(
       (data: any[]) => this.source.load(data),
       error => {
-        console.error('Erro ao carregar dados: ', error);
-        this.toastrService.danger('Erro ao carregar dados!', 'Erro');
+        console.error('Error loading data: ', error);
+        this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
       })
     ;
   }
 
-  // Confirma a criação de um novo registro
+  // Confirm creation of a new record
   onCreateConfirm(event): void {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
-        title: 'Confirmação de Criação',
-        message: 'Tem certeza que deseja criar este registro?',
-        confirmButtonText: 'Criar',
-        cancelButtonText: 'Cancelar',
+        title: this.translate.instant('dialog.create.title'),
+        message: this.translate.instant('dialog.create.message'),
+        confirmButtonText: this.translate.instant('dialog.create.confirmButtonText'),
+        cancelButtonText: this.translate.instant('dialog.create.cancelButtonText'),
       },
     }).onClose.subscribe(result => {
       if (result) {
@@ -80,13 +80,13 @@ export class FuelTableComponent implements OnDestroy {
         this.service.createData(newFuelData).subscribe(
           response => {
             console.info('Create: ', newFuelData);
-            this.toastrService.success('Registro criado com sucesso!', 'Sucesso');
+            this.toastrService.success(this.translate.instant('toastr.create.success.message'), this.translate.instant('toastr.create.success.title'));
             event.confirm.resolve(response);
             this.loadData();
           },
           error => {
-            console.error('Erro ao criar registro: ', error);
-            this.toastrService.danger('Erro ao criar registro!', 'Erro');
+            console.error('Error creating record: ', error);
+            this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
             event.confirm.reject();
           })
         ;
@@ -96,14 +96,14 @@ export class FuelTableComponent implements OnDestroy {
     });
   }
 
-  // Confirma a edição de um registro
+  // Confirm edit of a record
   onEditConfirm(event): void {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
-        title: 'Confirmação de Edição',
-        message: 'Tem certeza que deseja editar este registro?',
-        confirmButtonText: 'Editar',
-        cancelButtonText: 'Cancelar',
+        title: this.translate.instant('dialog.update.title'),
+        message: this.translate.instant('dialog.update.message'),
+        confirmButtonText: this.translate.instant('dialog.update.confirmButtonText'),
+        cancelButtonText: this.translate.instant('dialog.update.cancelButtonText'),
       },
     }).onClose.subscribe(result => {
       if (result) {
@@ -111,13 +111,13 @@ export class FuelTableComponent implements OnDestroy {
         this.service.updateData(event.data.idFuel, updatedFuelData).subscribe(
           response => {
             console.info('Update ID: ', event.data.idFuel, ' - Data: ', updatedFuelData);
-            this.toastrService.success('Registro editado com sucesso!', 'Sucesso');
+            this.toastrService.success(this.translate.instant('toastr.update.success.message'), this.translate.instant('toastr.update.success.title'));
             event.confirm.resolve(response);
             this.loadData();
           },
           error => {
-            console.error('Erro ao editar registro: ', error);
-            this.toastrService.danger('Erro ao editar registro!', 'Erro');
+            console.error('Error editing record: ', error);
+            this.toastrService.danger(this.translate.instant('toastr.update.error.message'), this.translate.instant('toastr.update.error.title'));
             event.confirm.reject();
           })
         ;
@@ -127,27 +127,27 @@ export class FuelTableComponent implements OnDestroy {
     });
   }
 
-  // Confirma a exclusão de um registro
+  // Confirm deletion of a record
   onDeleteConfirm(event): void {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
-        title: 'Confirmação de Exclusão',
-        message: 'Tem certeza que deseja excluir este registro?',
-        confirmButtonText: 'Excluir',
-        cancelButtonText: 'Cancelar',
+        title: this.translate.instant('dialog.delete.title'),
+        message: this.translate.instant('dialog.delete.message'),
+        confirmButtonText: this.translate.instant('dialog.delete.confirmButtonText'),
+        cancelButtonText: this.translate.instant('dialog.delete.cancelButtonText'),
       },
     }).onClose.subscribe(result => {
       if (result) {
         this.service.deleteData(event.data.idFuel).subscribe(
           () => {
             console.info('Delete ID: ', event.data.idFuel);
-            this.toastrService.success('Registro deletado com sucesso!', 'Sucesso');
+            this.toastrService.success(this.translate.instant('toastr.delete.success.message'), this.translate.instant('toastr.delete.success.title'));
             event.confirm.resolve();
             this.loadData();
           },
           error => {
-            console.error('Erro ao deletar registro: ', error);
-            this.toastrService.danger('Erro ao deletar registro!', 'Erro');
+            console.error('Error deleting record: ', error);
+            this.toastrService.danger(this.translate.instant('toastr.delete.error.message'), this.translate.instant('toastr.delete.error.title'));
             event.confirm.reject();
           })
         ;
