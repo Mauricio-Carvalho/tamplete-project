@@ -75,10 +75,6 @@
     }
   },
   "dialog": {
-    "load": {
-      "title": "Error",
-      "message": "Error al cargar datos!"
-    },
     "create": {
       "title": "Confirmación de Creación",
       "message": "¿Estás seguro de que deseas crear este registro?",
@@ -99,6 +95,12 @@
     }
   },
   "toastr": {
+    "load": {
+      "error": {
+        "title": "Error",
+        "message": "Error al cargar datos!"
+      }
+    },
     "create": {
       "success": {
         "title": "Éxito",

@@ -75,10 +75,6 @@
     }
   },
   "dialog": {
-    "load": {
-      "title": "Error",
-      "message": "Error loading data!"
-    },
     "create": {
       "title": "Create Confirmation",
       "message": "Are you sure you want to create this record?",
@@ -99,6 +95,12 @@
     }
   },
   "toastr": {
+    "load": {
+      "error": {
+        "title": "Error",
+        "message": "Error loading data!"
+      }
+    },
     "create": {
       "success": {
         "title": "Success",

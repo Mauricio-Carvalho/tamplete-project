@@ -60,7 +60,7 @@ export class FuelTableComponent implements OnDestroy {
       (data: any[]) => this.source.load(data),
       error => {
         console.error('Error loading data: ', error);
-        this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
+        this.toastrService.danger(this.translate.instant('toastr.load.error.message'), this.translate.instant('toastr.load.error.title'));
       })
     ;
   }
