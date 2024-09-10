@@ -74,6 +74,62 @@
       "employee": "Funcionário"
     }
   },
+  "dialog": {
+    "load": {
+      "title": "Erro",
+      "message": "Erro ao carregar dados!"
+    },
+    "create": {
+      "title": "Confirmação de Criação",
+      "message": "Tem certeza que deseja criar este registro?",
+      "confirmButtonText": "Criar",
+      "cancelButtonText": "Cancelar"
+    },
+    "update": {
+      "title": "Confirmação de Edição",
+      "message": "Tem certeza que deseja editar este registro?",
+      "confirmButtonText": "Editar",
+      "cancelButtonText": "Cancelar"
+    },
+    "delete": {
+      "title": "Confirmação de Exclusão",
+      "message": "Tem certeza que deseja excluir este registro?",
+      "confirmButtonText": "Excluir",
+      "cancelButtonText": "Cancelar"
+    }
+  },
+  "toastr": {
+    "create": {
+      "sucesso": {
+        "title": "Sucesso",
+        "message": "Registro criado com sucesso!"
+      },
+      "erro": {
+        "title": "Erro",
+        "message": "Erro ao criar registro!"
+      }
+    },
+    "update": {
+      "sucesso": {
+        "title": "Sucesso",
+        "message": "Registro editado com sucesso!"
+      },
+      "erro": {
+        "title": "Erro",
+        "message": "Erro ao editar registro!"
+      }
+    },
+    "delete": {
+      "sucesso": {
+        "title": "Sucesso",
+        "message": "Registro deletado com sucesso!"
+      },
+      "erro": {
+        "title": "Erro",
+        "message": "Erro ao deletar registro!"
+      }
+    }
+  },
   "user": {
     "title": "Tabela Usuário",
     "table": {
@@ -91,15 +147,14 @@
     "table": {
       "idFuel": "ID Combustível",
       "idMac": "ID Maquinário",
-      "idOp": "ID Operação",
+      "idOp": "ID Operador",
       "comb": "Tipo de Combustível",
       "qtdComb": "Qtd de Combustível",
       "tmp": "Temperatura",
       "date": "Data",
       "hour": "Hora",
       "idTruck": "ID Caminhão"
-    },
-    "confirm_delete": "Tem certeza de que deseja excluir este registro?"
+    }
   },
   "machine": {
     "title": "Tabela Máquinas",
@@ -118,5 +173,6 @@
       "status": "Status"
     },
     "confirm_delete": "Tem certeza de que deseja excluir este operador?"
-  }
+  },
+  "action": "Ações"
 }

@@ -74,6 +74,62 @@
       "employee": "Employee"
     }
   },
+  "dialog": {
+    "load": {
+      "title": "Error",
+      "message": "Error loading data!"
+    },
+    "create": {
+      "title": "Create Confirmation",
+      "message": "Are you sure you want to create this record?",
+      "confirmButtonText": "Create",
+      "cancelButtonText": "Cancel"
+    },
+    "update": {
+      "title": "Edit Confirmation",
+      "message": "Are you sure you want to edit this record?",
+      "confirmButtonText": "Edit",
+      "cancelButtonText": "Cancel"
+    },
+    "delete": {
+      "title": "Delete Confirmation",
+      "message": "Are you sure you want to delete this record?",
+      "confirmButtonText": "Delete",
+      "cancelButtonText": "Cancel"
+    }
+  },
+  "toastr": {
+    "create": {
+      "success": {
+        "title": "Success",
+        "message": "Record created successfully!"
+      },
+      "error": {
+        "title": "Error",
+        "message": "Error creating record!"
+      }
+    },
+    "update": {
+      "success": {
+        "title": "Success",
+        "message": "Record edited successfully!"
+      },
+      "error": {
+        "title": "Error",
+        "message": "Error editing record!"
+      }
+    },
+    "delete": {
+      "success": {
+        "title": "Success",
+        "message": "Record deleted successfully!"
+      },
+      "error": {
+        "title": "Error",
+        "message": "Error deleting record!"
+      }
+    }
+  },
   "user": {
     "title": "User Table",
     "table": {
@@ -90,16 +146,15 @@
     "title": "Fuel Table",
     "table": {
       "idFuel": "Fuel ID",
-      "idMac": "Machine ID",
-      "idOp": "Operation ID",
+      "idMac": "Machinery ID",
+      "idOp": "Operator ID",
       "comb": "Fuel Type",
       "qtdComb": "Fuel Quantity",
       "tmp": "Temperature",
       "date": "Date",
       "hour": "Hour",
       "idTruck": "Truck ID"
-    },
-    "confirm_delete": "Are you sure you want to delete this record?"
+    }
   },
   "machine": {
     "title": "Machines Table",
@@ -118,5 +173,6 @@
       "status": "Status"
     },
     "confirm_delete": "Are you sure you want to delete this operator?"
-  }
+  },
+  "action": "Actions"
 }

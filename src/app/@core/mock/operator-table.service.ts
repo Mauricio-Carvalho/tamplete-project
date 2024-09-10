@@ -1,143 +1,38 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { OperatorTableData } from '../data/operator-table';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class OperatorTableService extends OperatorTableData {
 
-  data = [
-    {
-      idOp: 'C3DB4512',
-      name: 'WELLTON',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4513',
-      name: 'JULIANO',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4514',
-      name: 'MARIA',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4515',
-      name: 'JOÃO',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4516',
-      name: 'ANA',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4517',
-      name: 'CARLOS',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4518',
-      name: 'PAULO',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4519',
-      name: 'FABIOLA',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4520',
-      name: 'FERNANDO',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4521',
-      name: 'PATRICIA',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4522',
-      name: 'LUCAS',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4523',
-      name: 'SILVIA',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4524',
-      name: 'RICARDO',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4525',
-      name: 'GABRIELA',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4526',
-      name: 'TATIANA',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4527',
-      name: 'ANDRÉ',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4528',
-      name: 'ISABELA',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4529',
-      name: 'BRUNO',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4530',
-      name: 'MARTA',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4531',
-      name: 'CAMILA',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4532',
-      name: 'SÉRGIO',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4533',
-      name: 'KÁTIA',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4534',
-      name: 'VALÉRIA',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4535',
-      name: 'RENATO',
-      status: 'Inativo',
-    },
-    {
-      idOp: 'C3DB4536',
-      name: 'ALEX',
-      status: 'Ativo',
-    },
-    {
-      idOp: 'C3DB4537',
-      name: 'GUSTAVO',
-      status: 'Inativo',
-    },
-  ];
+  private readonly apiUrl = environment.baseUrl + '/operator';
 
-  getData() {
-    return this.data;
+  constructor(private http: HttpClient) {
+    super();
+  }
+
+  // Busca todos os dados (Read)
+  getData(): Observable<any[]> {
+    return this.http.get<any>(this.apiUrl).pipe(
+      map(response => response.content));
+  }
+
+  // Cria um novo registro (Create)
+  createData(newOperatorData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, newOperatorData);
+  }
+
+  // Atualiza um registro existente (Edit)
+  updateData(id: string, updatedOperatorData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, updatedOperatorData);
+  }
+
+  // Remove um registro (Delete)
+  deleteData(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,8 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { MachineTableData } from '../../../@core/data/machine-table';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Subscription } from 'rxjs';
+
+import { MachineTableData } from '../../../@core/data/machine-table';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'ngx-user-table',
@@ -12,15 +15,21 @@ import { Subscription } from 'rxjs';
 export class MachineTableComponent implements OnDestroy {
 
   settings = {
+    actions: {
+      columnTitle: 'Ações',
+      position: 'right',
+    },
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -33,21 +42,119 @@ export class MachineTableComponent implements OnDestroy {
   private langChangeSub: Subscription;
 
   constructor(private translate: TranslateService,
-              private service: MachineTableData) {
+              private service: MachineTableData,
+              private toastrService: NbToastrService,
+              private dialogService: NbDialogService) {
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.loadTableSettings();
     });
 
-    const data = this.service.getData();
-    this.source.load(data);
+    this.loadData();
   }
 
-  ngOnDestroy() {
-    if (this.langChangeSub) {
-      this.langChangeSub.unsubscribe();
-    }
+  // Carrega os dados da tabela
+  loadData() {
+    this.service.getData().subscribe(
+      (data: any[]) => this.source.load(data),
+      error => {
+        console.error('Erro ao carregar dados: ', error);
+        this.toastrService.danger('Erro ao carregar dados!', 'Erro');
+      })
+    ;
+  }
+
+  // Confirma a criação de um novo registro
+  onCreateConfirm(event): void {
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: 'Confirmação de Criação',
+        message: 'Tem certeza que deseja criar este registro?',
+        confirmButtonText: 'Criar',
+        cancelButtonText: 'Cancelar',
+      },
+    }).onClose.subscribe(result => {
+      if (result) {
+        const newMachineData = event.newData;
+        this.service.createData(newMachineData).subscribe(
+          response => {
+            console.info('Create: ', newMachineData);
+            this.toastrService.success('Registro criado com sucesso!', 'Sucesso');
+            event.confirm.resolve(response);
+            this.loadData();
+          },
+          error => {
+            console.error('Erro ao criar registro: ', error);
+            this.toastrService.danger('Erro ao criar registro!', 'Erro');
+            event.confirm.reject();
+          })
+        ;
+      } else {
+        event.confirm.reject();
+      }
+    });
+  }
+
+  // Confirma a edição de um registro
+  onEditConfirm(event): void {
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: 'Confirmação de Edição',
+        message: 'Tem certeza que deseja editar este registro?',
+        confirmButtonText: 'Editar',
+        cancelButtonText: 'Cancelar',
+      },
+    }).onClose.subscribe(result => {
+      if (result) {
+        const updatedMachineData = event.newData;
+        this.service.updateData(event.data.idMac, updatedMachineData).subscribe(
+          response => {
+            console.info('Update ID: ', event.data.idMac, ' - Data: ', updatedMachineData);
+            this.toastrService.success('Registro editado com sucesso!', 'Sucesso');
+            event.confirm.resolve(response);
+            this.loadData();
+          },
+          error => {
+            console.error('Erro ao editar registro: ', error);
+            this.toastrService.danger('Erro ao editar registro!', 'Erro');
+            event.confirm.reject();
+          })
+        ;
+      } else {
+        event.confirm.reject();
+      }
+    });
+  }
+
+  // Confirma a exclusão de um registro
+  onDeleteConfirm(event): void {
+    this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        title: 'Confirmação de Exclusão',
+        message: 'Tem certeza que deseja excluir este registro?',
+        confirmButtonText: 'Excluir',
+        cancelButtonText: 'Cancelar',
+      },
+    }).onClose.subscribe(result => {
+      if (result) {
+        this.service.deleteData(event.data.idMac).subscribe(
+          () => {
+            console.info('Delete ID: ', event.data.idMac);
+            this.toastrService.success('Registro deletado com sucesso!', 'Sucesso');
+            event.confirm.resolve();
+            this.loadData();
+          },
+          error => {
+            console.error('Erro ao deletar registro: ', error);
+            this.toastrService.danger('Erro ao deletar registro!', 'Erro');
+            event.confirm.reject();
+          })
+        ;
+      } else {
+        event.confirm.reject();
+      }
+    });
   }
 
   loadTableSettings() {
@@ -67,12 +174,10 @@ export class MachineTableComponent implements OnDestroy {
     };
   }
 
-
-  onDeleteConfirm(event): void {
-    if (window.confirm(this.translate.instant('machine.confirm_delete'))) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  ngOnDestroy() {
+    if (this.langChangeSub) {
+      this.langChangeSub.unsubscribe();
     }
   }
+
 }
