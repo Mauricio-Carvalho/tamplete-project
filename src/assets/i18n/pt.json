@@ -6,15 +6,17 @@
         "title": "Tabelas & Dados",
         "user": "Usuário",
         "fuel": "Abastecimento",
+        "refuel": "Reabastecimento",
         "machine": "Máquinas",
-        "operator": "Operador"
+        "operator": "Operador",
+        "truck": "Caminhão"
       },
       "auth": {
         "title": "Autenticação",
         "login": "Login",
         "register": "Registrar",
-        "request-password": "Request Senha",
-        "reset-password": "Reset Senha"
+        "request-password": "Solicitar Senha",
+        "reset-password": "Redefinir Senha"
       }
     }
   },
@@ -30,7 +32,7 @@
       "title_information": "Suas Informações",
       "first_name": "Nome",
       "last_name": "Sobrenome",
-      "date_birth": "Data de nascimento",
+      "date_birth": "Data de Nascimento",
       "sex": {
         "title": "Sexo",
         "masculine": "Masculino",
@@ -102,79 +104,110 @@
       }
     },
     "create": {
-      "sucesso": {
+      "success": {
         "title": "Sucesso",
         "message": "Registro criado com sucesso!"
       },
-      "erro": {
+      "error": {
         "title": "Erro",
         "message": "Erro ao criar registro!"
       }
     },
     "update": {
-      "sucesso": {
+      "success": {
         "title": "Sucesso",
         "message": "Registro editado com sucesso!"
       },
-      "erro": {
+      "error": {
         "title": "Erro",
         "message": "Erro ao editar registro!"
       }
     },
     "delete": {
-      "sucesso": {
+      "success": {
         "title": "Sucesso",
         "message": "Registro deletado com sucesso!"
       },
-      "erro": {
+      "error": {
         "title": "Erro",
         "message": "Erro ao deletar registro!"
       }
     }
   },
   "user": {
-    "title": "Tabela Usuário",
+    "title": "Tabela de Usuários",
     "table": {
       "id": "ID",
       "first_name": "Primeiro Nome",
       "last_name": "Último Nome",
-      "username": "Username",
-      "email": "Email",
+      "username": "Nome de Usuário",
+      "email": "E-mail",
       "age": "Idade"
     },
     "confirm_delete": "Tem certeza de que deseja excluir?"
   },
   "fuel": {
-    "title": "Tabela Abastecimento",
+    "title": "Tabela de Abastecimento",
     "table": {
-      "idFuel": "ID Combustível",
-      "idMac": "ID Maquinário",
-      "idOp": "ID Operador",
+      "idFuel": "ID do Combustível",
+      "idMac": "ID do Maquinário",
+      "idOp": "ID do Operador",
+      "idTruck": "ID do Caminhão",
       "comb": "Tipo de Combustível",
-      "qtdComb": "Qtd de Combustível",
+      "qtdComb": "Quantidade de Combustível",
       "tmp": "Temperatura",
       "date": "Data",
       "hour": "Hora",
-      "idTruck": "ID Caminhão"
+      "nf": "NF",
+      "gps": "GPS"
+    }
+  },
+  "refuel": {
+    "title": "Tabela de Reabastecimento",
+    "table": {
+      "idRefuel": "ID de Reabastecimento",
+      "idTruck": "ID do Caminhão",
+      "idOp": "ID do Operador",
+      "comb": "Tipo de Combustível",
+      "qtdCombS10": "Quantidade S10",
+      "qtdCombS500": "Quantidade S500",
+      "date": "Data",
+      "hour": "Hora",
+      "nf": "NF"
     }
   },
   "machine": {
-    "title": "Tabela Máquinas",
+    "title": "Tabela de Máquinas",
     "table": {
-      "idMac": "ID Máquina",
-      "name": "Nome Máquina",
-      "status": "Status"
-    },
-    "confirm_delete": "Tem certeza de que deseja excluir esta máquina?"
+      "idMac": "ID da Máquina",
+      "name": "Nome da Máquina",
+      "status": "Status",
+      "comb": "Tipo de Combustível",
+      "idSubMac": "ID da Submáquina"
+    }
   },
   "operator": {
-    "title": "Tabela Operadores",
+    "title": "Tabela de Operadores",
     "table": {
-      "idOp": "ID Operador",
-      "name": "Nome Operador",
+      "idOp": "ID do Operador",
+      "name": "Nome do Operador",
+      "cnh": "CNH",
+      "issueDate": "Data de Emissão",
+      "expirationDate": "Data de Expiração",
       "status": "Status"
-    },
-    "confirm_delete": "Tem certeza de que deseja excluir este operador?"
+    }
+  },
+  "truck": {
+    "title": "Tabela de Caminhões",
+    "table": {
+      "idTruck": "ID do Caminhão",
+      "model": "Modelo",
+      "comb": "Tipo de Combustível",
+      "qtdCombS10": "Quantidade S10",
+      "nfCombS10": "NF S10",
+      "qtdCombS500": "Quantidade S500",
+      "nfCombS500": "NF S500"
+    }
   },
   "action": "Ações"
 }

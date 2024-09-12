@@ -20,12 +20,20 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
           link: '/pages/tables/fuel-table',
         },
         {
+          title: translate.instant('menu.list.tables.refuel'),
+          link: '/pages/tables/refuel-table',
+        },
+        {
           title: translate.instant('menu.list.tables.machine'),
           link: '/pages/tables/machine-table',
         },
         {
           title: translate.instant('menu.list.tables.operator'),
           link: '/pages/tables/operator-table',
+        },
+        {
+          title: translate.instant('menu.list.tables.truck'),
+          link: '/pages/tables/truck-table',
         },
       ],
     },

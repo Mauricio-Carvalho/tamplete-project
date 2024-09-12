@@ -16,8 +16,10 @@ import { UserData } from './data/users';
 import { ElectricityData } from './data/electricity';
 import { UserTableData } from './data/user-table';
 import { FuelTableData } from './data/fuel-table';
+import { RefuelTableData } from './data/refuel-table';
 import { MachineTableData } from './data/machine-table';
 import { OperatorTableData } from './data/operator-table';
+import { TruckTableData } from './data/truck-table';
 import { UserActivityData } from './data/user-activity';
 import { OrdersChartData } from './data/orders-chart';
 import { ProfitChartData } from './data/profit-chart';
@@ -39,8 +41,10 @@ import { UserService } from './mock/users.service';
 import { ElectricityService } from './mock/electricity.service';
 import { UserTableService } from './mock/user-table.service';
 import { FuelTableService } from './mock/fuel-table.service';
+import { RefuelTableService } from './mock/refuel-table.service';
 import { MachineTableService } from './mock/machine-table.service';
 import { OperatorTableService } from './mock/operator-table.service';
+import { TruckTableService } from './mock/truck-table.service';
 import { UserActivityService } from './mock/user-activity.service';
 import { OrdersChartService } from './mock/orders-chart.service';
 import { ProfitChartService } from './mock/profit-chart.service';
@@ -82,8 +86,10 @@ const DATA_SERVICES = [
   { provide: ElectricityData, useClass: ElectricityService },
   { provide: UserTableData, useClass: UserTableService },
   { provide: FuelTableData, useClass: FuelTableService },
+  { provide: RefuelTableData, useClass: RefuelTableService },
   { provide: MachineTableData, useClass: MachineTableService },
   { provide: OperatorTableData, useClass: OperatorTableService },
+  { provide: TruckTableData, useClass: TruckTableService },
   { provide: UserActivityData, useClass: UserActivityService },
   { provide: OrdersChartData, useClass: OrdersChartService },
   { provide: ProfitChartData, useClass: ProfitChartService },

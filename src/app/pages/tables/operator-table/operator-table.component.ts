@@ -167,6 +167,18 @@ export class OperatorTableComponent implements OnDestroy {
         title: this.translate.instant('operator.table.name'),
         type: 'string',
       },
+      cnh: {
+        title: this.translate.instant('operator.table.cnh'),
+        type: 'string',
+      },
+      issueDate: {
+        title: this.translate.instant('operator.table.issueDate'),
+        type: 'string',
+      },
+      expirationDate: {
+        title: this.translate.instant('operator.table.expirationDate'),
+        type: 'string',
+      },
       status: {
         title: this.translate.instant('operator.table.status'),
         type: 'string',

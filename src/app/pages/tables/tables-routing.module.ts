@@ -6,6 +6,8 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { FuelTableComponent } from './fuel-table/fuel-table.component';
 import { OperatorTableComponent } from './operator-table/operator-table.component';
 import { MachineTableComponent } from './machine-table/machine-table.component';
+import { RefuelTableComponent } from './refuel-table/refuel-table.component';
+import { TruckTableComponent } from './truck-table/truck-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,12 +22,20 @@ const routes: Routes = [{
       component: FuelTableComponent,
     },
     {
+      path: 'refuel-table',
+      component: RefuelTableComponent,
+    },
+    {
       path: 'operator-table',
       component: OperatorTableComponent,
     },
     {
       path: 'machine-table',
       component: MachineTableComponent,
+    },
+    {
+      path: 'truck-table',
+      component: TruckTableComponent,
     },
   ],
 }];
@@ -42,4 +52,6 @@ export const routedComponents = [
   FuelTableComponent,
   OperatorTableComponent,
   MachineTableComponent,
+  RefuelTableComponent,
+  TruckTableComponent,
 ];

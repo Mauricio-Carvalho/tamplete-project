@@ -4,15 +4,15 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Subscription } from 'rxjs';
 
-import { MachineTableData } from '../../../@core/data/machine-table';
+import { TruckTableData } from '../../../@core/data/truck-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'ngx-machine-table',
-  templateUrl: './machine-table.component.html',
-  styleUrls: ['./machine-table.component.scss'],
+  selector: 'ngx-truck-table',
+  templateUrl: './truck-table.component.html',
+  styleUrls: ['./truck-table.component.scss'],
 })
-export class MachineTableComponent implements OnDestroy {
+export class TruckTableComponent implements OnDestroy {
 
   settings = {
     actions: {
@@ -42,7 +42,7 @@ export class MachineTableComponent implements OnDestroy {
   private langChangeSub: Subscription;
 
   constructor(private translate: TranslateService,
-              private service: MachineTableData,
+              private service: TruckTableData,
               private toastrService: NbToastrService,
               private dialogService: NbDialogService) {
     this.loadTableSettings();
@@ -76,10 +76,10 @@ export class MachineTableComponent implements OnDestroy {
       },
     }).onClose.subscribe(result => {
       if (result) {
-        const newMachineData = event.newData;
-        this.service.createData(newMachineData).subscribe(
+        const newTruckData = event.newData;
+        this.service.createData(newTruckData).subscribe(
           response => {
-            console.info('Create: ', newMachineData);
+            console.info('Create: ', newTruckData);
             this.toastrService.success(this.translate.instant('toastr.create.success.message'), this.translate.instant('toastr.create.success.title'));
             event.confirm.resolve(response);
             this.loadData();
@@ -96,7 +96,7 @@ export class MachineTableComponent implements OnDestroy {
     });
   }
 
-  // Confirm editing of a record
+  // Confirm edit of a record
   onEditConfirm(event): void {
     this.dialogService.open(ConfirmDialogComponent, {
       context: {
@@ -107,10 +107,10 @@ export class MachineTableComponent implements OnDestroy {
       },
     }).onClose.subscribe(result => {
       if (result) {
-        const updatedMachineData = event.newData;
-        this.service.updateData(event.data.idMac, updatedMachineData).subscribe(
+        const updatedTruckData = event.newData;
+        this.service.updateData(event.data.idTruck, updatedTruckData).subscribe(
           response => {
-            console.info('Update ID: ', event.data.idMac, ' - Data: ', updatedMachineData);
+            console.info('Update ID: ', event.data.idTruck, ' - Data: ', updatedTruckData);
             this.toastrService.success(this.translate.instant('toastr.update.success.message'), this.translate.instant('toastr.update.success.title'));
             event.confirm.resolve(response);
             this.loadData();
@@ -138,9 +138,9 @@ export class MachineTableComponent implements OnDestroy {
       },
     }).onClose.subscribe(result => {
       if (result) {
-        this.service.deleteData(event.data.idMac).subscribe(
+        this.service.deleteData(event.data.idTruck).subscribe(
           () => {
-            console.info('Delete ID: ', event.data.idMac);
+            console.info('Delete ID: ', event.data.idTruck);
             this.toastrService.success(this.translate.instant('toastr.delete.success.message'), this.translate.instant('toastr.delete.success.title'));
             event.confirm.resolve();
             this.loadData();
@@ -159,24 +159,32 @@ export class MachineTableComponent implements OnDestroy {
 
   loadTableSettings() {
     this.settings.columns = {
-      idMac: {
-        title: this.translate.instant('machine.table.idMac'),
-        type: 'string',
+      idTruck: {
+        title: this.translate.instant('truck.table.idTruck'),
+        type: 'number',
       },
-      name: {
-        title: this.translate.instant('machine.table.name'),
-        type: 'string',
-      },
-      status: {
-        title: this.translate.instant('machine.table.status'),
+      model: {
+        title: this.translate.instant('truck.table.model'),
         type: 'string',
       },
       comb: {
-        title: this.translate.instant('machine.table.comb'),
+        title: this.translate.instant('truck.table.comb'),
+        type: 'number',
+      },
+      qtdCombS10: {
+        title: this.translate.instant('truck.table.qtdCombS10'),
+        type: 'number',
+      },
+      nfCombS10: {
+        title: this.translate.instant('truck.table.nfCombS10'),
         type: 'string',
       },
-      idSubMac: {
-        title: this.translate.instant('machine.table.idSubMac'),
+      qtdCombS500: {
+        title: this.translate.instant('truck.table.qtdCombS500'),
+        type: 'number',
+      },
+      nfCombS500: {
+        title: this.translate.instant('truck.table.nfCombS500'),
         type: 'string',
       },
     };

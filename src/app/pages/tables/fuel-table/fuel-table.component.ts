@@ -171,6 +171,10 @@ export class FuelTableComponent implements OnDestroy {
         title: this.translate.instant('fuel.table.idOp'),
         type: 'string',
       },
+      idTruck: {
+        title: this.translate.instant('fuel.table.idTruck'),
+        type: 'string',
+      },
       comb: {
         title: this.translate.instant('fuel.table.comb'),
         type: 'string',
@@ -187,8 +191,12 @@ export class FuelTableComponent implements OnDestroy {
         title: this.translate.instant('fuel.table.date'),
         type: 'string',
       },
-      idTruck: {
-        title: this.translate.instant('fuel.table.idTruck'),
+      nf: {
+        title: this.translate.instant('fuel.table.nf'),
+        type: 'string',
+      },
+      gps: {
+        title: this.translate.instant('fuel.table.gps'),
         type: 'string',
       },
     };

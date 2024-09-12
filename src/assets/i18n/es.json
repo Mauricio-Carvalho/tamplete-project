@@ -5,9 +5,11 @@
       "tables": {
         "title": "Tablas & Datos",
         "user": "Usuario",
-        "fuel": "Abastecimiento",
+        "fuel": "Combustible",
+        "refuel": "Reabastecimiento",
         "machine": "Máquinas",
-        "operator": "Operador"
+        "operator": "Operador",
+        "truck": "Camión"
       },
       "auth": {
         "title": "Autenticación",
@@ -98,7 +100,7 @@
     "load": {
       "error": {
         "title": "Error",
-        "message": "Error al cargar datos!"
+        "message": "¡Error al cargar datos!"
       }
     },
     "create": {
@@ -133,7 +135,7 @@
     }
   },
   "user": {
-    "title": "Tabla de Usuario",
+    "title": "Tabla de Usuarios",
     "table": {
       "id": "ID",
       "first_name": "Nombre",
@@ -145,17 +147,33 @@
     "confirm_delete": "¿Estás seguro de que deseas eliminar?"
   },
   "fuel": {
-    "title": "Tabla de Abastecimiento",
+    "title": "Tabla de Combustible",
     "table": {
       "idFuel": "ID de Combustible",
       "idMac": "ID de Maquinaria",
       "idOp": "ID de Operador",
+      "idTruck": "ID de Camión",
       "comb": "Tipo de Combustible",
       "qtdComb": "Cantidad de Combustible",
       "tmp": "Temperatura",
       "date": "Fecha",
       "hour": "Hora",
-      "idTruck": "ID de Camión"
+      "nf": "NF",
+      "gps": "GPS"
+    }
+  },
+  "refuel": {
+    "title": "Tabla de Reabastecimiento",
+    "table": {
+      "idRefuel": "ID de Reabastecimiento",
+      "idTruck": "ID de Camión",
+      "idOp": "ID de Operador",
+      "comb": "Tipo de Combustible",
+      "qtdCombS10": "Cantidad S10",
+      "qtdCombS500": "Cantidad S500",
+      "date": "Fecha",
+      "hour": "Hora",
+      "nf": "NF"
     }
   },
   "machine": {
@@ -163,18 +181,33 @@
     "table": {
       "idMac": "ID de Máquina",
       "name": "Nombre de Máquina",
-      "status": "Estado"
-    },
-    "confirm_delete": "¿Estás seguro de que deseas eliminar esta máquina?"
+      "status": "Estado",
+      "comb": "Tipo de Combustible",
+      "idSubMac": "ID de Submáquina"
+    }
   },
   "operator": {
     "title": "Tabla de Operadores",
     "table": {
       "idOp": "ID de Operador",
-      "name": "Nombre de Operador",
+      "name": "Nombre del Operador",
+      "cnh": "CNH",
+      "issueDate": "Fecha de Emisión",
+      "expirationDate": "Fecha de Expiración",
       "status": "Estado"
-    },
-    "confirm_delete": "¿Estás seguro de que deseas eliminar este operador?"
+    }
+  },
+  "truck": {
+    "title": "Tabla de Camiones",
+    "table": {
+      "idTruck": "ID de Camión",
+      "model": "Modelo",
+      "comb": "Tipo de Combustible",
+      "qtdCombS10": "Cantidad S10",
+      "nfCombS10": "NF S10",
+      "qtdCombS500": "Cantidad S500",
+      "nfCombS500": "NF S500"
+    }
   },
   "action": "Acciones"
 }
