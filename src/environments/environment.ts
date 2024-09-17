@@ -10,5 +10,11 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/v1',
+  baseUrl: 'http://localhost:8080',
+
+  tokenAllowedDomains: [ /localhost:8080/ ],
+  tokenDisallowedRoutes: [/\/oauth2\/token/],
+  oauthCallbackUrl: 'http://local-queue.com:4200/authorized',
+  logoutRedirectToUrl: 'http://local-queue.com:4200'
+
 };

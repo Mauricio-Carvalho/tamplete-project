@@ -22,6 +22,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { NgxAuthModule } from './pages/auth/auth.module';
 
 // Carregar os arquivos de tradução
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    NgxAuthModule,
   ],
   bootstrap: [AppComponent],
 })
