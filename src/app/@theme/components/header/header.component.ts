@@ -6,6 +6,7 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../../pages/auth/auth.service';
 
 @Component({
   selector: 'ngx-header',
@@ -48,6 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -68,6 +70,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // this.menuService.onItemClick()
     //   .pipe(takeUntil(this.destroy$))
     //   .subscribe((event) => this.onMenuItemClick(event));
+
+    this.menuService.onItemClick()
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe(event => {
+        console.log("Evento de Menu Clicado: ", event);
+        const title  = event.item.title;
+        if (title === 'Sair') {
+          this.authService.logout();
+        }
+      });
   }
 
   ngOnDestroy() {

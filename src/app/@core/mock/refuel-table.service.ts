@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class RefuelTableService extends RefuelTableData {
 
-  private readonly apiUrl = environment.baseUrl + '/refuel';
+  private readonly apiUrl = environment.baseUrl + '/v1/refuel';
 
   constructor(private http: HttpClient) {
     super();

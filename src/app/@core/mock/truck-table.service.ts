@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class TruckTableService extends TruckTableData {
 
-  private readonly apiUrl = environment.baseUrl + '/truck';
+  private readonly apiUrl = environment.baseUrl + '/v1/truck';
 
   constructor(private http: HttpClient) {
     super();

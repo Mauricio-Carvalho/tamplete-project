@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class MachineTableService extends MachineTableData {
 
-  private readonly apiUrl = environment.baseUrl + '/machine';
+  private readonly apiUrl = environment.baseUrl + '/v1/machine';
 
   constructor(private http: HttpClient) {
     super();

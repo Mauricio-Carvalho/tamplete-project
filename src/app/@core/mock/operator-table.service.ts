@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class OperatorTableService extends OperatorTableData {
 
-  private readonly apiUrl = environment.baseUrl + '/operator';
+  private readonly apiUrl = environment.baseUrl + '/v1/operator';
 
   constructor(private http: HttpClient) {
     super();
