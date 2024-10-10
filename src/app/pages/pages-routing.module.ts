@@ -25,7 +25,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'profile',
       pathMatch: 'full',
     },
     {

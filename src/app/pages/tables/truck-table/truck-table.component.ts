@@ -167,10 +167,10 @@ export class TruckTableComponent implements OnDestroy {
         title: this.translate.instant('truck.table.model'),
         type: 'string',
       },
-      comb: {
-        title: this.translate.instant('truck.table.comb'),
-        type: 'number',
-      },
+      // comb: {
+      //   title: this.translate.instant('truck.table.comb'),
+      //   type: 'number',
+      // },
       qtdCombS10: {
         title: this.translate.instant('truck.table.qtdCombS10'),
         type: 'number',

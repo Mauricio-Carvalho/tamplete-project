@@ -16,15 +16,15 @@ export const routes: Routes = [
 
   {
     path: 'authorized',
-    component: AuthorizedComponent 
+    component: AuthorizedComponent,
   },
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
   },
-  
+
   /*{
     path: 'auth',
     component: NbAuthComponent,

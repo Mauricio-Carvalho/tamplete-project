@@ -3,18 +3,18 @@
     "title": "Menú",
     "list": {
       "tables": {
-        "title": "Tablas & Datos",
+        "title": "Tablas y Datos",
         "user": "Usuario",
         "fuel": "Combustible",
-        "refuel": "Reabastecimiento",
+        "refuel": "Abastecimiento",
         "machine": "Máquinas",
         "operator": "Operador",
         "truck": "Camión"
       },
       "auth": {
         "title": "Autenticación",
-        "login": "Iniciar Sesión",
-        "register": "Registrar",
+        "login": "Iniciar sesión",
+        "register": "Registrarse",
         "request-password": "Solicitar Contraseña",
         "reset-password": "Restablecer Contraseña"
       }
@@ -22,7 +22,7 @@
   },
   "header": {
     "profile": "Perfil",
-    "log_out": "Cerrar Sesión"
+    "log_out": "Cerrar sesión"
   },
   "profile": {
     "image": {
@@ -41,8 +41,8 @@
       },
       "type_document": "Tipo de Documento",
       "document": "Documento",
-      "id_position": "ID de la Posición",
-      "position": "Posición"
+      "id_position": "ID del Cargo",
+      "position": "Cargo"
     },
     "configuration": {
       "title_configuration": "Configuración",
@@ -61,7 +61,7 @@
     },
     "contact": {
       "title_contact": "Contacto",
-      "email": "Correo Electrónico",
+      "email": "Email",
       "telephone": "Teléfono",
       "country": "País",
       "state": "Estado",
@@ -71,9 +71,14 @@
     },
     "permission": {
       "permission_title": "Permiso",
-      "administrator": "Administrador",
+      "manager_master": "Administrador",
       "manager": "Gerente",
       "employee": "Empleado"
+    },
+    "status": {
+      "status_title": "Estado",
+      "active": "Activo",
+      "blocked": "Bloqueado"
     }
   },
   "dialog": {
@@ -100,7 +105,7 @@
     "load": {
       "error": {
         "title": "Error",
-        "message": "¡Error al cargar datos!"
+        "message": "¡Error al cargar los datos!"
       }
     },
     "create": {
@@ -110,7 +115,7 @@
       },
       "error": {
         "title": "Error",
-        "message": "¡Error al crear registro!"
+        "message": "¡Error al crear el registro!"
       }
     },
     "update": {
@@ -120,7 +125,7 @@
       },
       "error": {
         "title": "Error",
-        "message": "¡Error al editar registro!"
+        "message": "¡Error al editar el registro!"
       }
     },
     "delete": {
@@ -130,32 +135,39 @@
       },
       "error": {
         "title": "Error",
-        "message": "¡Error al eliminar registro!"
+        "message": "¡Error al eliminar el registro!"
       }
     }
   },
   "user": {
     "title": "Tabla de Usuarios",
     "table": {
-      "id": "ID",
-      "first_name": "Nombre",
-      "last_name": "Apellido",
+      "idUser": "ID",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "dateBirth": "Fecha de Nacimiento",
+      "userSex": "Género",
+      "typeDocument": "Tipo de Documento",
+      "document": "Documento",
+      "idPosition": "ID del Cargo",
+      "position": "Cargo",
+      "email": "Email",
+      "telephone": "Teléfono",
       "username": "Nombre de Usuario",
-      "email": "Correo Electrónico",
-      "age": "Edad"
-    },
-    "confirm_delete": "¿Estás seguro de que deseas eliminar?"
+      "userType": "Nivel de Acceso",
+      "userStatus": "Estado"
+    }
   },
   "fuel": {
     "title": "Tabla de Combustible",
     "table": {
-      "idFuel": "ID de Combustible",
-      "idMac": "ID de Maquinaria",
-      "idOp": "ID de Operador",
-      "idTruck": "ID de Camión",
+      "idFuel": "ID del Combustible",
+      "idMac": "ID de la Máquina",
+      "idOp": "ID del Operador",
+      "idTruck": "ID del Camión",
       "comb": "Tipo de Combustible",
       "qtdComb": "Cantidad de Combustible",
-      "tmp": "Temperatura",
+      "tmp": "Tiempo",
       "date": "Fecha",
       "hour": "Hora",
       "nf": "NF",
@@ -163,11 +175,11 @@
     }
   },
   "refuel": {
-    "title": "Tabla de Reabastecimiento",
+    "title": "Tabla de Abastecimiento",
     "table": {
-      "idRefuel": "ID de Reabastecimiento",
-      "idTruck": "ID de Camión",
-      "idOp": "ID de Operador",
+      "idRefuel": "ID del Abastecimiento",
+      "idTruck": "ID del Camión",
+      "idOp": "ID del Operador",
       "comb": "Tipo de Combustible",
       "qtdCombS10": "Cantidad S10",
       "qtdCombS500": "Cantidad S500",
@@ -179,17 +191,17 @@
   "machine": {
     "title": "Tabla de Máquinas",
     "table": {
-      "idMac": "ID de Máquina",
-      "name": "Nombre de Máquina",
+      "idMac": "ID de la Máquina",
+      "name": "Nombre de la Máquina",
       "status": "Estado",
       "comb": "Tipo de Combustible",
-      "idSubMac": "ID de Submáquina"
+      "idSubMac": "ID de la Submáquina"
     }
   },
   "operator": {
     "title": "Tabla de Operadores",
     "table": {
-      "idOp": "ID de Operador",
+      "idOp": "ID del Operador",
       "name": "Nombre del Operador",
       "cnh": "CNH",
       "issueDate": "Fecha de Emisión",
@@ -200,7 +212,7 @@
   "truck": {
     "title": "Tabla de Camiones",
     "table": {
-      "idTruck": "ID de Camión",
+      "idTruck": "ID del Camión",
       "model": "Modelo",
       "comb": "Tipo de Combustible",
       "qtdCombS10": "Cantidad S10",

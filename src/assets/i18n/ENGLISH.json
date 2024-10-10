@@ -71,9 +71,14 @@
     },
     "permission": {
       "permission_title": "Permission",
-      "administrator": "Administrator",
+      "manager_master": "Administrator",
       "manager": "Manager",
       "employee": "Employee"
+    },
+    "status": {
+      "status_title": "Status",
+      "active": "Active",
+      "blocked": "Blocked"
     }
   },
   "dialog": {
@@ -137,14 +142,21 @@
   "user": {
     "title": "User Table",
     "table": {
-      "id": "ID",
-      "first_name": "First Name",
-      "last_name": "Last Name",
-      "username": "Username",
+      "idUser": "ID",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "dateBirth": "Date Birth",
+      "userSex": "Gender",
+      "typeDocument": "Type Document",
+      "document": "Document",
+      "idPosition": "ID Position",
+      "position": "Position",
       "email": "Email",
-      "age": "Age"
-    },
-    "confirm_delete": "Are you sure you want to delete?"
+      "telephone": "Telephone",
+      "username": "Username",
+      "userType": "Access level",
+      "userStatus": "Status"
+    }
   },
   "fuel": {
     "title": "Fuel Table",
@@ -155,7 +167,7 @@
       "idTruck": "Truck ID",
       "comb": "Fuel Type",
       "qtdComb": "Fuel Quantity",
-      "tmp": "Temperature",
+      "tmp": "Time",
       "date": "Date",
       "hour": "Hour",
       "nf": "NF",

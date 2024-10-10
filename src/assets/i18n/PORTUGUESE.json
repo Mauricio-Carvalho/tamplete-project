@@ -3,18 +3,18 @@
     "title": "Menu",
     "list": {
       "tables": {
-        "title": "Tabelas & Dados",
+        "title": "Tabelas e Dados",
         "user": "Usuário",
-        "fuel": "Abastecimento",
-        "refuel": "Reabastecimento",
+        "fuel": "Combustível",
+        "refuel": "Abastecimento",
         "machine": "Máquinas",
         "operator": "Operador",
         "truck": "Caminhão"
       },
       "auth": {
         "title": "Autenticação",
-        "login": "Login",
-        "register": "Registrar",
+        "login": "Entrar",
+        "register": "Cadastrar",
         "request-password": "Solicitar Senha",
         "reset-password": "Redefinir Senha"
       }
@@ -41,8 +41,8 @@
       },
       "type_document": "Tipo de Documento",
       "document": "Documento",
-      "id_position": "ID da Posição",
-      "position": "Posição"
+      "id_position": "ID do Cargo",
+      "position": "Cargo"
     },
     "configuration": {
       "title_configuration": "Configuração",
@@ -61,7 +61,7 @@
     },
     "contact": {
       "title_contact": "Contato",
-      "email": "E-mail",
+      "email": "Email",
       "telephone": "Telefone",
       "country": "País",
       "state": "Estado",
@@ -71,27 +71,32 @@
     },
     "permission": {
       "permission_title": "Permissão",
-      "administrator": "Administrador",
+      "manager_master": "Administrador",
       "manager": "Gerente",
       "employee": "Funcionário"
+    },
+    "status": {
+      "status_title": "Status",
+      "active": "Ativo",
+      "blocked": "Bloqueado"
     }
   },
   "dialog": {
     "create": {
       "title": "Confirmação de Criação",
-      "message": "Tem certeza que deseja criar este registro?",
+      "message": "Você tem certeza de que deseja criar este registro?",
       "confirmButtonText": "Criar",
       "cancelButtonText": "Cancelar"
     },
     "update": {
       "title": "Confirmação de Edição",
-      "message": "Tem certeza que deseja editar este registro?",
+      "message": "Você tem certeza de que deseja editar este registro?",
       "confirmButtonText": "Editar",
       "cancelButtonText": "Cancelar"
     },
     "delete": {
       "title": "Confirmação de Exclusão",
-      "message": "Tem certeza que deseja excluir este registro?",
+      "message": "Você tem certeza de que deseja excluir este registro?",
       "confirmButtonText": "Excluir",
       "cancelButtonText": "Cancelar"
     }
@@ -100,7 +105,7 @@
     "load": {
       "error": {
         "title": "Erro",
-        "message": "Erro ao carregar dados!"
+        "message": "Erro ao carregar os dados!"
       }
     },
     "create": {
@@ -110,7 +115,7 @@
       },
       "error": {
         "title": "Erro",
-        "message": "Erro ao criar registro!"
+        "message": "Erro ao criar o registro!"
       }
     },
     "update": {
@@ -120,42 +125,49 @@
       },
       "error": {
         "title": "Erro",
-        "message": "Erro ao editar registro!"
+        "message": "Erro ao editar o registro!"
       }
     },
     "delete": {
       "success": {
         "title": "Sucesso",
-        "message": "Registro deletado com sucesso!"
+        "message": "Registro excluído com sucesso!"
       },
       "error": {
         "title": "Erro",
-        "message": "Erro ao deletar registro!"
+        "message": "Erro ao excluir o registro!"
       }
     }
   },
   "user": {
     "title": "Tabela de Usuários",
     "table": {
-      "id": "ID",
-      "first_name": "Primeiro Nome",
-      "last_name": "Último Nome",
+      "idUser": "ID",
+      "firstName": "Nome",
+      "lastName": "Sobrenome",
+      "dateBirth": "Data de Nascimento",
+      "userSex": "Gênero",
+      "typeDocument": "Tipo de Documento",
+      "document": "Documento",
+      "idPosition": "ID do Cargo",
+      "position": "Cargo",
+      "email": "Email",
+      "telephone": "Telefone",
       "username": "Nome de Usuário",
-      "email": "E-mail",
-      "age": "Idade"
-    },
-    "confirm_delete": "Tem certeza de que deseja excluir?"
+      "userType": "Nível de Acesso",
+      "userStatus": "Status"
+    }
   },
   "fuel": {
-    "title": "Tabela de Abastecimento",
+    "title": "Tabela de Combustível",
     "table": {
       "idFuel": "ID do Combustível",
-      "idMac": "ID do Maquinário",
+      "idMac": "ID da Máquina",
       "idOp": "ID do Operador",
       "idTruck": "ID do Caminhão",
       "comb": "Tipo de Combustível",
       "qtdComb": "Quantidade de Combustível",
-      "tmp": "Temperatura",
+      "tmp": "Tempo",
       "date": "Data",
       "hour": "Hora",
       "nf": "NF",
@@ -163,9 +175,9 @@
     }
   },
   "refuel": {
-    "title": "Tabela de Reabastecimento",
+    "title": "Tabela de Abastecimento",
     "table": {
-      "idRefuel": "ID de Reabastecimento",
+      "idRefuel": "ID do Abastecimento",
       "idTruck": "ID do Caminhão",
       "idOp": "ID do Operador",
       "comb": "Tipo de Combustível",

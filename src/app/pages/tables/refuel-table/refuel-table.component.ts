@@ -171,10 +171,10 @@ export class RefuelTableComponent implements OnDestroy {
         title: this.translate.instant('refuel.table.idOp'),
         type: 'string',
       },
-      comb: {
-        title: this.translate.instant('refuel.table.comb'),
-        type: 'string',
-      },
+      // comb: {
+      //   title: this.translate.instant('refuel.table.comb'),
+      //   type: 'string',
+      // },
       qtdCombS10: {
         title: this.translate.instant('refuel.table.qtdCombS10'),
         type: 'number',
