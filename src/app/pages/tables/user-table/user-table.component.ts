@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { UserTableData } from '../../../@core/data/user-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'ngx-user-table',
@@ -16,6 +17,9 @@ export class UserTableComponent implements OnDestroy {
 
   settings = {
     actions: {
+      add: true,      //  if you want to remove add button
+      edit: true,     //  if you want to remove edit button
+      delete: true,
       columnTitle: this.translate.instant('action'),
       position: 'right',
     },
@@ -38,13 +42,46 @@ export class UserTableComponent implements OnDestroy {
     columns: {},
   };
 
+  userType: string;
   source: LocalDataSource = new LocalDataSource();
   private langChangeSub: Subscription;
 
   constructor(private translate: TranslateService,
               private service: UserTableData,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService) {
+              private dialogService: NbDialogService,
+              private authService: AuthService) {
+
+                
+    this.userType = this.authService.jwtPayload?.userType;    
+    if(this.userType !== 'MANAGER_MASTER'){
+      this.settings = {
+        actions: {
+          add: false,      //  if you want to remove add button
+          edit: false,     //  if you want to remove edit button
+          delete: false,    //  if you want to remove delete button
+          columnTitle: this.translate.instant('action'),
+          position: 'right'
+        },
+        add: {
+          addButtonContent: '<i class="nb-plus"></i>',
+          createButtonContent: '<i class="nb-checkmark"></i>',
+          cancelButtonContent: '<i class="nb-close"></i>',
+          confirmCreate: true,
+        },
+        edit: {
+          editButtonContent: '<i class="nb-edit"></i>',
+          saveButtonContent: '<i class="nb-checkmark"></i>',
+          cancelButtonContent: '<i class="nb-close"></i>',
+          confirmSave: true,
+        },
+        delete: {
+          deleteButtonContent: '<i class="nb-trash"></i>',
+          confirmDelete: true,
+        },
+        columns: {},
+      }
+    }
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
