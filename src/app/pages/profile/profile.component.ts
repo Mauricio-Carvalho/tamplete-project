@@ -13,6 +13,7 @@ import { LayoutService } from '../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LocalDataSource } from 'ng2-smart-table';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'ngx-profile',
@@ -69,6 +70,7 @@ export class ProfileComponent  implements OnInit, OnDestroy {
 
   currentTheme = 'default';
   source: LocalDataSource = new LocalDataSource();
+  userId: string;
 
   constructor(private translate: TranslateService,
               private sidebarService: NbSidebarService,
@@ -77,13 +79,14 @@ export class ProfileComponent  implements OnInit, OnDestroy {
               private userService: UserTableData,
               private toastrService: NbToastrService,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
 
-    const userId = '1';
-    this.loadUserData(userId);
+    this.userId = this.authService.jwtPayload?.userId;
+    this.loadUserData(this.userId);
 
     this.currentTheme = this.themeService.currentTheme;
     const { xl } = this.breakpointService.getBreakpointsMap();
