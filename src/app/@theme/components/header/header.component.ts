@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuBag, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbMediaBreakpointsService,
+  NbMenuBag,
+  NbMenuService,
+  NbSidebarService,
+  NbThemeService,
+  NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
@@ -7,6 +12,8 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../pages/auth/auth.service';
+import { UserTableData } from '../../../@core/data/user-table';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'ngx-header',
@@ -17,13 +24,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: any;
+  userData: any;
 
   userMenu = [
     { title: 'header.profile' },
     { title: 'header.log_out' },
   ];
-
 
   // Mensagens a serem exibidas
   enterprise = 'Excalibur Quantum';
@@ -40,48 +46,59 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private typingTimeout: any;
   private deletingTimeout: any;
 
+  currentTheme = 'default';
+  source: LocalDataSource = new LocalDataSource();
+
   constructor(
     private translate: TranslateService,
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
-    private userService: UserData,
+    private userService: UserTableData,
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
+    private toastrService: NbToastrService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
+
+    const userId = '1';
+    this.loadUserData(userId);
+
     this.startTypingSequence();
-
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
-
-    // const { xl } = this.breakpointService.getBreakpointsMap();
-    // this.themeService.onMediaQueryChange()
-    //   .pipe(
-    //     map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-    //     takeUntil(this.destroy$),
-    //   )
-    //   .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
-
-    // this.menuService.onItemClick()
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe((event) => this.onMenuItemClick(event));
 
     this.menuService.onItemClick()
       .pipe(
         takeUntil(this.destroy$),
       )
       .subscribe(event => {
-        console.log("Evento de Menu Clicado: ", event);
-        const title  = event.item.title;
-        if (title === 'Sair') {
+        const action = event.item.data;
+        if (action === 'logout') {
           this.authService.logout();
         }
       });
+  }
+
+  // Load user data
+  loadUserData(userId: string) {
+    this.userService.getUserById(userId).subscribe(
+      (data: any) => {
+        this.userData = data;
+        this.changeLanguage(this.userData.userLanguage);
+        this.userData.userTheme = this.userData.userTheme.toLowerCase();
+        this.changeTheme(this.userData.userTheme);
+      },
+      error => {
+        console.error('Error loading user data: ', error);
+        this.toastrService.danger(this.translate.instant('toastr.load.error.message'), this.translate.instant('toastr.load.error.title'));
+      },
+    );
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   ngOnDestroy() {
@@ -109,6 +126,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  changeLanguage(languageName: string) {
+    if (!languageName) {
+      languageName = this.userData.userLanguage;
+    }
+    this.translate.use(languageName);
+    localStorage.setItem('currentLanguage', languageName);
+  }
+
+  changeTheme(themeName: string) {
+    if (!themeName) {
+      themeName = this.currentTheme;
+    }
+
+    this.themeService.changeTheme(themeName);
+    this.currentTheme = themeName;
+    localStorage.setItem('currentTheme', themeName);
   }
 
   // onMenuItemClick(event: NbMenuBag) {

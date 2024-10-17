@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
@@ -12,7 +12,7 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
   templateUrl: './machine-table.component.html',
   styleUrls: ['./machine-table.component.scss'],
 })
-export class MachineTableComponent implements OnDestroy {
+export class MachineTableComponent implements OnInit, OnDestroy {
 
   settings = {
     actions: {
@@ -44,7 +44,9 @@ export class MachineTableComponent implements OnDestroy {
   constructor(private translate: TranslateService,
               private service: MachineTableData,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService) {
+              private dialogService: NbDialogService) {}
+
+  ngOnInit() {
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {

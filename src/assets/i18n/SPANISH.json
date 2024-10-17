@@ -3,17 +3,17 @@
     "title": "Menú",
     "list": {
       "tables": {
-        "title": "Tablas y Datos",
+        "title": "Tablas & Datos",
         "user": "Usuario",
-        "fuel": "Combustible",
-        "refuel": "Abastecimiento",
+        "fuel": "Abastecimiento",
+        "refuel": "Reabastecimiento",
         "machine": "Máquinas",
         "operator": "Operador",
         "truck": "Camión"
       },
       "auth": {
         "title": "Autenticación",
-        "login": "Iniciar sesión",
+        "login": "Iniciar Sesión",
         "register": "Registrarse",
         "request-password": "Solicitar Contraseña",
         "reset-password": "Restablecer Contraseña"
@@ -22,7 +22,7 @@
   },
   "header": {
     "profile": "Perfil",
-    "log_out": "Cerrar sesión"
+    "log_out": "Cerrar Sesión"
   },
   "profile": {
     "image": {
@@ -41,8 +41,8 @@
       },
       "type_document": "Tipo de Documento",
       "document": "Documento",
-      "id_position": "ID del Cargo",
-      "position": "Cargo"
+      "id_enterprise": "ID de la Empresa",
+      "enterprise": "Empresa"
     },
     "configuration": {
       "title_configuration": "Configuración",
@@ -61,7 +61,7 @@
     },
     "contact": {
       "title_contact": "Contacto",
-      "email": "Email",
+      "email": "Correo Electrónico",
       "telephone": "Teléfono",
       "country": "País",
       "state": "Estado",
@@ -84,19 +84,19 @@
   "dialog": {
     "create": {
       "title": "Confirmación de Creación",
-      "message": "¿Estás seguro de que deseas crear este registro?",
+      "message": "¿Está seguro de que desea crear este registro?",
       "confirmButtonText": "Crear",
       "cancelButtonText": "Cancelar"
     },
     "update": {
       "title": "Confirmación de Edición",
-      "message": "¿Estás seguro de que deseas editar este registro?",
+      "message": "¿Está seguro de que desea editar este registro?",
       "confirmButtonText": "Editar",
       "cancelButtonText": "Cancelar"
     },
     "delete": {
       "title": "Confirmación de Eliminación",
-      "message": "¿Estás seguro de que deseas eliminar este registro?",
+      "message": "¿Está seguro de que desea eliminar este registro?",
       "confirmButtonText": "Eliminar",
       "cancelButtonText": "Cancelar"
     }
@@ -105,7 +105,7 @@
     "load": {
       "error": {
         "title": "Error",
-        "message": "¡Error al cargar los datos!"
+        "message": "¡Error al cargar datos!"
       }
     },
     "create": {
@@ -149,9 +149,9 @@
       "userSex": "Género",
       "typeDocument": "Tipo de Documento",
       "document": "Documento",
-      "idPosition": "ID del Cargo",
-      "position": "Cargo",
-      "email": "Email",
+      "idEnterprise": "ID de la Empresa",
+      "enterprise": "Empresa",
+      "email": "Correo Electrónico",
       "telephone": "Teléfono",
       "username": "Nombre de Usuario",
       "userType": "Nivel de Acceso",
@@ -159,15 +159,16 @@
     }
   },
   "fuel": {
-    "title": "Tabla de Combustible",
+    "title": "Tabla de Abastecimiento",
     "table": {
-      "idFuel": "ID del Combustible",
-      "idMac": "ID de la Máquina",
-      "idOp": "ID del Operador",
-      "idTruck": "ID del Camión",
+      "idFuel": "ID de Abastecimiento",
+      "idMac": "ID de Máquina",
+      "idOp": "ID de Operador",
+      "idTruck": "ID de Camión",
+      "hrMeter": "Contador de Horas",
       "comb": "Tipo de Combustible",
       "qtdComb": "Cantidad de Combustible",
-      "tmp": "Tiempo",
+      "timeFuel": "Duración",
       "date": "Fecha",
       "hour": "Hora",
       "nf": "NF",
@@ -175,11 +176,11 @@
     }
   },
   "refuel": {
-    "title": "Tabla de Abastecimiento",
+    "title": "Tabla de Reabastecimiento",
     "table": {
-      "idRefuel": "ID del Abastecimiento",
-      "idTruck": "ID del Camión",
-      "idOp": "ID del Operador",
+      "idRefuel": "ID de Reabastecimiento",
+      "idTruck": "ID de Camión",
+      "idOp": "ID de Operador",
       "comb": "Tipo de Combustible",
       "qtdCombS10": "Cantidad S10",
       "qtdCombS500": "Cantidad S500",
@@ -191,28 +192,28 @@
   "machine": {
     "title": "Tabla de Máquinas",
     "table": {
-      "idMac": "ID de la Máquina",
-      "name": "Nombre de la Máquina",
+      "idMac": "ID de Máquina",
+      "name": "Nombre de Máquina",
       "status": "Estado",
       "comb": "Tipo de Combustible",
-      "idSubMac": "ID de la Submáquina"
+      "idSubMac": "ID de Submáquina"
     }
   },
   "operator": {
     "title": "Tabla de Operadores",
     "table": {
-      "idOp": "ID del Operador",
-      "name": "Nombre del Operador",
+      "idOp": "ID de Operador",
+      "name": "Nombre de Operador",
       "cnh": "CNH",
       "issueDate": "Fecha de Emisión",
-      "expirationDate": "Fecha de Expiración",
+      "expirationDate": "Fecha de Vencimiento",
       "status": "Estado"
     }
   },
   "truck": {
     "title": "Tabla de Camiones",
     "table": {
-      "idTruck": "ID del Camión",
+      "idTruck": "ID de Camión",
       "model": "Modelo",
       "comb": "Tipo de Combustible",
       "qtdCombS10": "Cantidad S10",

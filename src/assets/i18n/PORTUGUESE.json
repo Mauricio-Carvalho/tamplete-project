@@ -3,10 +3,10 @@
     "title": "Menu",
     "list": {
       "tables": {
-        "title": "Tabelas e Dados",
+        "title": "Tabelas & Dados",
         "user": "Usuário",
-        "fuel": "Combustível",
-        "refuel": "Abastecimento",
+        "fuel": "Abastecimento",
+        "refuel": "Reabastecimento",
         "machine": "Máquinas",
         "operator": "Operador",
         "truck": "Caminhão"
@@ -41,8 +41,8 @@
       },
       "type_document": "Tipo de Documento",
       "document": "Documento",
-      "id_position": "ID do Cargo",
-      "position": "Cargo"
+      "id_enterprise": "ID da Empresa",
+      "enterprise": "Empresa"
     },
     "configuration": {
       "title_configuration": "Configuração",
@@ -105,7 +105,7 @@
     "load": {
       "error": {
         "title": "Erro",
-        "message": "Erro ao carregar os dados!"
+        "message": "Erro ao carregar dados!"
       }
     },
     "create": {
@@ -115,7 +115,7 @@
       },
       "error": {
         "title": "Erro",
-        "message": "Erro ao criar o registro!"
+        "message": "Erro ao criar registro!"
       }
     },
     "update": {
@@ -125,7 +125,7 @@
       },
       "error": {
         "title": "Erro",
-        "message": "Erro ao editar o registro!"
+        "message": "Erro ao editar registro!"
       }
     },
     "delete": {
@@ -135,7 +135,7 @@
       },
       "error": {
         "title": "Erro",
-        "message": "Erro ao excluir o registro!"
+        "message": "Erro ao excluir registro!"
       }
     }
   },
@@ -149,8 +149,8 @@
       "userSex": "Gênero",
       "typeDocument": "Tipo de Documento",
       "document": "Documento",
-      "idPosition": "ID do Cargo",
-      "position": "Cargo",
+      "idEnterprise": "ID da Empresa",
+      "enterprise": "Empresa",
       "email": "Email",
       "telephone": "Telefone",
       "username": "Nome de Usuário",
@@ -159,15 +159,16 @@
     }
   },
   "fuel": {
-    "title": "Tabela de Combustível",
+    "title": "Tabela de Abastecimento",
     "table": {
-      "idFuel": "ID do Combustível",
+      "idFuel": "ID do Abastecimento",
       "idMac": "ID da Máquina",
       "idOp": "ID do Operador",
       "idTruck": "ID do Caminhão",
+      "hrMeter": "Contador de Horas",
       "comb": "Tipo de Combustível",
       "qtdComb": "Quantidade de Combustível",
-      "tmp": "Tempo",
+      "timeFuel": "Duração",
       "date": "Data",
       "hour": "Hora",
       "nf": "NF",
@@ -175,9 +176,9 @@
     }
   },
   "refuel": {
-    "title": "Tabela de Abastecimento",
+    "title": "Tabela de Reabastecimento",
     "table": {
-      "idRefuel": "ID do Abastecimento",
+      "idRefuel": "ID de Reabastecimento",
       "idTruck": "ID do Caminhão",
       "idOp": "ID do Operador",
       "comb": "Tipo de Combustível",
@@ -205,7 +206,7 @@
       "name": "Nome do Operador",
       "cnh": "CNH",
       "issueDate": "Data de Emissão",
-      "expirationDate": "Data de Expiração",
+      "expirationDate": "Data de Validade",
       "status": "Status"
     }
   },

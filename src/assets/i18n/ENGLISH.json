@@ -41,8 +41,8 @@
       },
       "type_document": "Document Type",
       "document": "Document",
-      "id_position": "Position ID",
-      "position": "Position"
+      "id_enterprise": "Enterprise ID",
+      "enterprise": "Enterprise"
     },
     "configuration": {
       "title_configuration": "Configuration",
@@ -149,8 +149,8 @@
       "userSex": "Gender",
       "typeDocument": "Type Document",
       "document": "Document",
-      "idPosition": "ID Position",
-      "position": "Position",
+      "idEnterprise": "ID Enterprise",
+      "enterprise": "Enterprise",
       "email": "Email",
       "telephone": "Telephone",
       "username": "Username",
@@ -165,9 +165,10 @@
       "idMac": "Machinery ID",
       "idOp": "Operator ID",
       "idTruck": "Truck ID",
+      "hrMeter": "Hour Meter",
       "comb": "Fuel Type",
       "qtdComb": "Fuel Quantity",
-      "tmp": "Time",
+      "timeFuel": "Duration",
       "date": "Date",
       "hour": "Hour",
       "nf": "NF",

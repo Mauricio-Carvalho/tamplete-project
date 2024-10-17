@@ -17,6 +17,11 @@ export class UserTableService extends UserTableData {
     super();
   }
 
+  // Busca um usuário específico pelo ID
+  getUserById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
   // Busca todos os dados (Read)
   getData(): Observable<any[]> {
     return this.http.get<any>(this.apiUrl).pipe(

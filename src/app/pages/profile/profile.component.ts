@@ -66,15 +66,15 @@ export class ProfileComponent  implements OnInit, OnDestroy {
       name: 'Corporate',
     },
   ];
-  currentTheme = 'dark';
 
+  currentTheme = 'default';
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private translate: TranslateService,
               private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
-              private service: UserTableData,
+              private userService: UserTableData,
               private toastrService: NbToastrService,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService) {
@@ -82,7 +82,8 @@ export class ProfileComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.loadData();
+    const userId = '1';
+    this.loadUserData(userId);
 
     this.currentTheme = this.themeService.currentTheme;
     const { xl } = this.breakpointService.getBreakpointsMap();
@@ -102,23 +103,20 @@ export class ProfileComponent  implements OnInit, OnDestroy {
 
   }
 
-  // Load table data
-  loadData() {
-    this.service.getData().subscribe(
-      (data: any[]) => {
-        this.source.load(data);
-        if (data.length > 0) {
-          this.userData = data[0];
-          this.changeLanguage(this.userData.userLanguage);
-          this.userData.userTheme = this.userData.userTheme.toLowerCase();
-          this.changeTheme(this.userData.userTheme.toLowerCase());
-        }
+  // Load user data
+  loadUserData(userId: string) {
+    this.userService.getUserById(userId).subscribe(
+      (data: any) => {
+        this.userData = data;
+        this.changeLanguage(this.userData.userLanguage);
+        this.userData.userTheme = this.userData.userTheme.toLowerCase();
+        this.changeTheme(this.userData.userTheme);
       },
       error => {
-        console.error('Error loading data: ', error);
+        console.error('Error loading user data: ', error);
         this.toastrService.danger(this.translate.instant('toastr.load.error.message'), this.translate.instant('toastr.load.error.title'));
-      })
-    ;
+      },
+    );
   }
 
   ngOnDestroy() {
@@ -138,7 +136,7 @@ export class ProfileComponent  implements OnInit, OnDestroy {
     if (!themeName) {
       themeName = this.currentTheme;
     }
-    this.currentTheme = 'default';
+
     this.themeService.changeTheme(themeName);
     this.currentTheme = themeName;
     localStorage.setItem('currentTheme', themeName);

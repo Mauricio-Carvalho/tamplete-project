@@ -160,10 +160,10 @@ export class UserTableComponent implements OnDestroy {
   // Load table settings
   loadTableSettings() {
     this.settings.columns = {
-      idUser: {
-        title: this.translate.instant('user.table.idUser'),
-        type: 'number',
-      },
+      // idUser: {
+      //   title: this.translate.instant('user.table.idUser'),
+      //   type: 'number',
+      // },
       firstName: {
         title: this.translate.instant('user.table.firstName'),
         type: 'string',
@@ -180,20 +180,20 @@ export class UserTableComponent implements OnDestroy {
       //   title: this.translate.instant('user.table.userSex'),
       //   type: 'string',
       // },
-      typeDocument: {
-        title: this.translate.instant('user.table.typeDocument'),
-        type: 'string',
-      },
+      // typeDocument: {
+      //   title: this.translate.instant('user.table.typeDocument'),
+      //   type: 'string',
+      // },
       document: {
         title: this.translate.instant('user.table.document'),
         type: 'string',
       },
-      idPosition: {
-        title: this.translate.instant('user.table.idPosition'),
-        type: 'string',
-      },
-      position: {
-        title: this.translate.instant('user.table.position'),
+      // idEnterprise: {
+      //   title: this.translate.instant('user.table.idEnterprise'),
+      //   type: 'string',
+      // },
+      enterprise: {
+        title: this.translate.instant('user.table.enterprise'),
         type: 'string',
       },
       email: {
