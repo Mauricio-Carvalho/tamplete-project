@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';

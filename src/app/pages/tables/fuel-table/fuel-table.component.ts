@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Subscription } from 'rxjs';
-
+import * as Papa from 'papaparse';
 import { FuelTableData } from '../../../@core/data/fuel-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { AuthService } from '../../auth/auth.service';
@@ -235,6 +235,25 @@ export class FuelTableComponent implements OnInit, OnDestroy {
     if (this.langChangeSub) {
       this.langChangeSub.unsubscribe();
     }
+  }
+
+  downloadCSV() {
+    const csv = Papa.unparse(this.source);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    const now = new Date();
+    const dateString = now.toISOString().slice(0, 10); // YYYY-MM-DD
+    const timeString = now.toTimeString().slice(0, 8).replace(/:/g, '-'); // HH-MM-SS
+    const filename = `fuel_${dateString}_${timeString}.csv`;
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
 }
