@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
@@ -6,16 +6,20 @@ import { Subscription } from 'rxjs';
 
 import { OperatorTableData } from '../../../@core/data/operator-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'ngx-operator-table',
   templateUrl: './operator-table.component.html',
   styleUrls: ['./operator-table.component.scss'],
 })
-export class OperatorTableComponent implements OnDestroy {
+export class OperatorTableComponent implements OnInit, OnDestroy {
 
   settings = {
     actions: {
+      add: true,
+      edit: true,
+      delete: true,
       columnTitle: this.translate.instant('actions'),
       position: 'right',
     },
@@ -36,15 +40,24 @@ export class OperatorTableComponent implements OnDestroy {
       confirmDelete: true,
     },
     columns: {},
+    pager: {
+      display: true,
+      perPage: 10,
+    },
   };
 
   source: LocalDataSource = new LocalDataSource();
   private langChangeSub: Subscription;
+  userType: string;
 
   constructor(private translate: TranslateService,
               private service: OperatorTableData,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService) {
+              private dialogService: NbDialogService,
+              private authService: AuthService) {}
+
+  ngOnInit() {
+    this.userType = this.authService.jwtPayload?.userType;
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -158,6 +171,14 @@ export class OperatorTableComponent implements OnDestroy {
   }
 
   loadTableSettings() {
+    const isAddRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+    const isEditRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+    const isDeleteRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+
+    this.settings.actions.add = isAddRestrictedUser;
+    this.settings.actions.edit = isEditRestrictedUser;
+    this.settings.actions.delete = isDeleteRestrictedUser;
+
     this.settings.columns = {
       idOp: {
         title: this.translate.instant('operator.table.idOp'),

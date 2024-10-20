@@ -21,6 +21,7 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbUserModule,
 } from '@nebular/theme';
 import { NgxAuthModule } from './pages/auth/auth.module';
 
@@ -36,6 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NbUserModule,
     NbDialogModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),

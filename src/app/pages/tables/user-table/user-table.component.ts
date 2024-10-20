@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
@@ -13,12 +13,12 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
-export class UserTableComponent implements OnDestroy {
+export class UserTableComponent implements OnInit, OnDestroy {
 
   settings = {
     actions: {
-      add: true,      //  if you want to remove add button
-      edit: true,     //  if you want to remove edit button
+      add: true,
+      edit: true,
       delete: true,
       columnTitle: this.translate.instant('action'),
       position: 'right',
@@ -40,48 +40,24 @@ export class UserTableComponent implements OnDestroy {
       confirmDelete: true,
     },
     columns: {},
+    pager: {
+      display: true,
+      perPage: 10,
+    },
   };
 
-  userType: string;
   source: LocalDataSource = new LocalDataSource();
   private langChangeSub: Subscription;
+  userType: string;
 
   constructor(private translate: TranslateService,
               private service: UserTableData,
               private toastrService: NbToastrService,
               private dialogService: NbDialogService,
-              private authService: AuthService) {
+              private authService: AuthService) {}
 
-                
-    this.userType = this.authService.jwtPayload?.userType;    
-    if(this.userType !== 'MANAGER_MASTER'){
-      this.settings = {
-        actions: {
-          add: false,      //  if you want to remove add button
-          edit: false,     //  if you want to remove edit button
-          delete: false,    //  if you want to remove delete button
-          columnTitle: this.translate.instant('action'),
-          position: 'right'
-        },
-        add: {
-          addButtonContent: '<i class="nb-plus"></i>',
-          createButtonContent: '<i class="nb-checkmark"></i>',
-          cancelButtonContent: '<i class="nb-close"></i>',
-          confirmCreate: true,
-        },
-        edit: {
-          editButtonContent: '<i class="nb-edit"></i>',
-          saveButtonContent: '<i class="nb-checkmark"></i>',
-          cancelButtonContent: '<i class="nb-close"></i>',
-          confirmSave: true,
-        },
-        delete: {
-          deleteButtonContent: '<i class="nb-trash"></i>',
-          confirmDelete: true,
-        },
-        columns: {},
-      }
-    }
+  ngOnInit() {
+    this.userType = this.authService.jwtPayload?.userType;
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -147,7 +123,7 @@ export class UserTableComponent implements OnDestroy {
         const updatedUserData = event.newData;
         this.service.updateData(event.data.idUser, updatedUserData).subscribe(
           response => {
-            console.info('Update ID: ', event.data.idUser, ' - Data: ', updatedUserData);
+            console.info('Update idUser: ', event.data.idUser, ' - Data: ', updatedUserData);
             this.toastrService.success(this.translate.instant('toastr.update.success.message'), this.translate.instant('toastr.update.success.title'));
             event.confirm.resolve(response);
             this.loadData();
@@ -175,9 +151,9 @@ export class UserTableComponent implements OnDestroy {
       },
     }).onClose.subscribe(result => {
       if (result) {
-        this.service.deleteData(event.data.id).subscribe(
+        this.service.deleteData(event.data.idUser).subscribe(
           () => {
-            console.info('Delete ID: ', event.data.id);
+            console.info('Delete idUser: ', event.data.idUser);
             this.toastrService.success(this.translate.instant('toastr.delete.success.message'), this.translate.instant('toastr.delete.success.title'));
             event.confirm.resolve();
             this.loadData();
@@ -196,11 +172,20 @@ export class UserTableComponent implements OnDestroy {
 
   // Load table settings
   loadTableSettings() {
+    const isAddRestrictedUser = ['MANAGER_MASTER'].includes(this.userType);
+    const isEditRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+    const isDeleteRestrictedUser = ['MANAGER_MASTER'].includes(this.userType);
+
+    this.settings.actions.add = isAddRestrictedUser;
+    this.settings.actions.edit = isEditRestrictedUser;
+    this.settings.actions.delete = isDeleteRestrictedUser;
+
     this.settings.columns = {
-      // idUser: {
-      //   title: this.translate.instant('user.table.idUser'),
-      //   type: 'number',
-      // },
+      idUser: {
+        title: this.translate.instant('user.table.idUser'),
+        type: 'number',
+        hide: true, // Coluna invisível
+      },
       firstName: {
         title: this.translate.instant('user.table.firstName'),
         type: 'string',
@@ -209,26 +194,30 @@ export class UserTableComponent implements OnDestroy {
         title: this.translate.instant('user.table.lastName'),
         type: 'string',
       },
-      // dateBirth: {
-      //   title: this.translate.instant('user.table.dateBirth'),
-      //   type: 'string',
-      // },
-      // userSex: {
-      //   title: this.translate.instant('user.table.userSex'),
-      //   type: 'string',
-      // },
-      // typeDocument: {
-      //   title: this.translate.instant('user.table.typeDocument'),
-      //   type: 'string',
-      // },
+      dateBirth: {
+        title: this.translate.instant('user.table.dateBirth'),
+        type: 'string',
+        hide: true, // Coluna invisível
+      },
+      userSex: {
+        title: this.translate.instant('user.table.userSex'),
+        type: 'string',
+        hide: true, // Coluna invisível
+      },
+      typeDocument: {
+        title: this.translate.instant('user.table.typeDocument'),
+        type: 'string',
+        hide: true, // Coluna invisível
+      },
       document: {
         title: this.translate.instant('user.table.document'),
         type: 'string',
       },
-      // idEnterprise: {
-      //   title: this.translate.instant('user.table.idEnterprise'),
-      //   type: 'string',
-      // },
+      idEnterprise: {
+        title: this.translate.instant('user.table.idEnterprise'),
+        type: 'string',
+        hide: true, // Coluna invisível
+      },
       enterprise: {
         title: this.translate.instant('user.table.enterprise'),
         type: 'string',
@@ -248,6 +237,7 @@ export class UserTableComponent implements OnDestroy {
       // password: {
       //   title: this.translate.instant('user.table.password'),
       //   type: 'string',
+      //   hide: true, // Coluna invisível
       // },
       userType: {
         title: this.translate.instant('user.table.userType'),
@@ -257,16 +247,19 @@ export class UserTableComponent implements OnDestroy {
         title: this.translate.instant('user.table.userStatus'),
         type: 'string',
       },
-      // userLanguage: {
-      //   title: this.translate.instant('user.table.userLanguage'),
-      //   type: 'string',
-      // },
-      // userTheme: {
-      //   title: this.translate.instant('user.table.userTheme'),
-      //   type: 'string',
-      // },
+      userLanguage: {
+        title: this.translate.instant('user.table.userLanguage'),
+        type: 'string',
+        hide: true, // Coluna invisível
+      },
+      userTheme: {
+        title: this.translate.instant('user.table.userTheme'),
+        type: 'string',
+        hide: true, // Coluna invisível
+      },
     };
   }
+
 
   ngOnDestroy() {
     if (this.langChangeSub) {

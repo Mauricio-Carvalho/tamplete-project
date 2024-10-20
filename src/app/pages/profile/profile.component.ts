@@ -5,6 +5,7 @@ import {
   NbSidebarService,
   NbThemeService,
   NbToastrService,
+  NbUserModule,
 } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -28,14 +29,14 @@ export class ProfileComponent  implements OnInit, OnDestroy {
   userData: any;
 
   permission = [
-    { value: 'MANAGER_MASTER' },
-    { value: 'MANAGER' },
-    { value: 'EMPLOYEE' },
+    {value: 'MANAGER_MASTER'},
+    {value: 'MANAGER'},
+    {value: 'EMPLOYEE'},
   ];
 
   listStatus = [
-    { value: 'ACTIVE' },
-    { value: 'BLOCKED' },
+    {value: 'ACTIVE'},
+    {value: 'BLOCKED'},
   ];
 
   languages = [
@@ -70,6 +71,7 @@ export class ProfileComponent  implements OnInit, OnDestroy {
 
   currentTheme = 'default';
   source: LocalDataSource = new LocalDataSource();
+  userType: string;
   userId: string;
 
   constructor(private translate: TranslateService,
@@ -86,10 +88,11 @@ export class ProfileComponent  implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.userId = this.authService.jwtPayload?.userId;
+    this.userType = this.authService.jwtPayload?.userType;
     this.loadUserData(this.userId);
 
     this.currentTheme = this.themeService.currentTheme;
-    const { xl } = this.breakpointService.getBreakpointsMap();
+    const {xl} = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
         map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
@@ -99,7 +102,7 @@ export class ProfileComponent  implements OnInit, OnDestroy {
 
     this.themeService.onThemeChange()
       .pipe(
-        map(({ name }) => name),
+        map(({name}) => name),
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
@@ -145,4 +148,48 @@ export class ProfileComponent  implements OnInit, OnDestroy {
     localStorage.setItem('currentTheme', themeName);
   }
 
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageData = e.target.result; // Obtém a imagem em base64
+
+        // Chame o método para fazer o upload da imagem
+        this.uploadUserImage(this.userId, imageData);
+      };
+      reader.readAsDataURL(file); // Lê a imagem como uma URL de dados
+    }
+  }
+
+  uploadUserImage(userId: string, imageData: string) {
+    const blob = this.base64ToBlob(imageData, 'image/jpeg'); // Supondo que a imagem seja JPEG
+
+    const file = new File([blob], 'profile-image.jpg', { type: 'image/jpeg' }); // Nome do arquivo
+
+    this.userService.uploadImage(userId, file).subscribe(
+      response => {
+        console.info('Image uploaded successfully', response);
+        this.toastrService.success(this.translate.instant('toastr.upload.success.message'), this.translate.instant('toastr.upload.success.title'));
+        this.loadUserData(userId);
+      },
+      error => {
+        console.error('Error uploading image: ', error);
+        this.toastrService.danger(this.translate.instant('toastr.upload.error.message'), this.translate.instant('toastr.upload.error.title'));
+      },
+    );
+  }
+
+// Método para converter base64 em Blob
+  private base64ToBlob(base64: string, type: string) {
+    const byteCharacters = atob(base64.split(',')[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: type });
+  }
 }

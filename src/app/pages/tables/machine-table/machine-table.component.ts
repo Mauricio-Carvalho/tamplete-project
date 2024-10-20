@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { MachineTableData } from '../../../@core/data/machine-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'ngx-machine-table',
@@ -16,6 +17,9 @@ export class MachineTableComponent implements OnInit, OnDestroy {
 
   settings = {
     actions: {
+      add: true,
+      edit: true,
+      delete: true,
       columnTitle: this.translate.instant('action'),
       position: 'right',
     },
@@ -36,17 +40,24 @@ export class MachineTableComponent implements OnInit, OnDestroy {
       confirmDelete: true,
     },
     columns: {},
+    pager: {
+      display: true,
+      perPage: 10,
+    },
   };
 
   source: LocalDataSource = new LocalDataSource();
   private langChangeSub: Subscription;
+  userType: string;
 
   constructor(private translate: TranslateService,
               private service: MachineTableData,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService) {}
+              private dialogService: NbDialogService,
+              private authService: AuthService) {}
 
   ngOnInit() {
+    this.userType = this.authService.jwtPayload?.userType;
     this.loadTableSettings();
 
     this.langChangeSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -160,6 +171,14 @@ export class MachineTableComponent implements OnInit, OnDestroy {
   }
 
   loadTableSettings() {
+    const isAddRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+    const isEditRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+    const isDeleteRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
+
+    this.settings.actions.add = isAddRestrictedUser;
+    this.settings.actions.edit = isEditRestrictedUser;
+    this.settings.actions.delete = isDeleteRestrictedUser;
+
     this.settings.columns = {
       idMac: {
         title: this.translate.instant('machine.table.idMac'),

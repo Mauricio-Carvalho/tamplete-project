@@ -16,4 +16,7 @@ export abstract class UserTableData {
 
   // Método para deletar um registro
   abstract deleteData(id: string): Observable<void>;
+
+  // Método para fazer upload de imagem
+  abstract uploadImage(id: string, file: File): Observable<any>;
 }
