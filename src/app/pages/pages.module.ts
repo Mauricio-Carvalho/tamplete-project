@@ -6,6 +6,8 @@ import { PagesComponent } from './pages.component';
 import { ProfileModule } from './profile/profile.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DatePickerComponent } from '../@core/data/DatePickerComponent';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,10 +17,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     NbCardModule,
     NbButtonModule,
     ProfileModule,
+    FormsModule,
   ],
   declarations: [
     PagesComponent,
     ConfirmDialogComponent,
+    DatePickerComponent,
   ],
   entryComponents: [ConfirmDialogComponent],
 })

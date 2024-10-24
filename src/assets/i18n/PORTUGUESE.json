@@ -14,7 +14,7 @@
       "auth": {
         "title": "Autenticação",
         "login": "Entrar",
-        "register": "Cadastrar",
+        "register": "Registrar",
         "request-password": "Solicitar Senha",
         "reset-password": "Redefinir Senha"
       }
@@ -84,19 +84,19 @@
   "dialog": {
     "create": {
       "title": "Confirmação de Criação",
-      "message": "Você tem certeza de que deseja criar este registro?",
+      "message": "Tem certeza de que deseja criar este registro?",
       "confirmButtonText": "Criar",
       "cancelButtonText": "Cancelar"
     },
     "update": {
       "title": "Confirmação de Edição",
-      "message": "Você tem certeza de que deseja editar este registro?",
+      "message": "Tem certeza de que deseja editar este registro?",
       "confirmButtonText": "Editar",
       "cancelButtonText": "Cancelar"
     },
     "delete": {
       "title": "Confirmação de Exclusão",
-      "message": "Você tem certeza de que deseja excluir este registro?",
+      "message": "Tem certeza de que deseja excluir este registro?",
       "confirmButtonText": "Excluir",
       "cancelButtonText": "Cancelar"
     }
@@ -146,7 +146,12 @@
       "firstName": "Nome",
       "lastName": "Sobrenome",
       "dateBirth": "Data de Nascimento",
-      "userSex": "Gênero",
+      "userSex": {
+        "gender": "Gênero",
+        "masculine": "Masculino",
+        "feminine": "Feminino",
+        "other": "Outro"
+      },
       "typeDocument": "Tipo de Documento",
       "document": "Documento",
       "idEnterprise": "ID da Empresa",
@@ -154,8 +159,17 @@
       "email": "Email",
       "telephone": "Telefone",
       "username": "Nome de Usuário",
-      "userType": "Nível de Acesso",
-      "userStatus": "Status"
+      "userType": {
+        "title": "Nível de Acesso",
+        "employee": "Funcionário",
+        "manager": "Gerente",
+        "managerMaster": "Administrador"
+      },
+      "userStatus": {
+        "title": "Status",
+        "active": "Ativo",
+        "blocked": "Bloqueado"
+      }
     }
   },
   "fuel": {
@@ -165,7 +179,7 @@
       "idMac": "ID da Máquina",
       "idOp": "ID do Operador",
       "idTruck": "ID do Caminhão",
-      "hrMeter": "Contador de Horas",
+      "hrMeter": "Horímetro",
       "comb": "Tipo de Combustível",
       "qtdComb": "Quantidade de Combustível",
       "timeFuel": "Duração",
@@ -178,7 +192,7 @@
   "refuel": {
     "title": "Tabela de Reabastecimento",
     "table": {
-      "idRefuel": "ID de Reabastecimento",
+      "idRefuel": "ID do Reabastecimento",
       "idTruck": "ID do Caminhão",
       "idOp": "ID do Operador",
       "comb": "Tipo de Combustível",

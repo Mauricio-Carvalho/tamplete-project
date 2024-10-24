@@ -46,6 +46,18 @@ export class UserTableComponent implements OnInit, OnDestroy {
     },
   };
 
+  // Define as listas de tipos de usuários
+  private managerMasterList = [
+    { value: 'EMPLOYEE', title: this.translate.instant('user.table.userType.employee') },
+    { value: 'MANAGER', title: this.translate.instant('user.table.userType.manager') },
+    { value: 'MANAGER_MASTER', title: this.translate.instant('user.table.userType.managerMaster') },
+  ];
+
+  private managerList = [
+    { value: 'EMPLOYEE', title: this.translate.instant('user.table.userType.employee') },
+    { value: 'MANAGER', title: this.translate.instant('user.table.userType.manager') },
+  ];
+
   source: LocalDataSource = new LocalDataSource();
   private langChangeSub: Subscription;
   userType: string;
@@ -172,9 +184,11 @@ export class UserTableComponent implements OnInit, OnDestroy {
 
   // Load table settings
   loadTableSettings() {
-    const isAddRestrictedUser = ['MANAGER_MASTER'].includes(this.userType);
+    const isAddRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
     const isEditRestrictedUser = ['MANAGER', 'MANAGER_MASTER'].includes(this.userType);
     const isDeleteRestrictedUser = ['MANAGER_MASTER'].includes(this.userType);
+    const isColumnRestrictedUser = ['MANAGER', 'EMPLOYEE'].includes(this.userType); // Quem nao pode ver a coluna
+    const isListRestrictedUser = ['MANAGER_MASTER'].includes(this.userType);
 
     this.settings.actions.add = isAddRestrictedUser;
     this.settings.actions.edit = isEditRestrictedUser;
@@ -200,13 +214,32 @@ export class UserTableComponent implements OnInit, OnDestroy {
         hide: true, // Coluna invisível
       },
       userSex: {
-        title: this.translate.instant('user.table.userSex'),
+        title: this.translate.instant('user.table.userSex.gender'),
         type: 'string',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'MASCULINE', title: this.translate.instant('user.table.userSex.masculine') },
+              { value: 'FEMININE', title: this.translate.instant('user.table.userSex.feminine') },
+              { value: 'OTHER', title: this.translate.instant('user.table.userSex.other') },
+            ],
+          },
+        },
         hide: true, // Coluna invisível
       },
       typeDocument: {
         title: this.translate.instant('user.table.typeDocument'),
         type: 'string',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'CPF', title: 'CPF' },
+              { value: 'CNPJ', title: 'CNPJ' },
+            ],
+          },
+        },
         hide: true, // Coluna invisível
       },
       document: {
@@ -240,12 +273,28 @@ export class UserTableComponent implements OnInit, OnDestroy {
       //   hide: true, // Coluna invisível
       // },
       userType: {
-        title: this.translate.instant('user.table.userType'),
+        title: this.translate.instant('user.table.userType.title'),
         type: 'string',
+        editor: {
+          type: 'list',
+          config: {
+            list: isListRestrictedUser ? this.managerMasterList : this.managerList,
+          },
+        },
+        hide: false,
       },
       userStatus: {
-        title: this.translate.instant('user.table.userStatus'),
+        title: this.translate.instant('user.table.userStatus.title'),
         type: 'string',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'ACTIVE', title: this.translate.instant('user.table.userStatus.active') },
+              { value: 'BLOCKED', title: this.translate.instant('user.table.userStatus.blocked') },
+            ],
+          },
+        },
       },
       userLanguage: {
         title: this.translate.instant('user.table.userLanguage'),

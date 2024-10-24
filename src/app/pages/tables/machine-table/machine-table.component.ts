@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { Subscription } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 import { MachineTableData } from '../../../@core/data/machine-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
@@ -121,9 +121,9 @@ export class MachineTableComponent implements OnInit, OnDestroy {
     }).onClose.subscribe(result => {
       if (result) {
         const updatedMachineData = event.newData;
-        this.service.updateData(event.data.idMac, updatedMachineData).subscribe(
+        this.service.updateData(event.data.name, updatedMachineData).subscribe(
           response => {
-            console.info('Update ID: ', event.data.idMac, ' - Data: ', updatedMachineData);
+            console.info('Update Machine Name: ', event.data.name, ' - Data: ', updatedMachineData);
             this.toastrService.success(this.translate.instant('toastr.update.success.message'), this.translate.instant('toastr.update.success.title'));
             event.confirm.resolve(response);
             this.loadData();
@@ -151,9 +151,9 @@ export class MachineTableComponent implements OnInit, OnDestroy {
       },
     }).onClose.subscribe(result => {
       if (result) {
-        this.service.deleteData(event.data.idMac).subscribe(
+        this.service.deleteData(event.data.name).subscribe(
           () => {
-            console.info('Delete ID: ', event.data.idMac);
+            console.info('Delete ID: ', event.data.name);
             this.toastrService.success(this.translate.instant('toastr.delete.success.message'), this.translate.instant('toastr.delete.success.title'));
             event.confirm.resolve();
             this.loadData();
@@ -180,24 +180,42 @@ export class MachineTableComponent implements OnInit, OnDestroy {
     this.settings.actions.delete = isDeleteRestrictedUser;
 
     this.settings.columns = {
-      idMac: {
-        title: this.translate.instant('machine.table.idMac'),
-        type: 'string',
-      },
       name: {
         title: this.translate.instant('machine.table.name'),
         type: 'string',
       },
-      status: {
-        title: this.translate.instant('machine.table.status'),
+      tagMac: {
+        title: this.translate.instant('machine.table.tagMac'),
         type: 'string',
+      },
+      status: {
+        title: this.translate.instant('machine.table.machineStatus.title'),
+        type: 'string',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'ACTIVE', title: this.translate.instant('machine.table.machineStatus.active') },
+              { value: 'BLOCKED', title: this.translate.instant('machine.table.machineStatus.blocked') },
+            ],
+          },
+        },
       },
       comb: {
         title: this.translate.instant('machine.table.comb'),
         type: 'string',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'S10', title: 'S10' },
+              { value: 'S500', title: 'S500' },
+            ],
+          },
+        },
       },
-      idSubMac: {
-        title: this.translate.instant('machine.table.idSubMac'),
+      subMac: {
+        title: this.translate.instant('machine.table.subMac'),
         type: 'string',
       },
     };

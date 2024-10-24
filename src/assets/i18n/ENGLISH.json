@@ -7,7 +7,7 @@
         "user": "User",
         "fuel": "Fuel",
         "refuel": "Refuel",
-        "machine": "Machines",
+        "machine": "Machine",
         "operator": "Operator",
         "truck": "Truck"
       },
@@ -146,7 +146,12 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "dateBirth": "Date Birth",
-      "userSex": "Gender",
+      "userSex": {
+        "gender": "Gender",
+        "masculine": "Masculine",
+        "feminine": "Feminine",
+        "other": "Other"
+      },
       "typeDocument": "Type Document",
       "document": "Document",
       "idEnterprise": "ID Enterprise",
@@ -154,25 +159,37 @@
       "email": "Email",
       "telephone": "Telephone",
       "username": "Username",
-      "userType": "Access level",
-      "userStatus": "Status"
+      "userType": {
+        "title": "Access level",
+        "employee": "Employee",
+        "manager": "Manager",
+        "managerMaster": "Manager Master"
+      },
+      "userStatus": {
+        "title": "Status",
+        "active": "Active",
+        "blocked": "Blocked"
+      }
     }
   },
   "fuel": {
     "title": "Fuel Table",
     "table": {
-      "idFuel": "Fuel ID",
-      "idMac": "Machinery ID",
+      "idFuel": "ID",
       "idOp": "Operator ID",
-      "idTruck": "Truck ID",
+      "nameOp": "Operator",
+      "nameMac": "Machine",
+      "subMac": "Sub Machine",
+      "idTruck": "Truck",
       "hrMeter": "Hour Meter",
       "comb": "Fuel Type",
       "qtdComb": "Fuel Quantity",
+      "pullOver": "Pull Over",
+      "start": "Start",
+      "end": "End",
       "timeFuel": "Duration",
-      "date": "Date",
-      "hour": "Hour",
       "nf": "NF",
-      "gps": "GPS"
+      "city": "City"
     }
   },
   "refuel": {
@@ -192,11 +209,15 @@
   "machine": {
     "title": "Machines Table",
     "table": {
-      "idMac": "Machine ID",
-      "name": "Machine Name",
-      "status": "Status",
+      "name": "Name",
+      "tagMac": "Tag",
+      "machineStatus": {
+        "title": "Status",
+        "active": "Active",
+        "blocked": "Blocked"
+      },
       "comb": "Fuel Type",
-      "idSubMac": "Sub Machine ID"
+      "subMac": "Sub Machine"
     }
   },
   "operator": {

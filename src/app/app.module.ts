@@ -25,6 +25,8 @@ import {
   NbButtonModule,
 } from '@nebular/theme';
 import { NgxAuthModule } from './pages/auth/auth.module';
+import { CustomReadOnlyComponent } from './@core/data/CustomReadOnlyComponent';
+// import { DatePickerComponent } from "./@core/data/DatePickerComponent";
 
 // Carregar os arquivos de tradução
 export function HttpLoaderFactory(http: HttpClient) {
@@ -32,7 +34,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    CustomReadOnlyComponent,
+    // DatePickerComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
