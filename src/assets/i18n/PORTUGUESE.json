@@ -7,7 +7,7 @@
         "user": "Usuário",
         "fuel": "Abastecimento",
         "refuel": "Reabastecimento",
-        "machine": "Máquinas",
+        "machine": "Máquina",
         "operator": "Operador",
         "truck": "Caminhão"
       },
@@ -30,7 +30,7 @@
     },
     "information": {
       "title_information": "Suas Informações",
-      "first_name": "Nome",
+      "first_name": "Primeiro Nome",
       "last_name": "Sobrenome",
       "date_birth": "Data de Nascimento",
       "sex": {
@@ -84,19 +84,19 @@
   "dialog": {
     "create": {
       "title": "Confirmação de Criação",
-      "message": "Tem certeza de que deseja criar este registro?",
+      "message": "Você tem certeza que deseja criar este registro?",
       "confirmButtonText": "Criar",
       "cancelButtonText": "Cancelar"
     },
     "update": {
       "title": "Confirmação de Edição",
-      "message": "Tem certeza de que deseja editar este registro?",
+      "message": "Você tem certeza que deseja editar este registro?",
       "confirmButtonText": "Editar",
       "cancelButtonText": "Cancelar"
     },
     "delete": {
       "title": "Confirmação de Exclusão",
-      "message": "Tem certeza de que deseja excluir este registro?",
+      "message": "Você tem certeza que deseja excluir este registro?",
       "confirmButtonText": "Excluir",
       "cancelButtonText": "Cancelar"
     }
@@ -140,10 +140,10 @@
     }
   },
   "user": {
-    "title": "Tabela de Usuários",
+    "title": "Tabela de Usuário",
     "table": {
       "idUser": "ID",
-      "firstName": "Nome",
+      "firstName": "Primeiro Nome",
       "lastName": "Sobrenome",
       "dateBirth": "Data de Nascimento",
       "userSex": {
@@ -175,25 +175,28 @@
   "fuel": {
     "title": "Tabela de Abastecimento",
     "table": {
-      "idFuel": "ID do Abastecimento",
-      "idMac": "ID da Máquina",
+      "idFuel": "ID",
       "idOp": "ID do Operador",
-      "idTruck": "ID do Caminhão",
+      "nameOp": "Operador",
+      "nameMac": "Máquina",
+      "subMac": "Sub Máquina",
+      "idTruck": "Caminhão",
       "hrMeter": "Horímetro",
       "comb": "Tipo de Combustível",
       "qtdComb": "Quantidade de Combustível",
+      "pullOver": "Encoste",
+      "start": "Início",
+      "end": "Fim",
       "timeFuel": "Duração",
-      "date": "Data",
-      "hour": "Hora",
       "nf": "NF",
-      "gps": "GPS"
+      "city": "Cidade"
     }
   },
   "refuel": {
     "title": "Tabela de Reabastecimento",
     "table": {
-      "idRefuel": "ID do Reabastecimento",
-      "idTruck": "ID do Caminhão",
+      "idRefuel": "ID",
+      "idTruck": "Caminhão",
       "idOp": "ID do Operador",
       "comb": "Tipo de Combustível",
       "qtdCombS10": "Quantidade S10",
@@ -204,20 +207,24 @@
     }
   },
   "machine": {
-    "title": "Tabela de Máquinas",
+    "title": "Tabela de Máquina",
     "table": {
-      "idMac": "ID da Máquina",
-      "name": "Nome da Máquina",
-      "status": "Status",
+      "name": "Nome",
+      "tagMac": "Tag",
+      "machineStatus": {
+        "title": "Status",
+        "active": "Ativo",
+        "blocked": "Bloqueado"
+      },
       "comb": "Tipo de Combustível",
-      "idSubMac": "ID da Submáquina"
+      "subMac": "Sub Máquina"
     }
   },
   "operator": {
-    "title": "Tabela de Operadores",
+    "title": "Tabela de Operador",
     "table": {
-      "idOp": "ID do Operador",
-      "name": "Nome do Operador",
+      "idOp": "ID",
+      "name": "Nome",
       "cnh": "CNH",
       "issueDate": "Data de Emissão",
       "expirationDate": "Data de Validade",
@@ -225,9 +232,9 @@
     }
   },
   "truck": {
-    "title": "Tabela de Caminhões",
+    "title": "Tabela de Caminhão",
     "table": {
-      "idTruck": "ID do Caminhão",
+      "idTruck": "Placa",
       "model": "Modelo",
       "comb": "Tipo de Combustível",
       "qtdCombS10": "Quantidade S10",

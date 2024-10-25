@@ -195,8 +195,8 @@
   "refuel": {
     "title": "Refuel Table",
     "table": {
-      "idRefuel": "Refuel ID",
-      "idTruck": "Truck ID",
+      "idRefuel": "ID",
+      "idTruck": "Truck",
       "idOp": "Operator ID",
       "comb": "Fuel Type",
       "qtdCombS10": "Quantity S10",
@@ -223,8 +223,8 @@
   "operator": {
     "title": "Operators Table",
     "table": {
-      "idOp": "Operator ID",
-      "name": "Operator Name",
+      "idOp": "ID",
+      "name": "Name",
       "cnh": "CNH",
       "issueDate": "Issue Date",
       "expirationDate": "Expiration Date",
@@ -234,7 +234,7 @@
   "truck": {
     "title": "Truck Table",
     "table": {
-      "idTruck": "Truck ID",
+      "idTruck": "Plate",
       "model": "Model",
       "comb": "Fuel Type",
       "qtdCombS10": "Quantity S10",

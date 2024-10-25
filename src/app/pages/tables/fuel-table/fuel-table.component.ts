@@ -7,7 +7,6 @@ import * as Papa from 'papaparse';
 import { FuelTableData } from '../../../@core/data/fuel-table';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { AuthService } from '../../auth/auth.service';
-import { CustomReadOnlyComponent } from '../../../@core/data/CustomReadOnlyComponent';
 import { MachineTableData } from '../../../@core/data/machine-table';
 import { DatePickerComponent } from '../../../@core/data/DatePickerComponent';
 
