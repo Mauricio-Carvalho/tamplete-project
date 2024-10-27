@@ -117,20 +117,37 @@ export class FuelTableComponent implements OnInit, OnDestroy {
         this.service.createData(newFuelData).subscribe(
           response => {
             console.info('Create: ', newFuelData);
-            this.toastrService.success(this.translate.instant('toastr.create.success.message'), this.translate.instant('toastr.create.success.title'));
+            this.toastrService.success(
+              this.translate.instant('toastr.create.success.message'),
+              this.translate.instant('toastr.create.success.title'),
+            );
             event.confirm.resolve(response);
             this.loadData();
           },
           error => {
             console.error('Error creating record: ', error);
-            this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
-            event.confirm.reject();
-          });
+            console.error('Error creating record Usuario: ', error.error[0].mensagemUsuario);
+
+            // Mensagem padrão
+            const defaultErrorMessage = this.translate.instant('toastr.create.error.message');
+            // Mensagem de erro específica, se disponível
+            const specificErrorMessage = error.error[0].mensagemUsuario
+              ? `${error.error[0].mensagemUsuario}`
+              : defaultErrorMessage;
+
+            this.toastrService.danger(
+              specificErrorMessage,
+              this.translate.instant('toastr.create.error.title'),
+              { duration: 10000 });
+              event.confirm.reject();
+          })
+        ;
       } else {
         event.confirm.reject();
       }
     });
   }
+
 
   onEditConfirm(event): void {
     this.dialogService.open(ConfirmDialogComponent, {
@@ -152,8 +169,16 @@ export class FuelTableComponent implements OnInit, OnDestroy {
           },
           error => {
             console.error('Error editing record: ', error);
-            this.toastrService.danger(this.translate.instant('toastr.update.error.message'), this.translate.instant('toastr.update.error.title'));
-            event.confirm.reject();
+
+            // Mensagem padrão
+            const defaultErrorMessage = this.translate.instant('toastr.update.error.message');
+            // Mensagem de erro específica, se disponível
+            const specificErrorMessage = error.error[0].mensagemUsuario
+              ? `${error.error[0].mensagemUsuario}`
+              : defaultErrorMessage;
+            this.toastrService.danger(specificErrorMessage, this.translate.instant('toastr.update.error.title'), {
+              duration: 10000,
+            });
           });
       } else {
         event.confirm.reject();
@@ -174,20 +199,37 @@ export class FuelTableComponent implements OnInit, OnDestroy {
         this.service.deleteData(event.data.idFuel).subscribe(
           () => {
             console.info('Delete ID: ', event.data.idFuel);
-            this.toastrService.success(this.translate.instant('toastr.delete.success.message'), this.translate.instant('toastr.delete.success.title'));
+            this.toastrService.success(
+              this.translate.instant('toastr.delete.success.message'),
+              this.translate.instant('toastr.delete.success.title'),
+            );
             event.confirm.resolve();
             this.loadData();
           },
           error => {
             console.error('Error deleting record: ', error);
-            this.toastrService.danger(this.translate.instant('toastr.delete.error.message'), this.translate.instant('toastr.delete.error.title'));
+
+            // Mensagem padrão
+            const defaultErrorMessage = this.translate.instant('toastr.delete.error.message');
+            // Mensagem de erro específica, se disponível
+            const specificErrorMessage = error.error[0].mensagemUsuario
+              ? `${error.error[0].mensagemUsuario}`
+              : defaultErrorMessage;
+
+            this.toastrService.danger(
+              specificErrorMessage,
+              this.translate.instant('toastr.delete.error.title'),
+              { duration: 10000 },
+            );
             event.confirm.reject();
-          });
+          })
+        ;
       } else {
         event.confirm.reject();
       }
     });
   }
+
 
   loadTableSettings() {
 
@@ -385,4 +427,5 @@ export class FuelTableComponent implements OnInit, OnDestroy {
       this.toastrService.danger(this.translate.instant('toastr.load.error.message'), this.translate.instant('toastr.load.error.title'));
     });
   }
+
 }

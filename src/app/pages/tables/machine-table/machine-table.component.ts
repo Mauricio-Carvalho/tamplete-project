@@ -90,19 +90,35 @@ export class MachineTableComponent implements OnInit, OnDestroy {
     }).onClose.subscribe(result => {
       if (result) {
         const newMachineData = event.newData;
+
         this.service.createData(newMachineData).subscribe(
           response => {
             console.info('Create: ', newMachineData);
-            this.toastrService.success(this.translate.instant('toastr.create.success.message'), this.translate.instant('toastr.create.success.title'));
+            this.toastrService.success(
+              this.translate.instant('toastr.create.success.message'),
+              this.translate.instant('toastr.create.success.title'),
+            );
             event.confirm.resolve(response);
             this.loadData();
           },
           error => {
             console.error('Error creating record: ', error);
-            this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
+
+            // Mensagem padrão
+            const defaultErrorMessage = this.translate.instant('toastr.create.error.message');
+            // Mensagem de erro específica, se disponível
+            const specificErrorMessage = error.error[0].mensagemUsuario
+              ? `${error.error[0].mensagemUsuario}`
+              : defaultErrorMessage;
+
+            this.toastrService.danger(
+              specificErrorMessage,
+              this.translate.instant('toastr.create.error.title'),
+              { duration: 10000 },
+            );
             event.confirm.reject();
-          })
-        ;
+          },
+        );
       } else {
         event.confirm.reject();
       }
@@ -121,19 +137,35 @@ export class MachineTableComponent implements OnInit, OnDestroy {
     }).onClose.subscribe(result => {
       if (result) {
         const updatedMachineData = event.newData;
+
         this.service.updateData(event.data.name, updatedMachineData).subscribe(
           response => {
             console.info('Update Machine Name: ', event.data.name, ' - Data: ', updatedMachineData);
-            this.toastrService.success(this.translate.instant('toastr.update.success.message'), this.translate.instant('toastr.update.success.title'));
+            this.toastrService.success(
+              this.translate.instant('toastr.update.success.message'),
+              this.translate.instant('toastr.update.success.title'),
+            );
             event.confirm.resolve(response);
             this.loadData();
           },
           error => {
             console.error('Error editing record: ', error);
-            this.toastrService.danger(this.translate.instant('toastr.update.error.message'), this.translate.instant('toastr.update.error.title'));
+
+            // Mensagem padrão
+            const defaultErrorMessage = this.translate.instant('toastr.update.error.message');
+            // Mensagem de erro específica, se disponível
+            const specificErrorMessage = error.error[0].mensagemUsuario
+              ? `${error.error[0].mensagemUsuario}`
+              : defaultErrorMessage;
+
+            this.toastrService.danger(
+              specificErrorMessage,
+              this.translate.instant('toastr.update.error.title'),
+              { duration: 10000 },
+            );
             event.confirm.reject();
-          })
-        ;
+          },
+        );
       } else {
         event.confirm.reject();
       }
@@ -154,16 +186,31 @@ export class MachineTableComponent implements OnInit, OnDestroy {
         this.service.deleteData(event.data.name).subscribe(
           () => {
             console.info('Delete ID: ', event.data.name);
-            this.toastrService.success(this.translate.instant('toastr.delete.success.message'), this.translate.instant('toastr.delete.success.title'));
+            this.toastrService.success(
+              this.translate.instant('toastr.delete.success.message'),
+              this.translate.instant('toastr.delete.success.title'),
+            );
             event.confirm.resolve();
             this.loadData();
           },
           error => {
             console.error('Error deleting record: ', error);
-            this.toastrService.danger(this.translate.instant('toastr.delete.error.message'), this.translate.instant('toastr.delete.error.title'));
+
+            // Mensagem padrão
+            const defaultErrorMessage = this.translate.instant('toastr.delete.error.message');
+            // Mensagem de erro específica, se disponível
+            const specificErrorMessage = error.error[0].mensagemUsuario
+              ? `${error.error[0].mensagemUsuario}`
+              : defaultErrorMessage;
+
+            this.toastrService.danger(
+              specificErrorMessage,
+              this.translate.instant('toastr.delete.error.title'),
+              { duration: 10000 },
+            );
             event.confirm.reject();
-          })
-        ;
+          },
+        );
       } else {
         event.confirm.reject();
       }
