@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { AdministrativeComponent } from './administrative/administrative.component';
 
 const routes: Routes = [{
   path: '',
@@ -27,6 +28,10 @@ const routes: Routes = [{
       path: '',
       redirectTo: 'profile',
       pathMatch: 'full',
+    },
+    {
+      path: 'administrative',
+      component: AdministrativeComponent
     },
     {
       path: '**',

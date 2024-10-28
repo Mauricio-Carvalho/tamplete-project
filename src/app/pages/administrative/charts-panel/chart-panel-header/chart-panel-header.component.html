@@ -1,0 +1,35 @@
+<!--<ngx-legend-chart [legendItems]="chartLegend"></ngx-legend-chart>
+
+<nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
+  <nb-option *ngFor="let period of types" [value]="period">
+    {{ period }}
+  </nb-option>
+</nb-select>
+-->
+<div class="header-container">
+  <!-- Descrição -->
+  <div class="chart-description">
+    <p>Selecione os operadores, ano e mês para visualizar o gráfico</p>
+  </div>
+
+    <!-- Filtro de Período (Mês) -->
+  <nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
+    <nb-option *ngFor="let period of types" [value]="period">
+      {{ period }}
+    </nb-option>
+  </nb-select>
+
+  <!-- Filtro de Ano -->
+  <nb-select class="year-select" [selected]="selectedYear" (selectedChange)="changeYear($event)">
+    <nb-option *ngFor="let year of years" [value]="year">
+      {{ year }}
+    </nb-option>
+  </nb-select>
+
+  <!-- Filtro de Operadores com múltipla seleção -->
+  <nb-select class="operator-select" [multiple]="true" [selected]="selectedOperators" (selectedChange)="changeOperators($event)">
+    <nb-option *ngFor="let operator of operators" [value]="operator.idOp">
+      {{ operator.name }}
+    </nb-option>
+  </nb-select>
+</div>
