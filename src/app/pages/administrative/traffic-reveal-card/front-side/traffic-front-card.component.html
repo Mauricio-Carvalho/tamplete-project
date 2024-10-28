@@ -1,0 +1,32 @@
+<!--<nb-list>
+  <nb-list-item class="item" *ngFor="let item of frontCardData; trackBy: trackByDate">
+    <span>{{ item.date }}</span>
+    <span>{{ item.value }}</span>
+    <span class="delta" [class.up]="item.delta.up" [class.down]="!item.delta.up">
+      <nb-icon [icon]="item.delta.up ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+      {{ item.delta.value }}%
+    </span>
+  </nb-list-item>
+</nb-list> -->
+
+<nb-list>
+  <nb-list-item class="item" *ngFor="let item of frontCardData; trackBy: trackByIdTruck">
+    <span style="text-align: center;"> {{ item.idTruck }}</span>
+
+
+    <span style="text-align: center;" class="list-item-value delta" [class.up]="item.fuelPercentageS10 >= 20" [class.down]="item.fuelPercentageS10 < 20">
+      <nb-icon [icon]="item.fuelPercentageS10 >= 20 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+      {{ item.countFuelS10 }} L ({{ item.fuelPercentageS10 }}%)
+    </span>
+
+    
+
+    <span style="text-align: center;" class="list-item-value delta" [class.up]="item.fuelPercentageS500 >= 20" [class.down]="item.fuelPercentageS500 < 20">
+      <nb-icon [icon]="item.fuelPercentageS500 >= 20 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+      {{ item.countFuelS500 }} L ({{ item.fuelPercentageS500 }}%)
+    </span>
+
+    <!--<span style="text-align: center;"> {{ item.countFuelS10 }} litros ({{ item.fuelPercentageS10 }}%)</span>
+    <span style="text-align: center;"> {{ item.countFuelS500 }} litros ({{ item.fuelPercentageS500 }}%)</span> -->
+  </nb-list-item>
+</nb-list>

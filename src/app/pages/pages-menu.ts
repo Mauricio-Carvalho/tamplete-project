@@ -66,5 +66,11 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
       ],
       data: { requiredUserType: ['MANAGER_MASTER'] },
     },
+    {
+      title: 'Administrativo',
+      icon: 'home-outline',
+      link: '/pages/administrative',
+      data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER']}
+    },
   ];
 }

@@ -1,0 +1,28 @@
+@import '../../@theme/styles/themes'; 
+@import 'node_modules/bootstrap/scss/mixins/breakpoints';
+@import '@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .solar-card nb-card-header {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    ngx-traffic {
+      display: none;
+    }
+  }
+
+  // Gradiente de S10 aplicado ao nb-card
+  .bg-gradient-s10 nb-card {
+    background: linear-gradient(to right, #ffdd59, #ffb933) !important;
+    border: none; /* Remove a borda padrão se houver */
+  }
+  
+  // Gradiente de S500 aplicado ao nb-card
+  .bg-gradient-s500 nb-card {
+    background: linear-gradient(to right, #000000, #7f7e7b) !important;
+    border: none;
+  }
+}
