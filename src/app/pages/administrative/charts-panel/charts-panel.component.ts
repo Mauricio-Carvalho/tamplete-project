@@ -25,10 +25,19 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
 
   dataLoaded = false;
 
+  profitChartData: any = {
+    chartLabel: [],
+    data: [
+      Array(10).fill(0),  // S10 valores iniciais zerados
+      Array(10).fill(0),  // S500 valores iniciais zerados
+      Array(10).fill(0),  // Total valores iniciais zerados
+    ],
+  };
+
   period: string = '10';  // Período (mês)
   selectedYear: number = new Date().getFullYear();  // Ano atual
   selectedOperators: string[] = [];  // Operadores selecionados (array para múltiplos)
-  profitChartData: any;
+  //profitChartData: any;
 
   @ViewChild('profitChart', { static: true }) profitChart: ProfitChartComponent;
 
@@ -36,10 +45,35 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.setPeriodAndGetChartData('10');
   }
+/*
+  getProfitChartData(year: number, month: number, operators: string[]) {
+    this.dataLoaded = false; // Reseta o indicador ao iniciar o carregamento
+
+    this.analyticalService.getFuelByOperators(year, month, operators)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(
+        (fuelData) => {
+          // Monta o objeto com os dados da resposta da API
+          this.profitChartData = {
+            chartLabel: fuelData.map(d => d.date),  // Datas
+            data: [
+              fuelData.map(d => d.fuelS10),  // Valores de S10
+              fuelData.map(d => d.fuelS500),  // Valores de S500
+              fuelData.map(d => d.totalFuel),  // Total (S10 + S500)
+            ],
+          };
+          this.dataLoaded = true;  // Define como carregado ao finalizar a resposta
+        },
+        (error) => {
+          console.error('Erro ao carregar os dados do gráfico', error);
+          this.dataLoaded = true; // Define como carregado mesmo em caso de erro para encerrar o carregamento
+        }
+      );
+  } */
 
   getProfitChartData(year: number, month: number, operators: string[]) {
     console.log("Parametros: " + year + ' - ' + month + ' - ' + operators);
-
+    this.dataLoaded = false; // Reseta o indicador ao iniciar o carregamento
     this.analyticalService.getFuelByOperators(year, month, operators)
       .pipe(takeWhile(() => this.alive))
       .subscribe(fuelData => {
@@ -70,7 +104,12 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
         ];
 
         this.dataLoaded = true;
+      },
+      (error) => {
+        console.error('Erro ao carregar os dados do gráfico', error);
+        this.dataLoaded = true; // Define como carregado mesmo em caso de erro para encerrar o carregamento
       });
+      
   }
 
 

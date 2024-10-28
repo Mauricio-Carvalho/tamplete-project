@@ -173,6 +173,11 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
   }
 
   getNewSeries(series, data: number[][]) {
+    if (!Array.isArray(series) || !Array.isArray(data) || !data.every(Array.isArray)) {
+      console.warn("Dados inválidos");
+      return [];  // Retorna uma lista vazia como fallback
+    }
+
     return series.map((line, index) => {
       return {
         ...line,

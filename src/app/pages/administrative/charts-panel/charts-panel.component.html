@@ -52,9 +52,11 @@
           (operatorsChange)="setOperatorsAndGetChartData($event)">
         </ngx-chart-panel-header>
 
-
         <!-- Exibir o gráfico quando os dados estiverem carregados -->
-        <ngx-profit-chart #profitChart [profitChartData]="profitChartData"></ngx-profit-chart>
+        <ngx-profit-chart *ngIf="dataLoaded" [profitChartData]="profitChartData"></ngx-profit-chart>
+
+        <!-- Exibir o gráfico quando os dados estiverem carregados 
+        <ngx-profit-chart #profitChart [profitChartData]="profitChartData"></ngx-profit-chart>-->
       </div>
     </nb-tab>
   </nb-tabset>
