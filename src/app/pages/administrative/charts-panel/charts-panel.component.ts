@@ -77,19 +77,19 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
   // Captura a mudança de período (mês)
   setPeriodAndGetChartData(period: string): void {
     this.period = period;
-    this.getProfitChartDataMock(this.selectedYear, parseInt(period), this.selectedOperators);
+    this.getProfitChartData(this.selectedYear, parseInt(period), this.selectedOperators);
   }
 
   // Captura a mudança de ano
   setYearAndGetChartData(year: number): void {
     this.selectedYear = year;
-    this.getProfitChartDataMock(year, parseInt(this.period), this.selectedOperators);
+    this.getProfitChartData(year, parseInt(this.period), this.selectedOperators);
   }
 
   // Captura a mudança de operador
   setOperatorsAndGetChartData(operators: string[]): void {
     this.selectedOperators = operators;
-    this.getProfitChartDataMock(this.selectedYear, parseInt(this.period), operators);
+    this.getProfitChartData(this.selectedYear, parseInt(this.period), operators);
   }
 
   /*
