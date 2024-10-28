@@ -42,4 +42,12 @@ export class UserTableService extends UserTableData {
   deleteData(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
+
+  // Faz upload de uma imagem
+  uploadImage(id: string, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', file);
+    return this.http.post<any>(`${this.apiUrl}/${id}/upload`, formData);
+  }
+
 }

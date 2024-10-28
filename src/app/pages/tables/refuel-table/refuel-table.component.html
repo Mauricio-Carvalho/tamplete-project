@@ -1,6 +1,12 @@
 <nb-card>
-  <nb-card-header>
+  <nb-card-header class="header-container">
     {{ 'refuel.title' | translate }}
+    <div class="button-container">
+      <button nbButton outline status="success" size="small" (click)="downloadCSV()">
+        <nb-icon icon="download" [options]="{ animation: { type: 'zoom' } }"></nb-icon>
+        Download
+      </button>
+    </div>
   </nb-card-header>
 
   <nb-card-body>

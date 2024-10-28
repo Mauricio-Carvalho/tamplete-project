@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadUserData(this.authService.jwtPayload?.userId);
 
-    this.startTypingSequence();
+    // this.startTypingSequence();
 
     this.menuService.onItemClick()
       .pipe(

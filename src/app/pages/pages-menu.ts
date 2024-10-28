@@ -14,32 +14,32 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
         {
           title: translate.instant('menu.list.tables.user'),
           link: '/pages/tables/user-table',
-          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER'] }
+          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER'] },
         },
         {
           title: translate.instant('menu.list.tables.fuel'),
           link: '/pages/tables/fuel-table',
-          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] }
+          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] },
         },
         {
           title: translate.instant('menu.list.tables.refuel'),
           link: '/pages/tables/refuel-table',
-          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] }
+          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] },
         },
         {
           title: translate.instant('menu.list.tables.machine'),
           link: '/pages/tables/machine-table',
-          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER'] }
+          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] },
         },
         {
           title: translate.instant('menu.list.tables.operator'),
           link: '/pages/tables/operator-table',
-          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER'] }
+          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] },
         },
         {
           title: translate.instant('menu.list.tables.truck'),
           link: '/pages/tables/truck-table',
-          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] }
+          data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE'] },
         },
       ],
     },
@@ -64,7 +64,7 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
           link: '/auth/reset-password',
         },
       ],
-      data: { requiredUserType: ['MANAGER_MASTER'] }
+      data: { requiredUserType: ['MANAGER_MASTER'] },
     },
     {
       title: 'Administrativo',

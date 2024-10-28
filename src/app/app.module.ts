@@ -21,6 +21,8 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbUserModule,
+  NbButtonModule,
 } from '@nebular/theme';
 import { NgxAuthModule } from './pages/auth/auth.module';
 
@@ -30,12 +32,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NbUserModule,
+    NbButtonModule,
     NbDialogModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),

@@ -3,11 +3,11 @@
     "title": "Menú",
     "list": {
       "tables": {
-        "title": "Tablas & Datos",
+        "title": "Tablas y Datos",
         "user": "Usuario",
-        "fuel": "Abastecimiento",
-        "refuel": "Reabastecimiento",
-        "machine": "Máquinas",
+        "fuel": "Sbastecer",
+        "refuel": "Reabastecer",
+        "machine": "Máquina",
         "operator": "Operador",
         "truck": "Camión"
       },
@@ -105,7 +105,7 @@
     "load": {
       "error": {
         "title": "Error",
-        "message": "¡Error al cargar datos!"
+        "message": "¡Error al cargar los datos!"
       }
     },
     "create": {
@@ -140,13 +140,18 @@
     }
   },
   "user": {
-    "title": "Tabla de Usuarios",
+    "title": "Tabla de Usuario",
     "table": {
       "idUser": "ID",
       "firstName": "Nombre",
       "lastName": "Apellido",
       "dateBirth": "Fecha de Nacimiento",
-      "userSex": "Género",
+      "userSex": {
+        "gender": "Género",
+        "masculine": "Masculino",
+        "feminine": "Femenino",
+        "other": "Otro"
+      },
       "typeDocument": "Tipo de Documento",
       "document": "Documento",
       "idEnterprise": "ID de la Empresa",
@@ -154,33 +159,45 @@
       "email": "Correo Electrónico",
       "telephone": "Teléfono",
       "username": "Nombre de Usuario",
-      "userType": "Nivel de Acceso",
-      "userStatus": "Estado"
+      "userType": {
+        "title": "Nivel de Acceso",
+        "employee": "Empleado",
+        "manager": "Gerente",
+        "managerMaster": "Gerente Principal"
+      },
+      "userStatus": {
+        "title": "Estado",
+        "active": "Activo",
+        "blocked": "Bloqueado"
+      }
     }
   },
   "fuel": {
-    "title": "Tabla de Abastecimiento",
+    "title": "Tabla de Combustible",
     "table": {
-      "idFuel": "ID de Abastecimiento",
-      "idMac": "ID de Máquina",
-      "idOp": "ID de Operador",
-      "idTruck": "ID de Camión",
-      "hrMeter": "Contador de Horas",
+      "idFuel": "ID",
+      "idOp": "ID del Operador",
+      "nameOp": "Operador",
+      "nameMac": "Máquina",
+      "subMac": "Sub Máquina",
+      "idTruck": "Camión",
+      "hrMeter": "Horómetro",
       "comb": "Tipo de Combustible",
       "qtdComb": "Cantidad de Combustible",
+      "pullOver": "Pase",
+      "start": "Inicio",
+      "end": "Fin",
       "timeFuel": "Duración",
-      "date": "Fecha",
-      "hour": "Hora",
       "nf": "NF",
-      "gps": "GPS"
+      "city": "Ciudad"
     }
   },
   "refuel": {
     "title": "Tabla de Reabastecimiento",
     "table": {
-      "idRefuel": "ID de Reabastecimiento",
-      "idTruck": "ID de Camión",
-      "idOp": "ID de Operador",
+      "idRefuel": "ID",
+      "idTruck": "Camión",
+      "idOp": "ID del Operador",
       "comb": "Tipo de Combustible",
       "qtdCombS10": "Cantidad S10",
       "qtdCombS500": "Cantidad S500",
@@ -190,20 +207,24 @@
     }
   },
   "machine": {
-    "title": "Tabla de Máquinas",
+    "title": "Tabla de Máquina",
     "table": {
-      "idMac": "ID de Máquina",
-      "name": "Nombre de Máquina",
-      "status": "Estado",
+      "name": "Nombre",
+      "tagMac": "Etiqueta",
+      "machineStatus": {
+        "title": "Estado",
+        "active": "Activo",
+        "blocked": "Bloqueado"
+      },
       "comb": "Tipo de Combustible",
-      "idSubMac": "ID de Submáquina"
+      "subMac": "Sub Máquina"
     }
   },
   "operator": {
-    "title": "Tabla de Operadores",
+    "title": "Tabla de Operador",
     "table": {
-      "idOp": "ID de Operador",
-      "name": "Nombre de Operador",
+      "idOp": "ID",
+      "name": "Nombre del Operador",
       "cnh": "CNH",
       "issueDate": "Fecha de Emisión",
       "expirationDate": "Fecha de Vencimiento",
@@ -211,9 +232,9 @@
     }
   },
   "truck": {
-    "title": "Tabla de Camiones",
+    "title": "Tabla de Camión",
     "table": {
-      "idTruck": "ID de Camión",
+      "idTruck": "Placa",
       "model": "Modelo",
       "comb": "Tipo de Combustible",
       "qtdCombS10": "Cantidad S10",
