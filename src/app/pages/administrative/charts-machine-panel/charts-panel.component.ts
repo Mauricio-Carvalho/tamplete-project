@@ -15,20 +15,29 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
   summarizedData: OperatorChartSummary[] = [
     {
         "description": "Combustível S10 abastecido:",
-        "value": 100
+        "value": 0
     },
     {
         "description": "Combustível S500 abastecido:",
-        "value": 50
+        "value": 0
     }
-];
+  ];
+
+  profitChartData: any = {
+    chartLabel: [],
+    data: [
+      Array(10).fill(0),  // S10 valores iniciais zerados
+      Array(10).fill(0),  // S500 valores iniciais zerados
+      Array(10).fill(0),  // Total valores iniciais zerados
+    ],
+  };
 
   dataLoaded = false;
 
   period: string = '10';  // Período (mês)
   selectedYear: number = new Date().getFullYear();  // Ano atual
-  selectedOperators: string[] = [];  // Operadores selecionados (array para múltiplos)
-  profitChartData: any;
+  selectedMachines: string[] = [];  // Operadores selecionados (array para múltiplos)
+  //profitChartData: any;
 
   @ViewChild('profitChart', { static: true }) profitChart: ProfitMachineChartComponent;
 
@@ -37,10 +46,9 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
     this.setPeriodAndGetChartData('10');
   }
 
-  getProfitChartData(year: number, month: number, operators: string[]) {
-
-    console.log("Parametros:   " + year+ ' - '+ month +' - '+operators);
-    this.analyticalService.getFuelByOperators(year, month, operators)
+  getProfitChartData(year: number, month: number, machines: string[]) {
+    this.dataLoaded = false; // Reseta o indicador ao iniciar o carregamento
+    this.analyticalService.getFuelByMachines(year, month, machines)
       .pipe(takeWhile(() => this.alive))
       .subscribe(fuelData => {
         // Monte o objeto esperado pelo ProfitChartComponent
@@ -52,7 +60,28 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
             fuelData.map(d => d.totalFuel),  // Total (S10 + S500)
           ],
         };
+
+        // Calcula o total de S10 e S500
+        const totalS10 = fuelData.reduce((sum, item) => sum + item.fuelS10, 0);
+        const totalS500 = fuelData.reduce((sum, item) => sum + item.fuelS500, 0);
+
+        // Atualiza summarizedData com os novos valores
+        this.summarizedData = [
+          {
+            "description": "Combustível S10 abastecido:",
+            "value": parseFloat(totalS10.toFixed(2)),  // Mantém duas casas decimais
+          },
+          {
+            "description": "Combustível S500 abastecido:",
+            "value": parseFloat(totalS500.toFixed(2)),  // Mantém duas casas decimais
+          },
+        ];
+
         this.dataLoaded = true;
+      },
+      (error) => {
+        console.error('Erro ao carregar os dados do gráfico', error);
+        this.dataLoaded = true; // Define como carregado mesmo em caso de erro para encerrar o carregamento
       });
 
   }
@@ -61,19 +90,19 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
   // Captura a mudança de período (mês)
   setPeriodAndGetChartData(period: string): void {
     this.period = period;
-    this.getProfitChartData(this.selectedYear, parseInt(period), this.selectedOperators);
+    this.getProfitChartData(this.selectedYear, parseInt(period), this.selectedMachines);
   }
 
   // Captura a mudança de ano
   setYearAndGetChartData(year: number): void {
     this.selectedYear = year;
-    this.getProfitChartData(year, parseInt(this.period), this.selectedOperators);
+    this.getProfitChartData(year, parseInt(this.period), this.selectedMachines);
   }
 
   // Captura a mudança de operador
-  setOperatorsAndGetChartData(operators: string[]): void {
-    this.selectedOperators = operators;
-    this.getProfitChartData(this.selectedYear, parseInt(this.period), operators);
+  setMachinesAndGetChartData(machines: string[]): void {
+    this.selectedMachines = machines;
+    this.getProfitChartData(this.selectedYear, parseInt(this.period), machines);
   }
 
   /*
@@ -89,7 +118,7 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
     this.alive = false;
   }
 
-  
+
 
   // Gera a massa de dados fictícia
   getMockFuelData(year: number, month: number) {
@@ -132,6 +161,8 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
         fuelData.map(d => d.totalFuel),  // Total (S10 + S500)
       ],
     };
+
+    //console.log("profitChartData:" + JSON.stringify(this.profitChartData));
   }
-  
+
 }
