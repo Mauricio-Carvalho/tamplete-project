@@ -16,12 +16,12 @@ export class MachineService {
     private authService: AuthService) {
   }
 
-  url = environment.baseUrl + '/v1/machine/';
+  url = environment.baseUrl + '/v1/machine';
 
   getMachines(): Observable<any> {
     let params = new HttpParams();
     params = params
-              .set('status', 'Ativo')
+              .set('status', 'ACTIVE')
               .set('size', 1000);
     return this.http.get(this.url, { params });
   }

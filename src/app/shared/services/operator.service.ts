@@ -16,12 +16,12 @@ export class OperatorService {
     private authService: AuthService) {
   }
 
-  url = environment.baseUrl + '/v1/operator/';
+  url = environment.baseUrl + '/v1/operator';
 
   getOperators(): Observable<any> {
     let params = new HttpParams();
     params = params
-              .set('status', 'Ativo')
+              .set('status', 'ACTIVE')
               .set('size', 1000);
     return this.http.get(this.url, { params });
   }

@@ -70,7 +70,7 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
       title: 'Administrativo',
       icon: 'home-outline',
       link: '/pages/administrative',
-      data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER']}
+      data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE']}
     },
   ];
 }

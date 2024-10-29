@@ -62,7 +62,7 @@ export class AnalyticalService {
   getFuelByMachines(year: number, month: number, nameMacs: string[] ): Observable<any> {
     let url =  this.url + `fuel/machines?year=${year}&month=${month}`;
     if(nameMacs != null && nameMacs.length > 0)
-      url =  this.url + `fuel/machines?year=${year}&month=${month}&operators=${nameMacs}`;
+      url =  this.url + `fuel/machines?year=${year}&month=${month}&nameMac=${nameMacs}`;
 
     return this.http.get(url);
   }
