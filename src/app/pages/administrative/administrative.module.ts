@@ -55,6 +55,8 @@ import { OperatorChartsPanelComponent } from './charts-panel/charts-panel.compon
 import { MachineChartsPanelComponent } from './charts-machine-panel/charts-panel.component';
 import { OrdersMachineChartComponent } from './charts-machine-panel/charts/orders-chart.component';
 import { ProfitMachineChartComponent } from './charts-machine-panel/charts/profit-chart.component';
+import { ChartMachinePanelHeaderComponent } from './charts-machine-panel/chart-panel-header/chart-panel-header.component';
+import { ChartMachinePanelSummaryComponent } from './charts-machine-panel/chart-panel-summary/chart-panel-summary.component';
 
 @NgModule({
   imports: [
@@ -76,7 +78,7 @@ import { ProfitMachineChartComponent } from './charts-machine-panel/charts/profi
   declarations: [
     AdministrativeComponent,
     /*AdministrativeChartsPanelComponent,
-    
+
     OrdersChartComponent,
     ProfitChartComponent,
     AdminstrativeLegendChartComponent,
@@ -93,8 +95,8 @@ import { ProfitMachineChartComponent } from './charts-machine-panel/charts/profi
     StatsAreaChartComponent,
 
 
-    
-    
+
+
 
     EarningCardComponent,
     EarningCardFrontComponent,
@@ -113,7 +115,7 @@ import { ProfitMachineChartComponent } from './charts-machine-panel/charts/profi
     OperatorChartsPanelComponent,
     MachineChartsPanelComponent,
     ECommerceLegendChartComponent,
-    StatusCardComponent, 
+    StatusCardComponent,
     TrafficRevealCardComponent,
 
     TrafficBarChartComponent,
@@ -122,7 +124,9 @@ import { ProfitMachineChartComponent } from './charts-machine-panel/charts/profi
     TrafficBarComponent,
     TrafficCardsHeaderComponent,
     ChartPanelSummaryComponent,
+    ChartMachinePanelSummaryComponent,
     ChartPanelHeaderComponent,
+    ChartMachinePanelHeaderComponent,
   ],
   providers: [
 

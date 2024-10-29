@@ -1,23 +1,9 @@
-<!--<ngx-legend-chart [legendItems]="chartLegend"></ngx-legend-chart>
 
-<nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
-  <nb-option *ngFor="let period of types" [value]="period">
-    {{ period }}
-  </nb-option>
-</nb-select>
--->
 <div class="header-container">
   <!-- Descrição -->
   <div class="chart-description">
-    <p>Selecione os operadores, ano e mês para visualizar o gráfico</p>
+    <p>Selecione as máquinas, ano e mês para visualizar o gráfico</p>
   </div>
-
-  <!-- Filtro de Operadores (agora com múltipla seleção) -->
-  <nb-select class="operator-select" [multiple]="true" [selected]="selectedOperators" (selectedChange)="changeOperators($event)">
-    <nb-option *ngFor="let operator of operators" [value]="operator">
-      {{ operator }}
-    </nb-option>
-  </nb-select>
 
   <!-- Filtro de Ano -->
   <nb-select class="year-select" [selected]="selectedYear" (selectedChange)="changeYear($event)">
@@ -32,4 +18,13 @@
       {{ period }}
     </nb-option>
   </nb-select>
+
+  <!-- Filtro de Operadores (agora com múltipla seleção) -->
+  <nb-select class="machine-select" [multiple]="true" [selected]="selectedMachines" (selectedChange)="changeMachines($event)">
+    <nb-option *ngFor="let machine of machines" [value]="machine.name">
+      {{ machine.name }}
+    </nb-option>
+  </nb-select>
+
+
 </div>

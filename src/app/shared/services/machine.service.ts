@@ -9,21 +9,22 @@ import { AuthService } from '../../pages/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class OperatorService {
+export class MachineService {
 
   constructor(
     private http: HttpClient,
     private authService: AuthService) {
   }
 
-  url = environment.baseUrl + '/v1/operator/';
+  url = environment.baseUrl + '/v1/machine/';
 
-  getOperators(): Observable<any> {
+  getMachines(): Observable<any> {
     let params = new HttpParams();
     params = params
               .set('status', 'Ativo')
               .set('size', 1000);
     return this.http.get(this.url, { params });
   }
+
 
 }

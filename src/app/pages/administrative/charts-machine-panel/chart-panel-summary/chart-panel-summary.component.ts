@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
     </div>
   `,
 })
-export class ChartPanelSummaryComponent {
+export class ChartMachinePanelSummaryComponent {
   @Input() summary: {title: string; value: number}[];
 }
 

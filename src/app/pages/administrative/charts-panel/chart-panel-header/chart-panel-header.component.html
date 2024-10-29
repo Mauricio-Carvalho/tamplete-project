@@ -12,17 +12,17 @@
     <p>Selecione os operadores, ano e mês para visualizar o gráfico</p>
   </div>
 
-    <!-- Filtro de Período (Mês) -->
-  <nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
-    <nb-option *ngFor="let period of types" [value]="period">
-      {{ period }}
-    </nb-option>
-  </nb-select>
-
   <!-- Filtro de Ano -->
   <nb-select class="year-select" [selected]="selectedYear" (selectedChange)="changeYear($event)">
     <nb-option *ngFor="let year of years" [value]="year">
       {{ year }}
+    </nb-option>
+  </nb-select>
+
+  <!-- Filtro de Período (Mês) -->
+  <nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
+    <nb-option *ngFor="let period of types" [value]="period">
+      {{ period }}
     </nb-option>
   </nb-select>
 
