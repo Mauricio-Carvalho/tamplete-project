@@ -196,8 +196,12 @@ export const CORPORATE_THEME = {
       axisTextColor: baseThemeVariables.fg,
 
       // first bar
-      firstLineGradFrom: baseThemeVariables.bg3,
-      firstLineGradTo: baseThemeVariables.bg3,
+     // firstLineGradFrom: baseThemeVariables.bg3,
+     // firstLineGradTo: baseThemeVariables.bg3,
+      //firstLineShadow: 'rgba(0, 0, 0, 0)',
+
+      firstLineGradFrom: '#b0b0b0', // Tom mais claro de #a5554e
+      firstLineGradTo: '#dcdcdc',   // Cor base #a5554e
       firstLineShadow: 'rgba(0, 0, 0, 0)',
 
       // second bar

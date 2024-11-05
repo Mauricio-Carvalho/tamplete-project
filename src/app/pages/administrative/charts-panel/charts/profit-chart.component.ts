@@ -110,13 +110,16 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
           barWidth: '20%',
           itemStyle: {
             normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: eTheme.firstLineGradFrom,
-              }, {
-                offset: 1,
-                color: eTheme.firstLineGradTo,
-              }]),
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: '#b0b0b0', // Lighter shade of #a5554e
+                },
+                {
+                  offset: 1,
+                  color: '#dcdcdc', // Base color
+                },
+              ]),
             },
           },
           data: this.profitChartData.data[0],  // Dados de S10
@@ -158,7 +161,7 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
       ],
     };
   }
-  
+
 
   updateProfitChartOptions(profitChartData: ProfitChart) {
     const options = this.options;

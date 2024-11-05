@@ -148,7 +148,7 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
   }
 
   // Método para popular o gráfico com dados simulados
-  getProfitChartDataMock(year: number, month: number) {
+  getProfitChartDataMock(year: number, month: number, machines: string[]) {
     // Gere a massa de dados fictícia
     const fuelData = this.getMockFuelData(year, month);
 
@@ -162,7 +162,8 @@ export class MachineChartsPanelComponent implements OnDestroy, OnInit {
       ],
     };
 
-    //console.log("profitChartData:" + JSON.stringify(this.profitChartData));
+
+    this.dataLoaded = true;
   }
 
 }

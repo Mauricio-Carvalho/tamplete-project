@@ -109,7 +109,7 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
         console.error('Erro ao carregar os dados do gráfico', error);
         this.dataLoaded = true; // Define como carregado mesmo em caso de erro para encerrar o carregamento
       });
-      
+
   }
 
 
@@ -144,7 +144,7 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
     this.alive = false;
   }
 
-  
+
 
   // Gera a massa de dados fictícia
   getMockFuelData(year: number, month: number) {
@@ -176,8 +176,9 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
   // Método para popular o gráfico com dados simulados
   getProfitChartDataMock(year: number, month: number, operators: string[]) {
     // Gere a massa de dados fictícia
+    console.log("Ola:" +year + month)
     const fuelData = this.getMockFuelData(year, month);
-
+    console.log(fuelData);
     // Monte o objeto esperado pelo ProfitChartComponent
     this.profitChartData = {
       chartLabel: fuelData.map(d => d.date),  // Datas
@@ -187,6 +188,8 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
         fuelData.map(d => d.totalFuel),  // Total (S10 + S500)
       ],
     };
+
+    this.dataLoaded = true;
   }
-  
+
 }
