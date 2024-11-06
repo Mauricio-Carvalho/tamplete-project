@@ -51,6 +51,7 @@ import { ChartPanelHeaderComponent } from './charts-panel/chart-panel-header/cha
 import { ECommerceLegendChartComponent } from './legend-chart/legend-chart.component';
 import { OrdersChartComponent } from './charts-panel/charts/orders-chart.component';
 import { ProfitChartComponent } from './charts-panel/charts/profit-chart.component';
+import { PieChartComponent } from './charts-panel/charts/pie-chart.component';
 import { OperatorChartsPanelComponent } from './charts-panel/charts-panel.component';
 import { MachineChartsPanelComponent } from './charts-machine-panel/charts-panel.component';
 import { OrdersMachineChartComponent } from './charts-machine-panel/charts/orders-chart.component';
@@ -112,6 +113,7 @@ import { ChartMachinePanelSummaryComponent } from './charts-machine-panel/chart-
     ProfitMachineChartComponent,
     OrdersChartComponent,
     ProfitChartComponent,
+    PieChartComponent,
     OperatorChartsPanelComponent,
     MachineChartsPanelComponent,
     ECommerceLegendChartComponent,

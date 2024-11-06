@@ -24,13 +24,6 @@
   <nb-card-front>
     <nb-card size="small">
       <ngx-traffic-cards-header [type]="period" (periodChange)="setPeriodAndGetData($event)"></ngx-traffic-cards-header>
-      <table style="width: 100%;">
-        <tr>
-          <th style="text-align: center; padding: 8px;">ID Caminhão</th>
-          <th style="text-align: center; padding: 8px;">Combustível S10</th>
-          <th style="text-align: center; padding: 8px;">Combustível S500</th>
-        </tr>
-      </table>
       <ngx-traffic-front-card [frontCardData]="truckFuelData"></ngx-traffic-front-card>
       <nb-icon class="toggle-icon" icon="chevron-up-outline" pack="eva" (click)="toggleView()"></nb-icon>
     </nb-card>

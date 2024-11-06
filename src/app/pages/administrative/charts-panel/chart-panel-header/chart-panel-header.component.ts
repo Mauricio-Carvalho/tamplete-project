@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnDestroy, Output, OnInit } from '@angu
 import {  NbThemeService } from '@nebular/theme';
 import { OperatorService } from '../../../../shared/services/operator.service';
 import { Operator } from '../../../../shared/model/operator';
+import { MachineService } from '../../../../shared/services/machine.service';
+import { Machine } from '../../../../shared/model/machine';
 
 
 @Component({
@@ -14,19 +16,23 @@ export class ChartPanelHeaderComponent implements OnDestroy, OnInit  {
   private alive = true;
 
   @Output() periodChange = new EventEmitter<string>();
-  @Output() yearChange = new EventEmitter<number>();   
+  @Output() yearChange = new EventEmitter<number>();
   @Output() operatorsChange = new EventEmitter<string[]>();  // Novo evento para múltiplos operadores
+  @Output() machinesChange = new EventEmitter<string[]>();  // Novo evento para múltiplos operadores
 
   @Input() type: string = '1';  // Período (mês)
   @Input() selectedYear: number = new Date().getFullYear();  // Ano padrão
   @Input() selectedOperators: string[] = [];  // Operadores selecionados (array para múltiplos)
+  @Input() selectedMachines: string[] = [];  // Operadores selecionados (array para múltiplos)
 
   types: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']; // Mês
   years: number[] = [2022, 2023, 2024];  // Anos disponíveis
   operators: Operator[] = [];  // Lista de operadores com `idOp` e `name`
+  machines: Machine[] = [];  // Simulando lista de operadores
 
   constructor(private themeService: NbThemeService,
-              private operatorService: OperatorService
+              private operatorService: OperatorService,
+              private machineService: MachineService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +41,12 @@ export class ChartPanelHeaderComponent implements OnDestroy, OnInit  {
         // Filtra os operadores e armazena `idOp` e `name`
         this.operators = response.content.map(op => ({ idOp: op.idOp, name: op.name }));
       });
+
+    this.machineService.getMachines()  // Busca máquinas do serviço
+    .subscribe(response => {
+      // Filtra os máquinas e armazena `idOp` e `name`
+      this.machines = response.content.map(op => ({ name: op.name }));
+    });
   }
 
   changePeriod(period: string): void {
@@ -51,6 +63,11 @@ export class ChartPanelHeaderComponent implements OnDestroy, OnInit  {
   changeOperators(selectedIds: string[]): void {
     this.selectedOperators = selectedIds;
     this.operatorsChange.emit(selectedIds);  // Emite os IDs dos operadores selecionados
+  }
+
+  changeMachines(machines: string[]): void {
+    this.selectedMachines = machines;
+    this.machinesChange.emit(machines);  // Emite a lista de operadores selecionados
   }
 
   ngOnDestroy() {

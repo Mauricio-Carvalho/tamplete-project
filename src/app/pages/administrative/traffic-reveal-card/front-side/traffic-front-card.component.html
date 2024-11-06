@@ -1,32 +1,81 @@
-<!--<nb-list>
-  <nb-list-item class="item" *ngFor="let item of frontCardData; trackBy: trackByDate">
-    <span>{{ item.date }}</span>
-    <span>{{ item.value }}</span>
-    <span class="delta" [class.up]="item.delta.up" [class.down]="!item.delta.up">
-      <nb-icon [icon]="item.delta.up ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
-      {{ item.delta.value }}%
-    </span>
-  </nb-list-item>
-</nb-list> -->
-
 <nb-list>
   <nb-list-item class="item" *ngFor="let item of frontCardData; trackBy: trackByIdTruck">
-    <span style="text-align: center;"> {{ item.idTruck }}</span>
 
+    <img src="assets/icons/tanker_truck_icon_136129.ico" alt="Caminhão" class="truck-icon" />
 
-    <span style="text-align: center;" class="list-item-value delta" [class.up]="item.fuelPercentageS10 >= 20" [class.down]="item.fuelPercentageS10 < 20">
-      <nb-icon [icon]="item.fuelPercentageS10 >= 20 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
-      {{ item.countFuelS10 }} L ({{ item.fuelPercentageS10 }}%)
-    </span>
+    <span style="text-align: center;">{{ item.idTruck }}</span>
 
-    
+    <div class="fuel-level-container">
+      <div *ngFor="let level of [1, 2, 3, 4]; let i = index"
+           [class.filled]="i < getFilledLevels(item.fuelPercentageS10)"
+           [ngStyle]="{ 'background-color': getFuelLevelColor(item.fuelPercentageS10) }">
+      </div>
+    </div>
+    <span style="text-align: center;">{{ item.countFuelS10 }} L ({{ item.fuelPercentageS10 }}%)</span>
 
-    <span style="text-align: center;" class="list-item-value delta" [class.up]="item.fuelPercentageS500 >= 20" [class.down]="item.fuelPercentageS500 < 20">
-      <nb-icon [icon]="item.fuelPercentageS500 >= 20 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
-      {{ item.countFuelS500 }} L ({{ item.fuelPercentageS500 }}%)
-    </span>
-
-    <!--<span style="text-align: center;"> {{ item.countFuelS10 }} litros ({{ item.fuelPercentageS10 }}%)</span>
-    <span style="text-align: center;"> {{ item.countFuelS500 }} litros ({{ item.fuelPercentageS500 }}%)</span> -->
+    <div class="fuel-level-container">
+      <div *ngFor="let level of [1, 2, 3, 4]; let i = index"
+           [class.filled]="i < getFilledLevels(item.fuelPercentageS500)"
+           [ngStyle]="{ 'background-color': getFuelLevelColor(item.fuelPercentageS500) }">
+      </div>
+    </div>
+    <span style="text-align: center;">{{ item.countFuelS500 }} L ({{ item.fuelPercentageS500 }}%)</span>
   </nb-list-item>
 </nb-list>
+
+<!--
+<div class="fuel-quantity-container">
+  <h3>Quantidade Combustível</h3>
+
+  <div class="fuel-item">
+    <div class="truck-info">
+      <div class="truck-id">STDBH08</div>
+      <div class="truck-model">Volvo</div>
+    </div>
+    <div class="fuel-bar-container">
+      <div class="fuel-bar s10">
+        <div class="fuel-filled" style="height: 100%;"></div>
+        <span>1000L (100%)</span>
+      </div>
+      <div class="fuel-bar s500">
+        <div class="fuel-filled" style="height: 100%;"></div>
+        <span>1000L (100%)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuel-item">
+    <div class="truck-info">
+      <div class="truck-id">DRO8H90</div>
+      <div class="truck-model">Daf</div>
+    </div>
+    <div class="fuel-bar-container">
+      <div class="fuel-bar s10">
+        <div class="fuel-filled" style="height: 50%;"></div>
+        <span>500L (50%)</span>
+      </div>
+      <div class="fuel-bar s500">
+        <div class="fuel-filled" style="height: 75%;"></div>
+        <span>750L (75%)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuel-item">
+    <div class="truck-info">
+      <div class="truck-id">YYK7U54</div>
+      <div class="truck-model">Scania</div>
+    </div>
+    <div class="fuel-bar-container">
+      <div class="fuel-bar s10">
+        <div class="fuel-filled" style="height: 20%;"></div>
+        <span>200L (20%)</span>
+      </div>
+      <div class="fuel-bar s500">
+        <div class="fuel-filled" style="height: 75%;"></div>
+        <span>750L (75%)</span>
+      </div>
+    </div>
+  </div>
+</div>
+-->

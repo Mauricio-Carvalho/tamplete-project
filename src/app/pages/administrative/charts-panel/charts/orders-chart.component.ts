@@ -131,7 +131,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         },
       },
       series: [
-        this.getFirstLine(eTheme),
+        //this.getFirstLine(eTheme),
         this.getSecondLine(eTheme),
         this.getThirdLine(eTheme),
       ],
@@ -272,6 +272,21 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
     };
   }
 
+  getNewSeries(series, data: number[][]) {
+    if (!Array.isArray(series) || !Array.isArray(data) || !data.every(Array.isArray)) {
+      console.warn("Dados inválidos");
+      return [];  // Retorna uma lista vazia como fallback
+    }
+
+    return series.map((line, index) => {
+      return {
+        ...line,
+        data: data[index],
+      };
+    });
+  }
+
+  /*
   getNewSeries(series, linesData: number[][]) {
     return series.map((line, index) => {
       return {
@@ -279,7 +294,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         data: linesData[index],
       };
     });
-  }
+  }*/
 
   getNewXAxis(xAxis, chartLabel: string[]) {
     return {

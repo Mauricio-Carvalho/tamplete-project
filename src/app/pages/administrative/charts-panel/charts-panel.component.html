@@ -3,7 +3,7 @@
     <nb-tab tabTitle="Orders">
       <div class="chart-container">
         <ngx-chart-panel-summary [summary]="chartPanelSummary"></ngx-chart-panel-summary>
-        <ngx-chart-panel-header [type]="period" 
+        <ngx-chart-panel-header [type]="period"
                                 (periodChange)="setPeriodAndGetChartData($event)">
         </ngx-chart-panel-header>
         <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
@@ -24,7 +24,7 @@
 
 
 <nb-card size="large">
-  <nb-tabset fullWidth>
+  <nb-tabset fullWidth (changeTab)="changeTab($event)">
     <nb-tab tabTitle="Profit" [lazyLoad]="true">
       <div class="chart-container">
         <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
@@ -37,27 +37,129 @@
   </nb-tabset>
 </nb-card>
 -->
-
+<!--
 <nb-card size="large">
-  <nb-tabset fullWidth>
+  <nb-tabset fullWidth (changeTab)="changeTab($event)">
+
+    <nb-tab tabTitle="Orders">
+      <div class="chart-container">
+        <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
+        <ngx-chart-panel-header [type]="period"
+                                (periodChange)="setPeriodAndGetChartData($event)">
+        </ngx-chart-panel-header>
+        <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
+      </div>
+    </nb-tab>
+
     <nb-tab tabTitle="Profit" [lazyLoad]="true">
       <div class="chart-container">
         <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
-        <ngx-chart-panel-header 
+        <ngx-chart-panel-header
           [type]="period"
           [selectedYear]="selectedYear"
           [selectedOperators]="selectedOperators"
+          [selectedMachines]="selectedMachines"
           (periodChange)="setPeriodAndGetChartData($event)"
           (yearChange)="setYearAndGetChartData($event)"
-          (operatorsChange)="setOperatorsAndGetChartData($event)">
+          (operatorsChange)="setOperatorsAndGetChartData($event)"
+          (machinesChange)="setMachinesAndGetChartData($event)">>
         </ngx-chart-panel-header>
 
-        <!-- Exibir o gráfico quando os dados estiverem carregados -->
+        Exibir o gráfico quando os dados estiverem carregados
         <ngx-profit-chart *ngIf="dataLoaded" [profitChartData]="profitChartData"></ngx-profit-chart>
 
-        <!-- Exibir o gráfico quando os dados estiverem carregados 
-        <ngx-profit-chart #profitChart [profitChartData]="profitChartData"></ngx-profit-chart>-->
+         Exibir o gráfico quando os dados estiverem carregados
+        <ngx-profit-chart #profitChart [profitChartData]="profitChartData"></ngx-profit-chart>
       </div>
     </nb-tab>
   </nb-tabset>
+</nb-card> -->
+
+<!--
+<nb-card size="large">
+  <nb-tabset fullWidth (changeTab)="changeTab($event)">
+    <nb-tab tabTitle="Orders">
+      <div class="chart-container">
+        <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
+        <ngx-chart-panel-header [type]="period"
+                                (periodChange)="setPeriodAndGetChartData($event)">
+        </ngx-chart-panel-header>
+        <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
+      </div>
+    </nb-tab>
+
+    <nb-tab tabTitle="Profit" [lazyLoad]="true">
+      <div class="chart-container">
+        <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
+        <ngx-chart-panel-header
+          [type]="period"
+          [selectedYear]="selectedYear"
+          [selectedOperators]="selectedOperators"
+          [selectedMachines]="selectedMachines"
+          (periodChange)="setPeriodAndGetChartData($event)"
+          (yearChange)="setYearAndGetChartData($event)"
+          (operatorsChange)="setOperatorsAndGetChartData($event)"
+          (machinesChange)="setMachinesAndGetChartData($event)">
+        </ngx-chart-panel-header>
+
+        <ngx-profit-chart *ngIf="dataLoaded" [profitChartData]="profitChartData"></ngx-profit-chart>
+
+
+      </div>
+    </nb-tab>
+
+
+  </nb-tabset>
+
+
 </nb-card>
+
+<nb-card size="medium">
+  <ngx-pie-chart [summarizedData]="summarizedData"></ngx-pie-chart>
+</nb-card>
+-->
+
+<div class="row">
+  <!-- Coluna para os gráficos de barras e de linha -->
+  <div class="col-xxl-8 col-lg-12">
+    <nb-card size="large">
+      <nb-tabset fullWidth (changeTab)="changeTab($event)">
+        <nb-tab tabTitle="Orders">
+          <div class="chart-container">
+            <!--<ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary> -->
+            <ngx-chart-panel-header [type]="period"
+                                    (periodChange)="setPeriodAndGetChartData($event)">
+            </ngx-chart-panel-header>
+            <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
+          </div>
+        </nb-tab>
+
+        <nb-tab tabTitle="Profit" [lazyLoad]="true">
+          <div class="chart-container">
+            <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
+            <ngx-chart-panel-header
+              [type]="period"
+              [selectedYear]="selectedYear"
+              [selectedOperators]="selectedOperators"
+              [selectedMachines]="selectedMachines"
+              (periodChange)="setPeriodAndGetChartData($event)"
+              (yearChange)="setYearAndGetChartData($event)"
+              (operatorsChange)="setOperatorsAndGetChartData($event)"
+              (machinesChange)="setMachinesAndGetChartData($event)">
+            </ngx-chart-panel-header>
+
+            <!-- Gráfico de barras -->
+            <ngx-profit-chart *ngIf="dataLoaded" [profitChartData]="profitChartData"></ngx-profit-chart>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+
+  <!-- Coluna para o gráfico de pizza -->
+  <div class="col-xxl-4 col-lg-12">
+    <nb-card size="medium">
+      <ngx-pie-chart [summarizedData]="summarizedData"></ngx-pie-chart>
+    </nb-card>
+  </div>
+</div>
