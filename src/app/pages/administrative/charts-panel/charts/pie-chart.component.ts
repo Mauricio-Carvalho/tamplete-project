@@ -37,13 +37,13 @@ export class PieChartComponent implements OnChanges {
           trigger: 'item',
           formatter: '{a} <br/>{b}: {c} ({d}%)',
         },
-        legend: {
+        /*legend: {
           orient: 'horizontal',
           bottom: 10,
           textStyle: {
             color: eTheme.axisTextColor,
           },
-        },
+        }, */
         series: [
           {
             name: 'Combustível',
