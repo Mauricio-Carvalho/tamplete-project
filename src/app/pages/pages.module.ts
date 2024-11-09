@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbCardModule, NbButtonModule } from '@nebular/theme';
+import { NbMenuModule, NbCardModule, NbButtonModule, NbDatepickerModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 
     AdministrativeModule,
     FormsModule,
+    NbDatepickerModule.forRoot(),
   ],
   declarations: [
     PagesComponent,

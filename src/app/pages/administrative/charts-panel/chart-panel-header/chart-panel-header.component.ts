@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output, OnInit } from '@angular/core';
-import {  NbThemeService } from '@nebular/theme';
+import {  NbDateService, NbThemeService } from '@nebular/theme';
 import { OperatorService } from '../../../../shared/services/operator.service';
 import { Operator } from '../../../../shared/model/operator';
 import { MachineService } from '../../../../shared/services/machine.service';
@@ -15,10 +15,11 @@ export class ChartPanelHeaderComponent implements OnDestroy, OnInit  {
 
   private alive = true;
 
-  @Output() periodChange = new EventEmitter<string>();
-  @Output() yearChange = new EventEmitter<number>();
+ // @Output() periodChange = new EventEmitter<string>();
+ // @Output() yearChange = new EventEmitter<number>();
   @Output() operatorsChange = new EventEmitter<string[]>();  // Novo evento para múltiplos operadores
   @Output() machinesChange = new EventEmitter<string[]>();  // Novo evento para múltiplos operadores
+  @Output() dateChange = new EventEmitter<any>();
 
   @Input() type: string = '1';  // Período (mês)
   @Input() selectedYear: number = new Date().getFullYear();  // Ano padrão
@@ -30,8 +31,9 @@ export class ChartPanelHeaderComponent implements OnDestroy, OnInit  {
   operators: Operator[] = [];  // Lista de operadores com `idOp` e `name`
   machines: Machine[] = [];  // Simulando lista de operadores
 
-  constructor(private themeService: NbThemeService,
-              private operatorService: OperatorService,
+  dateRange: { start: Date, end: Date } = { start: new Date(), end: new Date() };
+
+  constructor(private operatorService: OperatorService,
               private machineService: MachineService
   ) {}
 
@@ -49,15 +51,20 @@ export class ChartPanelHeaderComponent implements OnDestroy, OnInit  {
     });
   }
 
-  changePeriod(period: string): void {
-    this.type = period;
-    this.periodChange.emit(period);  // Emite o novo período
+
+  onDateRangeChange(event: { start: Date, end: Date }) {
+      this.dateChange.emit(event);
   }
 
-  changeYear(year: number): void {
-    this.selectedYear = year;
-    this.yearChange.emit(year);  // Emite o novo ano
-  }
+//  changePeriod(period: string): void {
+//    this.type = period;
+ //   this.periodChange.emit(period);  // Emite o novo período
+ // }
+
+//  changeYear(year: number): void {
+    //this.selectedYear = year;
+ //   this.yearChange.emit(year);  // Emite o novo ano
+  //}
 
   // Atualiza `selectedOperators` e emite os IDs selecionados
   changeOperators(selectedIds: string[]): void {

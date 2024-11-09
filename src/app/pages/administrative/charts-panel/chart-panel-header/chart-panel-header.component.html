@@ -1,40 +1,28 @@
-<!--<ngx-legend-chart [legendItems]="chartLegend"></ngx-legend-chart>
 
-<nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
-  <nb-option *ngFor="let period of types" [value]="period">
-    {{ period }}
-  </nb-option>
-</nb-select>
--->
 <div class="header-container">
   <!-- Descrição -->
   <div class="chart-description">
-    <p>Selecione os operadores, ano e mês para visualizar o gráfico</p>
+    <p>Selecione para visualizar o gráfico</p>
   </div>
 
-  <!-- Filtro de Ano -->
-  <nb-select class="year-select" [selected]="selectedYear" (selectedChange)="changeYear($event)">
-    <nb-option *ngFor="let year of years" [value]="year">
-      {{ year }}
-    </nb-option>
-  </nb-select>
+  <label for="dateRange">Intervalo de datas:</label>
+  <input nbInput fullWidth shape="semi-round"
+         placeholder="Selecione o intervalo de datas"
+         [nbDatepicker]="formpicker" [(ngModel)]="dateRange"
+         (ngModelChange)="onDateRangeChange($event)" id="dateRange">
+  <nb-rangepicker #formpicker></nb-rangepicker>
 
-  <!-- Filtro de Período (Mês) -->
-  <nb-select class="period-select" [selected]="type" (selectedChange)="changePeriod($event)">
-    <nb-option *ngFor="let period of types" [value]="period">
-      {{ period }}
-    </nb-option>
-  </nb-select>
-
-  <!-- Filtro de Operadores com múltipla seleção -->
-  <nb-select class="operator-select" [multiple]="true" [selected]="selectedOperators" (selectedChange)="changeOperators($event)">
+  <!-- Descrição do filtro de operadores -->
+  <label for="operatorSelect">Operadores:</label>
+  <nb-select id="operatorSelect" class="operator-select" [multiple]="true" [selected]="selectedOperators" (selectedChange)="changeOperators($event)">
     <nb-option *ngFor="let operator of operators" [value]="operator.idOp">
       {{ operator.name }}
     </nb-option>
   </nb-select>
 
-  <!-- Filtro de Operadores (agora com múltipla seleção) -->
-  <nb-select class="machine-select" [multiple]="true" [selected]="selectedMachines" (selectedChange)="changeMachines($event)">
+  <!-- Descrição do filtro de máquinas -->
+  <label for="machineSelect">Máquinas:</label>
+  <nb-select id="machineSelect" class="machine-select" [multiple]="true" [selected]="selectedMachines" (selectedChange)="changeMachines($event)">
     <nb-option *ngFor="let machine of machines" [value]="machine.name">
       {{ machine.name }}
     </nb-option>

@@ -67,9 +67,27 @@ export class AnalyticalService {
     return this.http.get(url);
   }
 
-  getFuelByOperatorsAndMachines(year: number, month: number, operators: string[], machines: string[] ): Observable<any> {
+ /* getFuelByOperatorsAndMachines(year: string, month: string, operators: string[], machines: string[] ): Observable<any> {
 
     let url =  this.url + `fuel/operators-machines?year=${year}&month=${month}`;
+
+    if((operators != null && operators.length > 0) && (machines != null && machines.length > 0)){
+      url =  url + `&operators=${operators}&machines=${machines}`;
+    }
+    else if(operators != null && operators.length > 0){
+      url =  url + `&operators=${operators}`;
+    }
+    else if(machines != null && machines.length > 0){
+      url =  url + `&machines=${machines}`;
+    }
+
+
+    return this.http.get(url);
+  } */
+
+  getFuelByOperatorsAndMachines(startDate: string, endDate: string, operators: string[], machines: string[] ): Observable<any> {
+
+    let url =  this.url + `fuel/operators-machines?startDate=${startDate}&endDate=${endDate}`;
 
     if((operators != null && operators.length > 0) && (machines != null && machines.length > 0)){
       url =  url + `&operators=${operators}&machines=${machines}`;

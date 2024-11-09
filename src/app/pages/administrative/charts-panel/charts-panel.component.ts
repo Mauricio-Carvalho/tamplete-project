@@ -24,6 +24,11 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
     }
 ];
 
+  isCollapsed: boolean = false;
+
+  // Outros códigos existentes...
+
+
   dataLoaded = false;
 
   profitChartData: any = {
@@ -53,15 +58,28 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
   @ViewChild('profitChart', { static: true }) profitChart: ProfitChartComponent;
   @ViewChild('ordersChart', { static: true }) ordersChart: OrdersChartComponent;
 
+  startDate: string;
+  endDate: string;
+
   constructor(private analyticalService: AnalyticalService,) {}
   ngOnInit(): void {
-    this.setPeriodAndGetChartData('10');
+
+    const formatDate = this.newMethod();
+
+    this.startDate = formatDate(new Date());
+    this.endDate = formatDate(new Date());
+
+    this.getChartData();
   }
 
-  getProfitChartData(year: number, month: number, operators: string[], machines: string[]) {
-    console.log("Parametros: " + year + ' - ' + month + ' - ' + operators + ' - ' + machines);
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  getProfitChartData(startDate: string, endtDate: string, operators: string[], machines: string[]) {
+    console.log("Parametros: " + startDate + ' - ' + endtDate + ' - ' + operators + ' - ' + machines);
     this.dataLoaded = false; // Reseta o indicador ao iniciar o carregamento
-    this.analyticalService.getFuelByOperatorsAndMachines(year, month, operators, machines)
+    this.analyticalService.getFuelByOperatorsAndMachines(startDate, endtDate, operators, machines)
       .pipe(takeWhile(() => this.alive))
       .subscribe(fuelData => {
         // Monte o objeto esperado pelo ProfitChartComponent
@@ -116,15 +134,29 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
   }
 
   // Captura a mudança de período (mês)
-  setPeriodAndGetChartData(period: string): void {
-    this.period = period;
-    this.getProfitChartDataMock(this.selectedYear, parseInt(period), this.selectedOperators, this.selectedMachines);
+  getChartData(): void {
+    this.getProfitChartData(this.startDate, this.endDate, this.selectedOperators, this.selectedMachines);
   }
 
   // Captura a mudança de ano
   setYearAndGetChartData(year: number): void {
     this.selectedYear = year;
-    this.getProfitChartDataMock(year, parseInt(this.period), this.selectedOperators, this.selectedMachines);
+    //this.getProfitChartDataMock(year, parseInt(this.period), this.selectedOperators, this.selectedMachines);
+  }
+
+  setDateAndGetChartData(event): void {
+
+    const formatDate = this.newMethod();
+
+    this.startDate = formatDate(event.start);
+    this.endDate = formatDate(event.end);
+
+    if(this.startDate && this.endDate)
+      this.getProfitChartData(this.startDate, this.endDate, this.selectedOperators, this.selectedMachines);
+  }
+
+  private newMethod() {
+    return (date: Date) => `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
   }
 
   // Captura a mudança de operador
@@ -132,13 +164,15 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
 
     console.log("Dentro de operadores, quais maquinas"+JSON.stringify(this.selectedMachines));
     this.selectedOperators = operators;
-    this.getProfitChartDataMock(this.selectedYear, parseInt(this.period), operators, this.selectedMachines);
+    //this.getProfitChartDataMock(this.selectedYear, parseInt(this.period), operators, this.selectedMachines);
+    this.getProfitChartData(this.startDate, this.endDate, operators, this.selectedMachines);
   }
 
   setMachinesAndGetChartData(machines: string[]): void {
     console.log("Dentro de maquinas, quais operadores"+JSON.stringify(this.selectedOperators));
     this.selectedMachines = machines;
-    this.getProfitChartDataMock(this.selectedYear, parseInt(this.period), this.selectedOperators, machines);
+    //this.getProfitChartDataMock(this.selectedYear, parseInt(this.period), this.selectedOperators, machines);
+    this.getProfitChartData(this.startDate, this.endDate, this.selectedOperators, machines);
   }
 
   /*

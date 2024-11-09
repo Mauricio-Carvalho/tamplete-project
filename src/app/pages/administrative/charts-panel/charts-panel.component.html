@@ -120,35 +120,35 @@
 -->
 
 <div class="row">
-  <!-- Coluna para os gráficos de barras e de linha -->
-  <div class="col-xxl-8 col-lg-12">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <span>Filtro</span>
+      </nb-card-header>
+      <ngx-chart-panel-header
+              [selectedOperators]="selectedOperators"
+              [selectedMachines]="selectedMachines"
+              (operatorsChange)="setOperatorsAndGetChartData($event)"
+              (machinesChange)="setMachinesAndGetChartData($event)"
+              (dateChange)="setDateAndGetChartData($event)">
+      </ngx-chart-panel-header>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xxl-9 col-lg-12">
     <nb-card size="large">
       <nb-tabset fullWidth (changeTab)="changeTab($event)">
-        <nb-tab tabTitle="Orders">
+        <nb-tab tabTitle="Linhas">
           <div class="chart-container">
-            <!--<ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary> -->
-            <ngx-chart-panel-header [type]="period"
-                                    (periodChange)="setPeriodAndGetChartData($event)">
-            </ngx-chart-panel-header>
             <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
           </div>
         </nb-tab>
 
-        <nb-tab tabTitle="Profit" [lazyLoad]="true">
+        <nb-tab tabTitle="Barras" [lazyLoad]="true">
           <div class="chart-container">
-            <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
-            <ngx-chart-panel-header
-              [type]="period"
-              [selectedYear]="selectedYear"
-              [selectedOperators]="selectedOperators"
-              [selectedMachines]="selectedMachines"
-              (periodChange)="setPeriodAndGetChartData($event)"
-              (yearChange)="setYearAndGetChartData($event)"
-              (operatorsChange)="setOperatorsAndGetChartData($event)"
-              (machinesChange)="setMachinesAndGetChartData($event)">
-            </ngx-chart-panel-header>
 
-            <!-- Gráfico de barras -->
             <ngx-profit-chart *ngIf="dataLoaded" [profitChartData]="profitChartData"></ngx-profit-chart>
           </div>
         </nb-tab>
@@ -156,13 +156,73 @@
     </nb-card>
   </div>
 
-  <!-- Coluna para o gráfico de pizza -->
-  <div class="col-xxl-4 col-lg-12">
+  <div class="col-xxl-3 col-lg-12">
     <nb-card size="medium">
       <nb-card-header>
         <span>Porcentagem</span>
       </nb-card-header>
-      <ngx-pie-chart [summarizedData]="summarizedData"></ngx-pie-chart>
+        <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
+        <ngx-pie-chart [summarizedData]="summarizedData"></ngx-pie-chart>
+
+
     </nb-card>
   </div>
 </div>
+
+
+<!--
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <span>Filtro</span>
+      </nb-card-header>
+      <ngx-chart-panel-header
+              [selectedOperators]="selectedOperators"
+              [selectedMachines]="selectedMachines"
+              (operatorsChange)="setOperatorsAndGetChartData($event)"
+              (machinesChange)="setMachinesAndGetChartData($event)"
+              (dateChange)="setDateAndGetChartData($event)">
+      </ngx-chart-panel-header>
+    </nb-card>
+  </div>
+</div>
+<div class="row chart-area">
+  <div [ngClass]="{ 'col-xxl-8': !isCollapsed, 'col-xxl-11': isCollapsed, 'col-lg-12': true }">
+    <nb-card size="large">
+      <nb-tabset fullWidth (changeTab)="changeTab($event)">
+        <nb-tab tabTitle="Linhas">
+          <div class="chart-content">
+            <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="Barras" [lazyLoad]="true">
+          <div class="chart-content">
+            <ngx-profit-chart *ngIf="dataLoaded" [profitChartData]="profitChartData"></ngx-profit-chart>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+
+  <div
+    [ngClass]="{ 'col-xxl-4': !isCollapsed, 'col-xxl-auto': isCollapsed, 'col-lg-1': true }"
+    class="pie-chart-container position-relative">
+    <nb-card size="medium" class="collapsed-card">
+      <nb-card-header class="d-flex justify-content-between align-items-center">
+        <span>Porcentagem</span>
+        <nb-icon
+          icon="chevron-left-outline"
+          class="toggle-icon"
+          [attr.aria-expanded]="!isCollapsed"
+          (click)="toggleCollapse()">
+        </nb-icon>
+      </nb-card-header>
+      <ng-container *ngIf="!isCollapsed">
+        <ngx-chart-panel-summary [summary]="summarizedData"></ngx-chart-panel-summary>
+        <ngx-pie-chart [summarizedData]="summarizedData"></ngx-pie-chart>
+      </ng-container>
+    </nb-card>
+  </div>
+</div>
+-->
