@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { AdministrativeComponent } from './administrative/administrative.component';
+import { AdministrativeComponent } from './dashboard/administrative.component';
 
 const routes: Routes = [{
   path: '',
@@ -30,7 +30,7 @@ const routes: Routes = [{
       pathMatch: 'full',
     },
     {
-      path: 'administrative',
+      path: 'dashboard',
       component: AdministrativeComponent
     },
     {

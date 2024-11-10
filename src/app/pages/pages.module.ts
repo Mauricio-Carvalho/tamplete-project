@@ -6,7 +6,7 @@ import { PagesComponent } from './pages.component';
 import { ProfileModule } from './profile/profile.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { AdministrativeModule } from './administrative/administrative.module';
+import { AdministrativeModule } from './dashboard/administrative.module';
 import { DatePickerComponent } from '../@core/data/DatePickerComponent';
 import { FormsModule } from '@angular/forms';
 

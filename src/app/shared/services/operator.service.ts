@@ -1,8 +1,7 @@
 
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { TruckFuelData } from '../../shared/model/truckFuelData';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../pages/auth/auth.service';
 

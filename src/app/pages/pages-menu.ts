@@ -7,6 +7,13 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
       title: translate.instant('menu.title'),
       group: true,
     },
+
+    {
+      title: 'Dashboard',
+      icon: 'home-outline',
+      link: '/pages/dashboard',
+      data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE']}
+    },
     {
       title: translate.instant('menu.list.tables.title'),
       icon: 'grid-outline',
@@ -66,11 +73,6 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
       ],
       data: { requiredUserType: ['MANAGER_MASTER'] },
     },
-    {
-      title: 'Administrativo',
-      icon: 'home-outline',
-      link: '/pages/administrative',
-      data: { requiredUserType: ['MANAGER_MASTER', 'MANAGER', 'EMPLOYEE']}
-    },
+
   ];
 }

@@ -15,11 +15,11 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
   private alive = true;
   summarizedData: OperatorChartSummary[] = [
     {
-        "description": "Combustível S10 abastecido:",
+        "description": "S10",
         "value": 10
     },
     {
-        "description": "Combustível S500 abastecido:",
+        "description": "S500",
         "value": 30
     }
 ];
@@ -107,11 +107,11 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
         // Atualiza summarizedData com os novos valores
         this.summarizedData = [
           {
-            "description": "Combustível S10 abastecido:",
+            "description": "S10",
             "value": parseFloat(totalS10.toFixed(2)),  // Mantém duas casas decimais
           },
           {
-            "description": "Combustível S500 abastecido:",
+            "description": "S500",
             "value": parseFloat(totalS500.toFixed(2)),  // Mantém duas casas decimais
           },
         ];

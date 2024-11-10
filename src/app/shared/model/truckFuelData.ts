@@ -4,4 +4,7 @@ export interface TruckFuelData {
   fuelPercentageS10: number;
   countFuelS500: number;
   fuelPercentageS500: number;
+  model: string;
+  nfCombS10: string;
+  nfComb500: string;
 }

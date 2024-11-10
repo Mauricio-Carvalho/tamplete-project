@@ -1,14 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
-
-export interface TruckFuelData {
-  idTruck: string;
-  countFuelS10: number;
-  fuelPercentageS10: number;
-  countFuelS500: number;
-  fuelPercentageS500: number;
-}
+import { TruckFuelData } from '../../../../shared/model/truckFuelData';
 
 @Component({
   selector: 'ngx-traffic-front-card',
