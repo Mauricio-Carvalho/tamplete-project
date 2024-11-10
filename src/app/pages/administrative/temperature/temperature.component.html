@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header class="header-container">
+    Volvo FIZ-5A51
+  </nb-card-header>
+  <nb-tabset fullWidth>
+
+    <nb-tab tabTitle="S10">
+      <div class="slider-container">
+        <ngx-temperature-dragger [(value)]="temperature"
+                                 [min]="temperatureData.min" [max]="temperatureData.max"
+                                 [disableArcColor]="theme.arcEmpty"
+                                 [fillColors]="theme.arcFill" [thumbBg]="theme.thumbBg"
+                                 [thumbBorderColor]="theme.thumbBorder">
+
+          <div class="slider-value-container">
+            <div class="value temperature h1">
+              {{ (temperature | ngxRound) }}
+            </div>
+            <div class="desc">
+              110.00 L
+            </div>
+          </div>
+        </ngx-temperature-dragger>
+      </div>
+    </nb-tab>
+
+    <nb-tab tabTitle="S500">
+      <div class="slider-container">
+        <ngx-temperature-dragger [(value)]="humidity"
+                                 [min]="humidityData.min" [max]="humidityData.max"
+                                 [disableArcColor]="theme.arcEmpty"
+                                 [fillColors]="theme.arcFill" [thumbBg]="theme.thumbBg"
+                                 [thumbBorderColor]="theme.thumbBorder">
+
+          <div class="slider-value-container">
+            <div class="value humidity h1">
+              {{ (humidity | ngxRound) }}
+            </div>
+            <div class="desc">
+              780.90 L
+            </div>
+          </div>
+        </ngx-temperature-dragger>
+      </div>
+    </nb-tab>
+  </nb-tabset>
+
+  <!--Nota Fiscal NF-->
+  <button nbButton outline class="button-nf"> NF 98523CT34 </button>
+</nb-card>
+
+

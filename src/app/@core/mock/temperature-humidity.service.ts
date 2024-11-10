@@ -7,8 +7,8 @@ export class TemperatureHumidityService extends TemperatureHumidityData {
 
   private temperatureDate: Temperature = {
     value: 24,
-    min: 12,
-    max: 30,
+    min: 0,
+    max: 100,
   };
 
   private humidityDate: Temperature = {

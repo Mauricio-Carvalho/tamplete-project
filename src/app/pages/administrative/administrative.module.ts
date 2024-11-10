@@ -35,6 +35,8 @@ import { OrdersChartComponent } from './charts-panel/charts/orders-chart.compone
 import { ProfitChartComponent } from './charts-panel/charts/profit-chart.component';
 import { PieChartComponent } from './charts-panel/charts/pie-chart.component';
 import { OperatorChartsPanelComponent } from './charts-panel/charts-panel.component';
+import { TemperatureDraggerComponent } from '../administrative/temperature/temperature-dragger/temperature-dragger.component';
+import { TemperatureComponent } from '../administrative/temperature/temperature.component';
 
 @NgModule({
   imports: [
@@ -55,7 +57,7 @@ import { OperatorChartsPanelComponent } from './charts-panel/charts-panel.compon
     NbDatepickerModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    NbInputModule
+    NbInputModule,
   ],
   declarations: [
     AdministrativeComponent,
@@ -74,6 +76,8 @@ import { OperatorChartsPanelComponent } from './charts-panel/charts-panel.compon
     TrafficCardsHeaderComponent,
     ChartPanelSummaryComponent,
     ChartPanelHeaderComponent,
+    TemperatureDraggerComponent,
+    TemperatureComponent,
   ],
   providers: [
 

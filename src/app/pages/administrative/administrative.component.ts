@@ -38,7 +38,7 @@ export class AdministrativeComponent {
       })
       .catch((response) => {
         this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
-      })
+      });
   }
 
   countMachine() {
@@ -48,10 +48,10 @@ export class AdministrativeComponent {
       })
       .catch((response) => {
         this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
-      })
+      });
   }
 
-  countFuel(){
+  countFuel() {
     this.analyticalService.countFuel()
       .then((fuelAll) => {
         this.amountFuelS10 = fuelAll['totalS10'];
@@ -59,7 +59,7 @@ export class AdministrativeComponent {
       })
       .catch((response) => {
         this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
-      })
+      });
   }
 
   onDeleteConfirm(event): void {
