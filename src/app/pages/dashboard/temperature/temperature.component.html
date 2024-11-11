@@ -1,49 +1,48 @@
 <nb-card>
   <nb-card-header class="header-container">
-    {{ model }} {{ idTruck }}
+    {{ truckData.model }} {{ truckData.idTruck }}
   </nb-card-header>
   <nb-tabset fullWidth>
 
     <nb-tab tabTitle="S10">
       <div class="slider-container">
-        <ngx-temperature-dragger [(value)]="temperature"
+        <ngx-temperature-dragger [(value)]="truckData.fuelPercentageS10"
                                  [min]="0" [max]="100"
                                  [disableArcColor]="theme.arcEmpty"
                                  [fillColors]="theme.arcFill" [thumbBg]="theme.thumbBg"
                                  [thumbBorderColor]="theme.thumbBorder">
           <div class="slider-value-container">
             <div class="value temperature h1">
-              {{ fuelPercentageS10 | ngxRound }}
+              {{ truckData.fuelPercentageS10 | ngxRound }}
             </div>
             <div class="desc">
-              {{ countFuelS10 }} L
+              {{ truckData.countFuelS10 }} L
             </div>
           </div>
         </ngx-temperature-dragger>
       </div>
-      <!--Nota Fiscal NF-->
-      <button nbButton outline class="button-nf">{{ nfCombS10 }}</button>
+      <button nbButton outline class="button-nf">{{ truckData.nfCombS10 }}</button>
     </nb-tab>
 
     <nb-tab tabTitle="S500">
       <div class="slider-container">
-        <ngx-temperature-dragger [(value)]="humidity"
+        <ngx-temperature-dragger [(value)]="truckData.fuelPercentageS500"
                                  [min]="0" [max]="100"
                                  [disableArcColor]="theme.arcEmpty"
                                  [fillColors]="theme.arcFill" [thumbBg]="theme.thumbBg"
                                  [thumbBorderColor]="theme.thumbBorder">
           <div class="slider-value-container">
             <div class="value humidity h1">
-              {{ fuelPercentageS500 | ngxRound }}
+              {{ truckData.fuelPercentageS500 | ngxRound }}
             </div>
             <div class="desc">
-              {{ countFuelS500 }} L
+              {{ truckData.countFuelS500 }} L
             </div>
           </div>
         </ngx-temperature-dragger>
       </div>
-      <!--Nota Fiscal NF-->
-      <button nbButton outline class="button-nf">{{ nfComb500 }}</button>
+      <button nbButton outline class="button-nf">{{ truckData.nfComb500 }}</button>
     </nb-tab>
+
   </nb-tabset>
 </nb-card>

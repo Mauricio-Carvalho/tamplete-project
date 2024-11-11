@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<!--porcentagem litros-->
+<!--porcentagem litros
 <div class="row">
   <div class="col-md-3">
     <ngx-temperature></ngx-temperature>
@@ -44,5 +44,10 @@
   <div class="col-md-3">
     <ngx-temperature></ngx-temperature>
   </div>
-</div>
+</div> -->
 
+<div class="row">
+  <div class="col-md-3" *ngFor="let truck of truckFuelData">
+    <ngx-temperature [truckData]="truck"></ngx-temperature>
+  </div>
+</div>

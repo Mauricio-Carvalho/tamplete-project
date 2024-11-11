@@ -25,10 +25,6 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
 ];
 
   isCollapsed: boolean = false;
-
-  // Outros códigos existentes...
-
-
   dataLoaded = false;
 
   profitChartData: any = {

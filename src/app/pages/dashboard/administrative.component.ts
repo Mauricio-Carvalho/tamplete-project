@@ -3,6 +3,8 @@ import {Component, OnDestroy} from '@angular/core';
 import { NbComponentStatus, NbDialogService, NbToastrService } from '@nebular/theme';
 import { AnalyticalService } from './analytical.service';
 import { TranslateService } from '@ngx-translate/core';
+import { takeWhile } from 'rxjs';
+import { TruckFuelData } from '../../shared/model/truckFuelData';
 
 
 @Component({
@@ -22,6 +24,9 @@ export class AdministrativeComponent {
   queues = [];
   isSelected = false;
 
+  truckFuelData: TruckFuelData[] = [];
+  private alive = true;
+
   constructor(
               private analyticalService: AnalyticalService,
               private toastrService: NbToastrService,
@@ -29,6 +34,7 @@ export class AdministrativeComponent {
     this.countOperator();
     this.countMachine();
     this.countFuel();
+    this.fetchTruckFuelData();
   }
 
   countOperator() {
@@ -61,6 +67,14 @@ export class AdministrativeComponent {
         this.toastrService.danger(this.translate.instant('toastr.create.error.message'), this.translate.instant('toastr.create.error.title'));
       });
   }
+
+  fetchTruckFuelData() {
+    this.analyticalService.getTruckFuelData()
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((data: TruckFuelData[]) => {
+        this.truckFuelData = data;
+      });
+    }
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
