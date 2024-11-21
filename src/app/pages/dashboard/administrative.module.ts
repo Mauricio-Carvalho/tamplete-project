@@ -37,6 +37,7 @@ import { PieChartComponent } from './charts-panel/charts/pie-chart.component';
 import { OperatorChartsPanelComponent } from './charts-panel/charts-panel.component';
 import { TemperatureDraggerComponent } from './temperature/temperature-dragger/temperature-dragger.component';
 import { TemperatureComponent } from './temperature/temperature.component';
+import { MachineChartComponent } from './machine-fuel-bar-chart/machine-chart.component';
 
 @NgModule({
   imports: [
@@ -78,6 +79,7 @@ import { TemperatureComponent } from './temperature/temperature.component';
     ChartPanelHeaderComponent,
     TemperatureDraggerComponent,
     TemperatureComponent,
+    MachineChartComponent,
   ],
   providers: [
 

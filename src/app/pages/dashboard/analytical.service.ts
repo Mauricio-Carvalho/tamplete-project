@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class AnalyticalService {
 
+
   constructor(
     private http: HttpClient,
     private authService: AuthService) {
@@ -99,6 +100,16 @@ export class AnalyticalService {
       url =  url + `&machines=${machines}`;
     }
 
+
+    return this.http.get(url);
+  }
+
+
+  getMachineFuelData(startDate: string, endDate: string): Observable<any>{
+    let url =  this.url + `filled/machines-percent`;
+    if(startDate && endDate){
+      url += `?startDate=${startDate}&endDate=${endDate}`;
+    }
 
     return this.http.get(url);
   }

@@ -38,7 +38,7 @@ export class OperatorChartsPanelComponent implements OnDestroy, OnInit {
 
   ordersChartData: any = {
     chartLabel: [],
-    data: [
+    linesData: [
       Array(10).fill(0),  // S10 valores iniciais zerados
       Array(10).fill(0),  // S500 valores iniciais zerados
       Array(10).fill(0),  // Total valores iniciais zerados
