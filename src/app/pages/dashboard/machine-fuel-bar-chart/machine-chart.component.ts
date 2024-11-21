@@ -19,6 +19,7 @@ export class MachineChartComponent implements AfterViewInit, OnDestroy, OnChange
   @Input() machineNames: string[] = [];
   @Input() fuelAmounts: number[] = [];
   @Input() maxFuelAmount: number;
+  @Input() fuelTypes: string[] = []; // Novo array para os tipos de combustível
 
   private alive = true;
   options: any = {};
@@ -43,9 +44,11 @@ export class MachineChartComponent implements AfterViewInit, OnDestroy, OnChange
             trigger: 'axis',
             axisPointer: { type: 'shadow' },
             formatter: (params) => {
-              const machineName = params[0].name; // Nome da máquina vem do eixo Y
-              const fuelAmount = params[2]?.value; // Valor da série do gradiente principal
-              return `${machineName}: ${fuelAmount} L`;
+              const index = params[2]?.dataIndex; // Índice da série do gradiente
+              const machineName = this.machineNames[index]; // Nome da máquina
+              const fuelAmount = params[2]?.value; // Valor abastecido
+              const fuelType = this.fuelTypes[index]; // Tipo de combustível
+              return `${machineName}: ${fuelAmount} L<br>Combustível: ${fuelType}`;
             },
           },
           grid: {

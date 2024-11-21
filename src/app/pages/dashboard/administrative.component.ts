@@ -24,6 +24,7 @@ export class AdministrativeComponent {
   machineNames: string[] = [];
   fuelAmounts: number[] = [];
   maxFuelAmount: number = 0;
+  fuelTypes: string[] = [];
 
 
 
@@ -44,7 +45,7 @@ export class AdministrativeComponent {
     this.countMachine();
     this.countFuel();
     this.fetchTruckFuelData();
-    this.generateFakeMachineFuelData();
+    this.fetchMachineFuelData(null, null);
   }
 
   countOperator() {
@@ -62,7 +63,7 @@ export class AdministrativeComponent {
     this.fuelAmounts = this.machineNames.map(() => Math.floor(Math.random() * 500));
 
     const maxFuel = Math.max(...this.fuelAmounts); // Maior valor em fuelAmounts
-    this.maxFuelAmount = maxFuel + 500; // Soma 500 ao maior valor
+    this.maxFuelAmount = maxFuel + 100; // Soma 500 ao maior valor
     console.log('maxFuelAmount: ' + this.maxFuelAmount)
   }
 
@@ -96,14 +97,41 @@ export class AdministrativeComponent {
   }
 
 
-// Função para buscar os dados de abastecimento de máquinas
+  // Função para buscar os dados de abastecimento de máquinas
   fetchMachineFuelData(startDate: string, endDate: string) {
     this.analyticalService.getMachineFuelData(startDate, endDate)
       .pipe(takeWhile(() => this.alive))
-      .subscribe((data: MachineFilledPercentageDto[]) => {
-        this.machineFuelData = data;
-      });
+      .subscribe(
+        (data: MachineFilledPercentageDto[]) => {
+          // Extrai os nomes das máquinas
+          this.machineNames = data.map(machine => machine.name);
+
+          // Extrai os valores abastecidos
+          this.fuelAmounts = data.map(machine => machine.amountFilled);
+
+          // Extrai os tipos de combustível
+          this.fuelTypes = data.map(machine => machine.comb);
+
+          // Calcula o maior valor abastecido + 100
+          const maxFuel = Math.max(...this.fuelAmounts);
+          this.maxFuelAmount = maxFuel + 100;
+
+          console.log('machineNames:', this.machineNames);
+          console.log('fuelAmounts:', this.fuelAmounts);
+          console.log('fuelTypes:', this.fuelTypes);
+          console.log('maxFuelAmount:', this.maxFuelAmount);
+        },
+        (error) => {
+          // Trata o erro e exibe uma mensagem ao usuário
+          this.toastrService.danger(
+            this.translate.instant('toastr.fetch.error.message'),
+            this.translate.instant('toastr.fetch.error.title')
+          );
+        }
+      );
   }
+
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
