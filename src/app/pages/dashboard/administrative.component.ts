@@ -25,7 +25,7 @@ export class AdministrativeComponent {
   fuelAmounts: number[] = [];
   maxFuelAmount: number = 0;
   fuelTypes: string[] = [];
-
+  showFuelMachines = false;
 
 
   terminals = [];
@@ -129,6 +129,7 @@ export class AdministrativeComponent {
           );
         }
       );
+      this.showFuelMachines = true;
   }
 
 
