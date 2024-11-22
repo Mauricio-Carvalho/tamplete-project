@@ -28,7 +28,7 @@
         Abastecimento das Máquinas
       </nb-card-header>
 
-      <ngx-machine-fuel-chart
+      <ngx-machine-fuel-chart *ngIf="showFuelMachines"
         [machineNames]="machineNames"
         [fuelAmounts]="fuelAmounts"
         [fuelTypes]="fuelTypes"

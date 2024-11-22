@@ -99,6 +99,7 @@ export class AdministrativeComponent {
 
   // Função para buscar os dados de abastecimento de máquinas
   fetchMachineFuelData(startDate: string, endDate: string) {
+    this.showFuelMachines = false;
     this.analyticalService.getMachineFuelData(startDate, endDate)
       .pipe(takeWhile(() => this.alive))
       .subscribe(
@@ -120,6 +121,7 @@ export class AdministrativeComponent {
           console.log('fuelAmounts:', this.fuelAmounts);
           console.log('fuelTypes:', this.fuelTypes);
           console.log('maxFuelAmount:', this.maxFuelAmount);
+          this.showFuelMachines = true;
         },
         (error) => {
           // Trata o erro e exibe uma mensagem ao usuário
@@ -129,7 +131,7 @@ export class AdministrativeComponent {
           );
         }
       );
-      this.showFuelMachines = true;
+
   }
 
 
