@@ -1,87 +1,15 @@
-<div class="steppers-container row">
-  <div class="col-xxl-5">
-    <div class="row">
-      <!-- Operadores ativos -->
-      <div class="col-xxl-6">
-        <ngx-status-card title="Operadores ativos" type="primary" [amount]="amountOperator">
-          <nb-icon icon="people-outline" pack="eva"></nb-icon>
-        </ngx-status-card>
-      </div>
-
-      <!-- Máquinas ativas -->
-      <div class="col-xxl-6">
-        <ngx-status-card title="Máquinas ativas" type="primary" [amount]="amountMachine">
-          <nb-icon icon="settings-outline" pack="eva"></nb-icon>
-        </ngx-status-card>
-      </div>
-
-      <div class="col-md-6" *ngFor="let truck of truckFuelData.slice(0, 2)">
-        <ngx-temperature [truckData]="truck"></ngx-temperature>
-      </div>
-    </div>
+<!-- iframe para exibir o PowerBI -->
+<nb-card>
+  <nb-card-header class="header-container">
+    Dashboard Power BI
+  </nb-card-header>
+  <div class="powerbi-iframe-container">
+    <iframe width="100%" height="900px"
+            src="https://app.powerbi.com/view?r=eyJrIjoiMWJlMmU2NGMtYWJmYS00NTFlLTkxZGItMDAzM2NjYWRjYjBiIiwidCI6ImFlOTExMGY3LTM1NDItNGI5MC1iMmJiLThkZDY5NGI4MDBjYSIsImMiOjN9"
+            frameborder="0" allowFullScreen="true">
+    </iframe>
   </div>
-
-  <div class="col-xxl-7">
-
-    <nb-card size="large">
-      <nb-card-header class="header-container">
-        Abastecimento das Máquinas
-      </nb-card-header>
-
-      <ngx-machine-fuel-chart *ngIf="showFuelMachines"
-        [machineNames]="machineNames"
-        [fuelAmounts]="fuelAmounts"
-        [fuelTypes]="fuelTypes"
-        [maxFuelAmount]="maxFuelAmount">
-      </ngx-machine-fuel-chart>
-    </nb-card>
-
-  </div>
+</nb-card>
 
 
 
-
-  <!--
-  <div class="col-xxl-6">
-    <ngx-traffic-reveal-card></ngx-traffic-reveal-card>
-  </div>
-  -->
-</div>
-
-<div class="row">
-  <div class="col-md-3" *ngFor="let truck of truckFuelData.slice(2)">
-    <ngx-temperature [truckData]="truck"></ngx-temperature>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xxl-12">
-    <ngx-operator-charts></ngx-operator-charts>
-  </div>
-</div>
-
-<!--
-<div class="row">
-  <div class="col-md-3" *ngFor="let truck of truckFuelData">
-    <ngx-temperature [truckData]="truck"></ngx-temperature>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xxl-12">
-
-    <nb-card>
-      <nb-card-header class="header-container">
-        Abastecimento das Máquinas
-      </nb-card-header>
-
-      <ngx-machine-fuel-chart
-        [machineNames]="machineNames"
-        [fuelAmounts]="fuelAmounts"
-        [maxFuelAmount]="5000">
-      </ngx-machine-fuel-chart>
-    </nb-card>
-
-  </div>
-</div>
--->
