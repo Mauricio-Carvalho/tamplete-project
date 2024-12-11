@@ -90,8 +90,6 @@ export class FuelTableComponent implements OnInit, OnDestroy {
     );
   }
 
-
-
   loadData() {
     this.service.getData().subscribe(
       (data: any[]) => {
@@ -147,7 +145,6 @@ export class FuelTableComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 
   onEditConfirm(event): void {
     this.dialogService.open(ConfirmDialogComponent, {
@@ -230,9 +227,7 @@ export class FuelTableComponent implements OnInit, OnDestroy {
     });
   }
 
-
   loadTableSettings() {
-
 
     console.info('Current Machines List: ', this.machinesTempList);
 
@@ -335,20 +330,10 @@ export class FuelTableComponent implements OnInit, OnDestroy {
         title: this.translate.instant('fuel.table.qtdComb'),
         type: 'number',
       },
-      // pullOver: {
-      //   title: this.translate.instant('fuel.table.pullOver'),
-      //   type: 'string',
-      // },
       pullOver: {
         title: this.translate.instant('fuel.table.pullOver'),
-        type: 'date',
-        editor: {
-          type: 'custom',
-          component: DatePickerComponent, // Referencie seu componente de seleção de data aqui
-        },
-        hide: true,
+        type: 'string',
       },
-
       start: {
         title: this.translate.instant('fuel.table.start'),
         type: 'string',
