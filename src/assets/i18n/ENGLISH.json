@@ -240,7 +240,8 @@
       "qtdCombS10": "Quantity S10",
       "nfCombS10": "NF S10",
       "qtdCombS500": "Quantity S500",
-      "nfCombS500": "NF S500"
+      "nfCombS500": "NF S500",
+      "urlImage": "Url Image"
     }
   },
   "action": "Actions"

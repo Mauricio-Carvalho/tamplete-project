@@ -3,6 +3,7 @@ import {Component, OnDestroy} from '@angular/core';
 import { NbComponentStatus, NbDialogService, NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { takeWhile } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { takeWhile } from 'rxjs';
   templateUrl: './administrative.component.html',
 })
 export class AdministrativeComponent {
+  powerBiUrl: string = environment.powerBiUrl;
+
   constructor(
               private toastrService: NbToastrService,
               private translate: TranslateService) {}

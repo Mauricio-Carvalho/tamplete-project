@@ -240,15 +240,22 @@ export class FuelTableComponent implements OnInit, OnDestroy {
     this.settings.actions.delete = isDeleteRestrictedUser;
 
     this.settings.columns = {
+      pullOver: {
+        title: this.translate.instant('fuel.table.pullOver'),
+        type: 'string',
+        sort: true,
+        sortDirection: 'desc'
+      },
       idFuel: {
         title: this.translate.instant('fuel.table.idFuel'),
         type: 'string',
         editable: false,
+        hide: true
       },
       idOp: {
         title: this.translate.instant('fuel.table.idOp'),
         type: 'string',
-        hide: false,
+        hide: true,
       },
       nameOp: {
         title: this.translate.instant('fuel.table.nameOp'),
@@ -330,10 +337,7 @@ export class FuelTableComponent implements OnInit, OnDestroy {
         title: this.translate.instant('fuel.table.qtdComb'),
         type: 'number',
       },
-      pullOver: {
-        title: this.translate.instant('fuel.table.pullOver'),
-        type: 'string',
-      },
+
       start: {
         title: this.translate.instant('fuel.table.start'),
         type: 'string',

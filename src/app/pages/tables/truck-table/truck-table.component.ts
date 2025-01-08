@@ -255,6 +255,11 @@ export class TruckTableComponent implements OnInit, OnDestroy {
         title: this.translate.instant('truck.table.nfCombS500'),
         type: 'string',
       },
+      urlImage: {
+        title: this.translate.instant('truck.table.urlImage'),
+        type: 'string',
+      },
+
     };
   }
 
