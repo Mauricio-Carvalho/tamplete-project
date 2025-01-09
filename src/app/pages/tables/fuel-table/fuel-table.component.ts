@@ -244,13 +244,13 @@ export class FuelTableComponent implements OnInit, OnDestroy {
         title: this.translate.instant('fuel.table.pullOver'),
         type: 'string',
         sort: true,
-        sortDirection: 'desc'
+        sortDirection: 'desc',
       },
       idFuel: {
         title: this.translate.instant('fuel.table.idFuel'),
         type: 'string',
         editable: false,
-        hide: true
+        hide: true,
       },
       idOp: {
         title: this.translate.instant('fuel.table.idOp'),
