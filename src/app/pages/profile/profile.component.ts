@@ -63,10 +63,10 @@ export class ProfileComponent  implements OnInit, OnDestroy {
       value: 'dark',
       name: 'Dark',
     },
-    {
+    /*{
       value: 'corporate',
       name: 'Corporate',
-    },
+    }, */
   ];
 
   currentTheme = 'default';
@@ -153,21 +153,21 @@ export class ProfileComponent  implements OnInit, OnDestroy {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        const imageData = e.target.result; // Obtém a imagem em base64
+        //const imageData = e.target.result; // Obtém a imagem em base64
 
         // Chame o método para fazer o upload da imagem
-        this.uploadUserImage(this.userId, imageData);
+
+        this.uploadUserImage(this.userId, file);
       };
       reader.readAsDataURL(file); // Lê a imagem como uma URL de dados
     }
   }
 
-  uploadUserImage(userId: string, imageData: string) {
-    const blob = this.base64ToBlob(imageData, 'image/jpeg'); // Supondo que a imagem seja JPEG
+  uploadUserImage(userId: string, file: File) {
+    const formData = new FormData();
+          formData.append('file', file); // O nome 'file' deve corresponder ao @RequestParam("file") no Java
 
-    const file = new File([blob], 'profile-image.jpg', { type: 'image/jpeg' }); // Nome do arquivo
-
-    this.userService.uploadImage(userId, file).subscribe(
+    this.userService.uploadImageForm(userId, formData).subscribe(
       response => {
         console.info('Image uploaded successfully', response);
         this.toastrService.success(this.translate.instant('toastr.upload.success.message'), this.translate.instant('toastr.upload.success.title'));
@@ -176,9 +176,10 @@ export class ProfileComponent  implements OnInit, OnDestroy {
       error => {
         console.error('Error uploading image: ', error);
         this.toastrService.danger(this.translate.instant('toastr.upload.error.message'), this.translate.instant('toastr.upload.error.title'));
-      },
+      }
     );
   }
+
 
 // Método para converter base64 em Blob
   private base64ToBlob(base64: string, type: string) {
@@ -191,5 +192,20 @@ export class ProfileComponent  implements OnInit, OnDestroy {
 
     const byteArray = new Uint8Array(byteNumbers);
     return new Blob([byteArray], { type: type });
+  }
+
+  onSubmit(){
+    this.userData.userTheme = this.userData.userTheme.toUpperCase();
+
+    this.userService.updateData(this.userId, this.userData).subscribe(
+      (data: any) => {
+        this.toastrService.success(this.translate.instant('toastr.update.success.message'), this.translate.instant('toastr.update.success.title'));
+      },
+      error => {
+        console.error('Error loading user data: ', error);
+        this.toastrService.danger(this.translate.instant('toastr.load.error.message'), this.translate.instant('toastr.load.error.title'));
+      },
+    );
+
   }
 }

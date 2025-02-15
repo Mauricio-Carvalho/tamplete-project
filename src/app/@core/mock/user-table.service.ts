@@ -50,4 +50,8 @@ export class UserTableService extends UserTableData {
     return this.http.post<any>(`${this.apiUrl}/${id}/upload`, formData);
   }
 
+  uploadImageForm(id: string, formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${id}/upload`, formData);
+  }
+
 }

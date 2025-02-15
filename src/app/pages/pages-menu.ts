@@ -50,7 +50,7 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
         },
       ],
     },
-    {
+    /*{
       title: translate.instant('menu.list.auth.title'),
       icon: 'lock-outline',
       children: [
@@ -72,7 +72,7 @@ export function getMenuItems(translate: TranslateService): NbMenuItem[] {
         },
       ],
       data: { requiredUserType: ['MANAGER_MASTER'] },
-    },
+    },*/
 
   ];
 }

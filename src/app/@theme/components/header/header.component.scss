@@ -102,4 +102,19 @@
 
   //-----fim efeito-----//
 
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-client {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-client .logo-img {
+    max-height: 50px; /* Ajuste a altura conforme necessário */
+    width: auto;
+  }
+
 }

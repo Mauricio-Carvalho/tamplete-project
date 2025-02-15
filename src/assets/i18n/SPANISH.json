@@ -79,6 +79,9 @@
       "status_title": "Estado",
       "active": "Activo",
       "blocked": "Bloqueado"
+    },
+    "button": {
+      "status_title": "Ahorrar"
     }
   },
   "dialog": {

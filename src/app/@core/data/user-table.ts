@@ -19,4 +19,6 @@ export abstract class UserTableData {
 
   // Método para fazer upload de imagem
   abstract uploadImage(id: string, file: File): Observable<any>;
+
+  abstract uploadImageForm(id: string, formData: FormData): Observable<any>;
 }

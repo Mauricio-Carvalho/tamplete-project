@@ -79,6 +79,9 @@
       "status_title": "Status",
       "active": "Active",
       "blocked": "Blocked"
+    },
+    "button": {
+      "status_title": "Save"
     }
   },
   "dialog": {

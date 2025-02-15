@@ -87,6 +87,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.changeLanguage(this.userData.userLanguage);
         this.userData.userTheme = this.userData.userTheme.toLowerCase();
         this.changeTheme(this.userData.userTheme);
+
+        // Se a imagem existir, adicionamos o prefixo Base64 para exibição correta
+        if (this.userData.profileImage) {
+          this.userData.profileImage = `data:image/jpeg;base64,${this.userData.profileImage}`;
+        }
       },
       error => {
         console.error('Error loading user data: ', error);
