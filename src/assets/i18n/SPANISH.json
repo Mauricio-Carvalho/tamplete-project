@@ -140,6 +140,16 @@
         "title": "Error",
         "message": "¡Error al eliminar el registro!"
       }
+    },
+    "upload": {
+      "success": {
+        "title": "Éxito",
+        "message": "¡Imagen cargado con éxito!"
+      },
+      "error": {
+        "title": "Error",
+        "message": "¡Error al cargar el imagen!"
+      }
     }
   },
   "user": {

@@ -140,6 +140,16 @@
         "title": "Error",
         "message": "Error deleting record!"
       }
+    },
+    "upload": {
+      "success": {
+        "title": "Success",
+        "message": "Upload successfully!"
+      },
+      "error": {
+        "title": "Error",
+        "message": "Error Upload!"
+      }
     }
   },
   "user": {

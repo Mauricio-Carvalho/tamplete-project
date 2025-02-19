@@ -140,6 +140,16 @@
         "title": "Erro",
         "message": "Erro ao excluir registro!"
       }
+    },
+    "upload": {
+      "success": {
+        "title": "Sucesso",
+        "message": "Upload realizado com sucesso!"
+      },
+      "error": {
+        "title": "Erro",
+        "message": "Erro ao realizar upload!"
+      }
     }
   },
   "user": {
