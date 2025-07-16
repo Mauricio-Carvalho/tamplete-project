@@ -255,7 +255,7 @@ export class FuelTableComponent implements OnInit, OnDestroy {
       idOp: {
         title: this.translate.instant('fuel.table.idOp'),
         type: 'string',
-        hide: true,
+        hide: false,
       },
       nameOp: {
         title: this.translate.instant('fuel.table.nameOp'),
